@@ -1,8 +1,6 @@
 #ifndef WIRECELL_ICELLTILING_H
 #define WIRECELL_ICELLTILING_H
 
-
-#include "WireCellNav/GeomDataSource.h"
 #include "WireCellData/GeomCell.h"
 #include "WireCellData/GeomWire.h"
 
