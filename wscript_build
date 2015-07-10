@@ -1,1 +1,1 @@
-bld.make_package('WireCellIface', use='WireCellData')
+bld.make_package('WireCellIface', use='WireCellUtil')
