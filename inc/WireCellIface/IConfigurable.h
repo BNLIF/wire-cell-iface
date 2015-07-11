@@ -19,8 +19,10 @@ namespace WireCell {
 	/// Accept a property tree.
 	virtual void configure(const Property& properties) = 0;
 	
-	/// Return a hard-coded default property tree.
-	virtual Property default_properties() const = 0;
+	/// Override to return a hard-coded default property tree.
+	virtual Property default_properties() const {
+	    return Property();
+	}
 
     };
 
