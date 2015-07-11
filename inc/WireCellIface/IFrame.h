@@ -1,12 +1,25 @@
 #ifndef WIRECELLIFACE_IFRAME
 #define WIRECELLIFACE_IFRAME
 
+#include "WireCellIface/ITrace.h"
+#include "WireCellIface/ISliceProvider.h"
+
 namespace WireCell {
 
-    /// IFrame - interface to a collection of traces that span some
-    /// contemporaneous time period.  This period is typically taken
-    /// to be one detector readout window, (sometimes familiarly but
-    /// confusingly called an "event").
+    /** IFrame - interface to the digitized charge as functions of
+     * channel and time of a contemporaneous time period (a frame).
+     * 
+     * The frame spans a  period which is typically taken
+     * to be one detector readout window, (sometimes familiarly but
+     * confusingly called an "event").
+     *
+     * The charge is organized either in time-major or channel-major.
+     *
+     * traces: time-major, consecutive charge values in a channel
+     *
+     * slices: channel-major, charge on channels for a given time slice.
+     * 
+     */
     class IFrame {
 
     public:
@@ -17,6 +30,11 @@ namespace WireCell {
 
 	/// Return all traces in the frame
 	virtual const TraceCollection& traces() const = 0;
+
+	/// Return the slices in this frame
+	virtual ISliceProvider& slices() = 0;
+	virtual const ISliceProvider& slices() const = 0;
+
     };
 
 }
