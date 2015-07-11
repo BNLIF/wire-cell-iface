@@ -6,8 +6,8 @@
 
 namespace WireCell {
 
-    /** IFrame - interface to the digitized charge as functions of
-     * channel and time of a contemporaneous time period (a frame).
+    /** Interface to the digitized charge as functions of the channels
+     * and the time over some time frame.
      * 
      * The frame spans a  period which is typically taken
      * to be one detector readout window, (sometimes familiarly but

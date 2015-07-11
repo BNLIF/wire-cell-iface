@@ -6,10 +6,8 @@
 
 namespace WireCell {
 
-    /** WireCell::ISliceProvider - interface to a provider of ISlice objects.
-     *
+    /** Interface to a provider of WireCell::ISlice objects.
      */
-     
     class ISliceProvider {
     public:
 	virtual ~ISliceProvider();

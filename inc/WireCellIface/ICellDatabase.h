@@ -6,8 +6,8 @@
 
 namespace WireCell {
 
-    /** WireCell::ICellDatabase - interface class for providing
-     * various relational queries on cells.
+    /** Interface class for providing various relational queries a
+     * collection of WireCell::ICell objects.
      */
 
     class ICellDatabase {

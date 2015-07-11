@@ -5,15 +5,16 @@
 
 namespace WireCell {
 
-    /** WireCell::ITrace - an interface to charge/time waveform signal on a channel.
-
-	A trace is an ordered sequence of charge measurements in
-	contiguous time bins.  
-
-        See also WireCell::IFrame
+    /** Interface to charge vs time waveform signal on a channel.
+     *
+     *	A trace is an ordered sequence of charge measurements in
+     *	contiguous time bins.  
+     *
+     *  See also WireCell::IFrame.
      */
     class ITrace {
     public:
+	/// Sequential collection of charge.
 	typedef std::vector<float> ChargeSequence;
 
 	virtual ~ITrace();

@@ -9,7 +9,7 @@
 
 namespace WireCell {
 
-    /// ICell - interface to information about a cell
+    /// Interface to information about a cell.
     class ICell {
     public:
 

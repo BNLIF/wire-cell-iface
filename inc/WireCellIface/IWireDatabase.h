@@ -5,8 +5,8 @@
 
 namespace WireCell {
 
-    /** WireCell::IWireDatabase - interface providing various
-     * relational queries on the wires. */
+    /** Interface providing various relational queries on the
+     * wires. */
     class IWireDatabase {
     public:
 	virtual ~IWireDatabase();

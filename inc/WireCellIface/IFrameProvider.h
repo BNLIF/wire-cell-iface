@@ -6,7 +6,7 @@
 
 namespace WireCell {
 
-    /** WireCell::IFrameProvider - interface to a provider of IFrame objects.
+    /** Interface to a provider of WireCell::IFrame objects.
      *
      */
      

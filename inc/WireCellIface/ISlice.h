@@ -5,9 +5,12 @@
 
 namespace WireCell {
 
-    /// WireCell::ISlice - interface to one time slice of a frame.  A
-    /// slice provides access to a collection of charge measurements
-    /// on the traces which occurred in the time slice.
+    /** Interface to one time slice of a frame.  
+     *
+     * A slice provides access to a collection of charge measurements
+     * across the various WireCell::ITrace objects that occurred in a
+     * particular time slice.
+     */
     class ISlice {
     public:
 

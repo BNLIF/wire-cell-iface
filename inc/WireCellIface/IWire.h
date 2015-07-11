@@ -16,7 +16,7 @@ namespace WireCell {
     typedef std::pair<WirePlaneType_t, int> WirePlaneIndex;
 
 
-    /// IWire - interface to information about a physical wire segment
+    /// Interface to information about a physical wire segment.
     class IWire {
     public:
 	virtual ~IWire();
