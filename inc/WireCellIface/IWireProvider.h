@@ -11,10 +11,10 @@ namespace WireCell {
     public:
 	virtual ~IWireProvider();
 	
-	/// Return the all the wires the interface provides
-	virtual const WireCell::WireVector& wires() const = 0;
-	
+	/// Provide access to all the provided wires.
+	virtual const WireStore& wires() const = 0;
     };
+
 }
 
 #endif

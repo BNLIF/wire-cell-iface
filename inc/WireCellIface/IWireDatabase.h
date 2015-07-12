@@ -12,7 +12,7 @@ namespace WireCell {
 	virtual ~IWireDatabase();
 	
 	/// Load the underling wire data.
-	virtual void load(const WireCell::WireVector& wires) = 0;
+	virtual void load(const WireCell::WireStore& wires) = 0;
 
 	/// Return a collection of wires in the given plane/direction
 	/// or all of them if no direction is specified.
@@ -43,39 +43,21 @@ namespace WireCell {
 	/// w.r.t. the Y axis (angle is in System of Units)
 	virtual double angle(WirePlaneType_t plane) const = 0;
 
-	/// Return size extent in all Cartesian directions (x=0, y=1 and
-	/// z=2) of all wire endpoints.  Values are length in the
-	/// System of Units.  One can limit the extent to a particular
-	/// wire plane, o.w. the union of all planes is assumed.
-	virtual std::vector<double> extent(WirePlaneType_t plane = kUnknownWirePlaneType) const = 0;
+	/// Return the bounding box of the wire planes as a raw
+	/// between two diagonal corners.
+	WireCell::Ray bounding_box() const;
 
 	/// Return the geometric center of all wire planes.
 	virtual WireCell::Point center() const = 0;
 
-	/// Return min/max in a particular direction (x=0, y=1 and
-	/// z=2) of all wire endpoints.  Values are length in the
-	/// System of Units.  One can limit the extent to a particular
-	/// wire plane, o.w. the union of all planes is assumed.
-	virtual std::pair<double, double> minmax(int axis, WirePlaneType_t plane = kUnknownWirePlaneType) const = 0;
-
-	/// Return true if point is contained in the extent of all
-	/// wire planes.  The extent is considered inclusive of the
-	/// center-line of the wire so exact boundary matches are
-	/// consisidered contained.
-	virtual bool contained(const Point& point) const = 0;
-
-	/// Return true if point is contained in the extent of the
-	/// wireplaces transverse to (and ignoring) the drift
-	/// direction.  See also contained().
-	virtual bool contained_yz(const Point& point) const = 0;
-
-	/// Return the location of the point measured in the direction
-	/// of wire pitch.
+	/// Return the distance from the center of the first wire to
+	/// the given point projected along the direction of the
+	/// plane's wire pitch.
 	virtual double wire_dist(const Point& point, WirePlaneType_t plane) const = 0;
 	
-	/// Return the location of the center point of the wire
-	/// measured in the direction of the pitch of the wire's
-	/// plane.
+	/// Return the distance from the center of the first wire to
+	/// the center of the given wire projected along the direction
+	/// of the plane's wire pitch.
 	virtual double wire_dist(const IWire& wire) const = 0;
 	
 	/// Given two wires, calculate their crossing point projected
@@ -99,8 +81,8 @@ namespace WireCell {
 	/// is not bounded in the higher distance side.  This
 	/// implementation assumes wires are of uniform pitch and
 	/// angle.
-	virtual WirePair bounds(const WireCell::Point& point, 
-				WirePlaneType_t plane = kUnknownWirePlaneType) const = 0;
+	virtual WirePair bounding_wires(const WireCell::Point& point, 
+					WirePlaneType_t plane = kUnknownWirePlaneType) const = 0;
 
 	/// Return closest wire in the plane to the given point along
 	/// the direction perpendicular to the wires of the given

@@ -6,10 +6,16 @@ WireCell::IWire::~IWire()
 }
 
 
-
-bool WireCell::WirePlaneIndexCompare ::operator() (const IWire* a, const IWire* b) const
+WireCell::Point WireCell::IWire::center() const
 {
-    return *a < *b;
+    Ray seg = ray();
+    return 0.5*(seg.first + seg.second);
+}
+
+bool WireCell::WirePlaneIndexCompare ::operator() (const IWire* lhs,
+						   const IWire* rhs) const
+{
+    return (*lhs) < (*rhs);
 }
 
 
@@ -20,10 +26,10 @@ bool operator==(const WireCell::IWire &lhs, const WireCell::IWire &rhs)
 
 bool operator<(const WireCell::IWire& lhs, const WireCell::IWire& rhs)
 {
-    if (lhs.plane() < rhs.plane()) {
-	return true;
+    if (lhs.plane() == rhs.plane()) {
+	return lhs.index() < rhs.index();
     }
-    return lhs.index() < rhs.index();
+    return lhs.plane() < rhs.plane();
 }
 
 

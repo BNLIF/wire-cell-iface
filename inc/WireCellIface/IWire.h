@@ -10,7 +10,7 @@
 namespace WireCell {
 
     /// Wire set plane/direction types.  W and Y are aliases
-    enum WirePlaneType_t {kUwire, kVwire, kWwire, kYwire=2, kUnknownWirePlaneType = -1};
+    enum WirePlaneType_t {kFirstPlane, kUwire=0, kVwire, kWwire, kYwire=2, kLastPlane=2, kNPlanes=3, kUnknownWirePlaneType = -1};
 
     /// A pair of wire plane/direction type and index w/in that plane of wires
     typedef std::pair<WirePlaneType_t, int> WirePlaneIndex;
@@ -29,7 +29,7 @@ namespace WireCell {
 	virtual WirePlaneType_t plane() const = 0;
 	
 	/// Convenience function returning the plane as a simple integer
-	virtual int iplane() const { return static_cast<int>(this->plane()); }
+	virtual int iplane() const { this->plane() - kFirstPlane; }
 
 	/// Consecutive, zero-based index into an ordered sequence of
 	/// wires in their plane
@@ -38,21 +38,24 @@ namespace WireCell {
 	/// Detector-dependent electronics channel number, negative is illegal.
 	virtual int channel() const = 0;
 
-	/// Return first end point the wire, in System Of Units
-	virtual WireCell::Point point1() const = 0;
+	/// Return the ray representing the wire segment.
+	// fixme: may want to change this to a const reference to save the copy
+	virtual WireCell::Ray ray() const = 0;
 
-	/// Return second end point the wire, in System Of Units
-	virtual WireCell::Point point2() const = 0;
+	/// Return the center point of the wire.  Convenience method.
+	virtual WireCell::Point center() const;
 
 	/// Convenience function to return the plane+index pair.
-	virtual WirePlaneIndex plane_index() const { return WirePlaneIndex(this->plane(), this->index()); }
-
+	virtual WirePlaneIndex plane_index() const {
+	    return WirePlaneIndex(this->plane(), this->index());
+	}
+	
     };
 
 
     /// Compare two wires by their plane and index
     struct WirePlaneIndexCompare {
-	bool operator() (const IWire* a, const IWire* b) const;
+	bool operator() (const IWire* lhs, const IWire* rhs) const;
     };
 
 
@@ -76,7 +79,6 @@ namespace WireCell {
     /// A mapping between wire and an integer point value
     typedef std::map<const IWire*, int> WireIndexMap;
 	
-
 }
 
 /// Return true if two wires are identical.
