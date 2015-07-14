@@ -1,12 +1,9 @@
 #ifndef WIRECELLIFACE_ICONFIGURABLE
 #define WIRECELLIFACE_ICONFIGURABLE
 
-#include <boost/property_tree/ptree.hpp>
+#include "WireCellUtil/Configuration.h"
 
 namespace WireCell {
-
-    namespace Property = boost::property_tree;
-    
 
     /** Interface by which a class may be configured.
      *
@@ -16,12 +13,12 @@ namespace WireCell {
     public:
 	virtual ~IConfigurable();
 
-	/// Accept a property tree.
-	virtual void configure(const Property& properties) = 0;
+	/// Accept a configuration.
+	virtual void configure(const WireCell::Configuration& config) = 0;
 	
-	/// Override to return a hard-coded default property tree.
-	virtual Property default_properties() const {
-	    return Property();
+	/// Override to return a hard-coded default configuration.
+	virtual WireCell::Configuration default_configuration() const {
+	    return WireCell::Configuration();
 	}
 
     };

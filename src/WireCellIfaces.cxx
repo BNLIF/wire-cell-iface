@@ -8,6 +8,8 @@
 #include "WireCellIface/IFrame.h"
 #include "WireCellIface/ISlice.h"
 
+#include "WireCellIface/IConfigurable.h"
+
 #include "WireCellIface/Interface.h"
 
 
@@ -23,8 +25,4 @@ WireCell::ITrace::~ITrace() { }
 WireCell::IFrame::~IFrame() { }
 WireCell::ISlice::~ISlice() { }
 
-
-
-
-
-
+WireCell::IConfigurable::~IConfigurable() { }
