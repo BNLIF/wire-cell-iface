@@ -7,7 +7,7 @@ namespace WireCell {
 
     /** Interface which provides access to a definitive source of
      * WireCell::IWire objects. */
-    class IWireProvider {
+    class IWireProvider : virtual public Interface {
     public:
 	virtual ~IWireProvider();
 	

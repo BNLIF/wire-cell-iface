@@ -10,10 +10,6 @@
 
 #include "WireCellIface/IConfigurable.h"
 
-#include "WireCellIface/Interface.h"
-
-
-WireCell::Interface::~Interface() { }
 
 WireCell::IWireProvider::~IWireProvider() { }
 WireCell::ICellProvider::~ICellProvider() { }

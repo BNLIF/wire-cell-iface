@@ -2,6 +2,7 @@
 #define WIRECELLIFACE_IWIRE
 
 #include "WireCellUtil/Point.h"
+#include "WireCellUtil/Interface.h"
 
 #include <set>
 #include <map>
@@ -17,7 +18,7 @@ namespace WireCell {
 
 
     /// Interface to information about a physical wire segment.
-    class IWire {
+    class IWire : virtual public Interface {
     public:
 	virtual ~IWire();
 
