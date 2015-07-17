@@ -2,10 +2,12 @@
 #define WIRECELLIFACE_CELL_H
 
 #include "WireCellUtil/Point.h"
+#include "WireCellIface/IWire.h"
 
 #include <set>
 #include <map>
 #include <vector>
+#include <memory>
 
 namespace WireCell {
 
@@ -28,46 +30,54 @@ namespace WireCell {
         /// going around the cell border.
         virtual WireCell::PointVector corners() const = 0;
 
+	/// Return a collection of wires that have an association with
+	/// this cell.
+	//
+	// Fixme: this may be a bad idea.  Besides adding data to a
+	// very numerous object, the association between a cell and
+	// wires is not 100% guaranteed to be unique.  It's also
+	// redundant with ICellDatabase::wires()
+	virtual WireCell::WireVector wires() const = 0;
+
     };
+
+    // No use of bare ICells, everybody shares.  Once made they are
+    // forever const.  They are accessed by this pointer-like object
+    // Cell.  No need for bare pointers nor references.
+    typedef std::shared_ptr<const ICell> Cell;
 
     /// Compare two cells by their ident.
     struct CellIdentCompare {
-	bool operator() (const ICell* a, const ICell* b) const {
+	bool operator() (Cell a, Cell b) const {
 	    return a->ident() < b->ident();
 	}
     };
 
-    /// A an owning store for an associated collection of cells.
-    typedef std::set<ICell*, CellIdentCompare> CellStore;
+    /// A a set of cells.
+    typedef std::set<Cell, CellIdentCompare> CellSet;
 
     /// A vector of non-owning pointers to cells.
-    typedef std::vector<const ICell*> CellVector;
-
-    /// A set of non-owning pointers to wires, ordered by plane and
-    /// index.  Only use this when you really need a std::set.  See
-    /// also WireCell::IndexedSet from the WireCellUtil package.
-    typedef std::set<const ICell*, CellIdentCompare> CellSet;
+    typedef std::vector<Cell> CellVector;
 
     /// A pair of cells associated in some way
-    typedef std::pair<const ICell*, const ICell*> CellPair;
+    typedef std::pair<Cell, Cell> CellPair;
 
     /// A mapping between cell and a floating point value
-    typedef std::map<const ICell*, float> CellValueMap; 
+    typedef std::map<Cell, float> CellValueMap; 
 
     /// A mapping between cell and an integer point value
-    typedef std::map<const ICell*, int> CellIndexMap;
+    typedef std::map<Cell, int> CellIndexMap;
 	
 }
 
 /// Compare two cells for equality
-bool operator==(const WireCell::ICell &lhs, const WireCell::ICell &rhs);
+bool operator==(WireCell::Cell lhs, WireCell::Cell rhs);
 
 /// Compare two cells for lessthan
-bool operator<(const WireCell::ICell& lhs, const WireCell::ICell& rhs);
+bool operator<(WireCell::Cell lhs, WireCell::Cell rhs);
 
 
-std::ostream & operator<<(std::ostream &os, const WireCell::ICell& cell);
-std::ostream & operator<<(std::ostream &os, const WireCell::ICell* cellp);
+std::ostream & operator<<(std::ostream &os, WireCell::Cell cell);
 
 
 #endif

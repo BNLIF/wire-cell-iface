@@ -7,6 +7,7 @@
 #include <set>
 #include <map>
 #include <vector>
+#include <memory>
 
 namespace WireCell {
 
@@ -53,43 +54,46 @@ namespace WireCell {
 	
     };
 
+    // No use of bare IWires, everybody shares.  Once made they are
+    // forever const.  They are accessed by this pointer-like object
+    // Wire.  No need for bare pointers nor references.
+    typedef std::shared_ptr<const IWire> Wire;
+
 
     /// Compare two wires by their plane and index
     struct WirePlaneIndexCompare {
-	bool operator() (const IWire* lhs, const IWire* rhs) const;
+	bool operator() (Wire lhs, Wire rhs) const;
     };
 
+    /// A an ordered set of wires.
+    typedef std::set<Wire, WirePlaneIndexCompare> WireSet;
 
-    /// A an owning store for an associated collection of wires.
-    typedef std::set<IWire*, WirePlaneIndexCompare> WireStore;
-
-    /// A vector of non-owning pointers to wires.
-    typedef std::vector<const IWire*> WireVector;
+    /// A vector of wires.
+    typedef std::vector<Wire> WireVector;
 
     /// A set of non-owning pointers to wires, ordered by plane and
     /// index.  Only use this when you really need a std::set.  See
     /// also WireCell::IndexedSet from the WireCellUtil package.
-    typedef std::set<const IWire*, WirePlaneIndexCompare> WireSet;
+    typedef std::set<Wire, WirePlaneIndexCompare> WireSet;
 
     /// A pair of wires associated in some way
-    typedef std::pair<const IWire*, const IWire*> WirePair;
+    typedef std::pair<Wire, Wire> WirePair;
 
     /// A mapping between wire and a floating point value
-    typedef std::map<const IWire*, float> WireValueMap; 
+    typedef std::map<Wire, float> WireValueMap; 
 
     /// A mapping between wire and an integer point value
-    typedef std::map<const IWire*, int> WireIndexMap;
+    typedef std::map<Wire, int> WireIndexMap;
 	
 }
 
 /// Return true if two wires are identical.
-bool operator==(const WireCell::IWire &lhs, const WireCell::IWire &rhs);
+bool operator==(WireCell::Wire lhs, WireCell::Wire rhs);
 
 /// Compare two wires for inequality, first by plane, then by index
-bool operator<(const WireCell::IWire& lhs, const WireCell::IWire& rhs);
+bool operator<(WireCell::Wire lhs, WireCell::Wire rhs);
 
 
-std::ostream & operator<<(std::ostream &os, const WireCell::IWire& wire);
-std::ostream & operator<<(std::ostream &os, const WireCell::IWire* wirep);
+std::ostream & operator<<(std::ostream &os, WireCell::Wire wire);
 
 #endif

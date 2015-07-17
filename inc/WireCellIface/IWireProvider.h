@@ -12,7 +12,7 @@ namespace WireCell {
 	virtual ~IWireProvider();
 	
 	/// Provide access to all the provided wires.
-	virtual const WireStore& wires() const = 0;
+	virtual const WireSet& wires() const = 0;
     };
 
 }

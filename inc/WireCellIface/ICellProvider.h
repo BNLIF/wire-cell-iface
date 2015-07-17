@@ -11,9 +11,10 @@ namespace WireCell {
     public:
 	virtual ~ICellProvider();
 	
-	/// Return the all the cells the interface provides
-	virtual const WireCell::CellVector& cells() const = 0;
+	/// Lend access to all the cells the interface provides.
+	virtual const WireCell::CellSet& cells() const = 0;
 	
+
     };
 
 
