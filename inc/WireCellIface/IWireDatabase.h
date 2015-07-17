@@ -46,7 +46,7 @@ namespace WireCell {
 
 	/// Return the bounding box of the wire planes as a raw
 	/// between two diagonal corners.
-	WireCell::Ray bounding_box() const;
+	virtual WireCell::Ray bounding_box() const = 0;
 
 	/// Return the geometric center of all wire planes.
 	virtual WireCell::Point center() const = 0;
