@@ -21,6 +21,7 @@ namespace WireCell {
 
     };
 
+    WIRECELL_DEFINE_INTERFACE(IBlob);
 }
 
 /// Return true if two blobs are identical.

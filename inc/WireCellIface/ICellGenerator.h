@@ -7,14 +7,15 @@
 namespace WireCell {
 
     /** Interface to something that generates ICells. */
-    class ICellGenerator {
+    class ICellGenerator : virtual public Interface {
     public:
 	virtual ~ICellGenerator();
 
 	// Generate your cells.
-	virtual void generate(const WireCell::IWireDatabase& wdb) = 0;
+	virtual void generate(const WireCell::IWireDatabasePtr wdb) = 0;
     };
 
+    WIRECELL_DEFINE_INTERFACE(ICellGenerator);
 
 }
 

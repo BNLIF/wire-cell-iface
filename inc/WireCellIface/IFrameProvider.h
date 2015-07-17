@@ -3,6 +3,7 @@
 
 #include "WireCellUtil/RandomIter.h"
 #include "WireCellIface/IFrame.h"
+#include "WireCellUtil/Interface.h"
 
 namespace WireCell {
 
@@ -10,7 +11,7 @@ namespace WireCell {
      *
      */
      
-    class IFrameProvider {
+    class IFrameProvider : virtual public Interface{
     public:
 	virtual ~IFrameProvider();
 
@@ -34,6 +35,7 @@ namespace WireCell {
 	
     };
 
-};
+    WIRECELL_DEFINE_INTERFACE(IFrameProvider);
+}
 
 #endif

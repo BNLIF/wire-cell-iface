@@ -85,6 +85,8 @@ namespace WireCell {
     /// A mapping between wire and an integer point value
     typedef std::map<Wire, int> WireIndexMap;
 	
+
+    WIRECELL_DEFINE_INTERFACE(IWire);
 }
 
 /// Return true if two wires are identical.

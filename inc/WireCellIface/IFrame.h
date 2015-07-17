@@ -3,6 +3,7 @@
 
 #include "WireCellIface/ITrace.h"
 #include "WireCellIface/ISliceProvider.h"
+#include "WireCellUtil/Interface.h"
 
 namespace WireCell {
 
@@ -20,7 +21,7 @@ namespace WireCell {
      * slices: channel-major, charge on channels for a given time slice.
      * 
      */
-    class IFrame {
+    class IFrame : virtual public Interface {
 
     public:
 	virtual ~IFrame();
@@ -37,6 +38,7 @@ namespace WireCell {
 
     };
 
+    WIRECELL_DEFINE_INTERFACE(IFrame);
 }
 
 #endif

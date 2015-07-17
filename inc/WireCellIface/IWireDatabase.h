@@ -2,12 +2,13 @@
 #define WIRECELLIFACE_IWIREDATABASE
 
 #include "WireCellIface/IWire.h"
+#include "WireCellUtil/Interface.h"
 
 namespace WireCell {
 
     /** Interface providing various relational queries on the
      * wires. */
-    class IWireDatabase {
+    class IWireDatabase : public Interface {
     public:
 	virtual ~IWireDatabase();
 	
@@ -94,6 +95,7 @@ namespace WireCell {
 	
     };
 
+    WIRECELL_DEFINE_INTERFACE(IWireDatabase);
 
 }
 

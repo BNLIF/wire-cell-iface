@@ -1,6 +1,8 @@
 #ifndef WIRECELLIFACE_ISLICE
 #define WIRECELLIFACE_ISLICE
 
+#include "WireCellUtil/Interface.h"
+
 #include <map>
 
 namespace WireCell {
@@ -11,7 +13,7 @@ namespace WireCell {
      * across the various WireCell::ITrace objects that occurred in a
      * particular time slice.
      */
-    class ISlice {
+    class ISlice : virtual public Interface{
     public:
 
 	typedef std::map<int,float> ChannelCharge;
@@ -28,6 +30,7 @@ namespace WireCell {
 
     };
 
+    WIRECELL_DEFINE_INTERFACE(ISlice);
 }
 
 #endif

@@ -68,6 +68,8 @@ namespace WireCell {
     /// A mapping between cell and an integer point value
     typedef std::map<Cell, int> CellIndexMap;
 	
+    WIRECELL_DEFINE_INTERFACE(IWire);
+
 }
 
 /// Compare two cells for equality

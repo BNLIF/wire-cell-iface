@@ -15,6 +15,7 @@ namespace WireCell {
 	virtual const WireSet& wires() const = 0;
     };
 
+    WIRECELL_DEFINE_INTERFACE(IWireProvider);
 }
 
 #endif

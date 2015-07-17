@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "WireCellUtil/Interface.h"
+
 namespace WireCell {
 
     /** Interface to charge vs time waveform signal on a channel.
@@ -12,7 +14,7 @@ namespace WireCell {
      *
      *  See also WireCell::IFrame.
      */
-    class ITrace {
+    class ITrace : virtual public Interface{
     public:
 	/// Sequential collection of charge.
 	typedef std::vector<float> ChargeSequence;
@@ -36,6 +38,7 @@ namespace WireCell {
     /// A collection of traces.
     typedef std::vector<const ITrace*> TraceCollection;
 
+    WIRECELL_DEFINE_INTERFACE(ITrace);
 }
 
 

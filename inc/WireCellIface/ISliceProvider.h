@@ -2,13 +2,14 @@
 #define WIRECELLIFACE_ISLICEPROVIDER
 
 #include "WireCellUtil/RandomIter.h"
+#include "WireCellUtil/Interface.h"
 #include "WireCellIface/ISlice.h"
 
 namespace WireCell {
 
     /** Interface to a provider of WireCell::ISlice objects.
      */
-    class ISliceProvider {
+    class ISliceProvider : virtual public Interface {
     public:
 	virtual ~ISliceProvider();
 
@@ -32,6 +33,7 @@ namespace WireCell {
 	
     };
 
+    WIRECELL_DEFINE_INTERFACE(ISliceProvider);
 };
 
 #endif

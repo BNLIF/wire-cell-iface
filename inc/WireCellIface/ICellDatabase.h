@@ -10,7 +10,7 @@ namespace WireCell {
      * collection of WireCell::ICell objects.
      */
 
-    class ICellDatabase {
+    class ICellDatabase : virtual public Interface {
     public:
 
 	virtual ~ICellDatabase();
@@ -32,6 +32,8 @@ namespace WireCell {
 	/// Return collection of nearest neighbor cells.
 	virtual CellVector neighbors(Cell cell) const = 0;
     };
+
+    WIRECELL_DEFINE_INTERFACE(ICellDatabase);
 
 }
 
