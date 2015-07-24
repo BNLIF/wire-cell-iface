@@ -31,6 +31,11 @@ public:
 
     WireCell::Ray ray() const { return m_ray; }
 
+    int segment() const {return 0;}
+    int face() const {return 0;}
+    int apa() const {return 0;}
+
+
 };
 
 

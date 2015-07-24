@@ -3,6 +3,8 @@
 
 #include "WireCellIface/ICell.h"
 #include "WireCellIface/IWire.h"
+#include "WireCellIface/ICellIterator.h"
+#include "WireCellIface/IWireIterator.h"
 
 namespace WireCell {
 
@@ -16,21 +18,21 @@ namespace WireCell {
 	virtual ~ICellDatabase();
 
 	/// Load the underling cell data.
-	virtual void load(const WireCell::CellSet& cells) = 0;
+	virtual void load(cell_range cells) = 0;
 
 	/// Return collection of wires which are associated with the
 	/// given cell.
-	virtual WireVector wires(Cell cell) const = 0;
+	virtual wire_range wires(Cell cell) const = 0;
 	
 	/// Return collection of cells associated with the given wire.
-	virtual CellVector cells(Wire wire) const = 0;
+	virtual cell_range cells(Wire wire) const = 0;
 
 	/// Return the one cell associated with the collection of
 	/// wires or NULL.
-	virtual Cell cell(const WireVector& wires) const = 0;
+	virtual Cell cell(wire_range wires) const = 0;
 
 	/// Return collection of nearest neighbor cells.
-	virtual CellVector neighbors(Cell cell) const = 0;
+	virtual cell_range neighbors(Cell cell) const = 0;
     };
 
     WIRECELL_DEFINE_INTERFACE(ICellDatabase);

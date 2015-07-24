@@ -12,7 +12,7 @@ namespace WireCell {
 	virtual ~ICellGenerator();
 
 	// Generate your cells.
-	virtual void generate(const WireCell::IWireDatabasePtr wdb) = 0;
+	virtual void generate(wire_iterator begin, wire_iterator end) = 0;
     };
 
     WIRECELL_DEFINE_INTERFACE(ICellGenerator);

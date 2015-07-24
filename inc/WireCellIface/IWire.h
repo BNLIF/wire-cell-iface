@@ -12,7 +12,7 @@
 namespace WireCell {
 
     /// Wire set plane/direction types.  W and Y are aliases
-    enum WirePlaneType_t {kFirstPlane, kUwire=0, kVwire, kWwire, kYwire=2, kLastPlane=2, kNPlanes=3, kUnknownWirePlaneType = -1};
+    enum WirePlaneType_t {kFirstPlane, kUwire=0, kVwire, kWwire, kYwire=2, kLastPlane=2, kNPlanes=3, kAllPlanes=4, kUnknownWirePlaneType = -1};
 
     /// A pair of wire plane/direction type and index w/in that plane of wires
     typedef std::pair<WirePlaneType_t, int> WirePlaneIndex;
@@ -40,6 +40,19 @@ namespace WireCell {
 	/// Detector-dependent electronics channel number, negative is illegal.
 	virtual int channel() const = 0;
 
+        /// Return the number of wire segments between the channel
+        /// input and this wire.  Wire directly attached to channel
+        /// input is segment==0.
+        virtual int segment() const = 0;
+
+        /// Return which side of the APA this wire exists.  Nominal or
+        /// "front" face is 0, other or "back" face is 1.
+        virtual int face() const = 0;
+
+        /// Return the APA number associated with this wire.
+        virtual int apa() const = 0;
+
+
 	/// Return the ray representing the wire segment.
 	// fixme: may want to change this to a const reference to save the copy
 	virtual WireCell::Ray ray() const = 0;
@@ -51,8 +64,13 @@ namespace WireCell {
 	virtual WirePlaneIndex plane_index() const {
 	    return WirePlaneIndex(this->plane(), this->index());
 	}
-	
-    };
+
+    };				// class IWire
+
+}
+
+
+namespace WireCell {
 
     // No use of bare IWires, everybody shares.  Once made they are
     // forever const.  They are accessed by this pointer-like object
@@ -95,7 +113,7 @@ bool operator==(WireCell::Wire lhs, WireCell::Wire rhs);
 /// Compare two wires for inequality, first by plane, then by index
 bool operator<(WireCell::Wire lhs, WireCell::Wire rhs);
 
-
+/// Stream a Wire
 std::ostream & operator<<(std::ostream &os, WireCell::Wire wire);
 
 #endif

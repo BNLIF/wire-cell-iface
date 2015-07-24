@@ -1,7 +1,7 @@
 #ifndef WIRECELLIFACE_ICELLPROVIDER
 #define WIRECELLIFACE_ICELLPROVIDER
 
-#include "WireCellIface/ICell.h"
+#include "WireCellIface/ICellIterator.h"
 
 namespace WireCell {
 
@@ -11,9 +11,12 @@ namespace WireCell {
     public:
 	virtual ~ICellProvider();
 	
-	/// Lend access to all the cells the interface provides.
-	virtual const WireCell::CellSet& cells() const = 0;
-	
+	/// Return iterator to first cell provided.
+	virtual cell_iterator cells_begin() = 0;
+
+	/// Return iterator to one past last cell provided.
+	virtual cell_iterator cell_end() = 0;
+
 
     };
 

@@ -37,7 +37,7 @@ namespace WireCell {
 	// very numerous object, the association between a cell and
 	// wires is not 100% guaranteed to be unique.  It's also
 	// redundant with ICellDatabase::wires()
-	virtual WireCell::WireVector wires() const = 0;
+	//virtual WireCell::WireVector wires() const = 0;
 
     };
 
