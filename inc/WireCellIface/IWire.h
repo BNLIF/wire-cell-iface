@@ -30,9 +30,6 @@ namespace WireCell {
 	/// The plane/direction enum of the wire 
 	virtual WirePlaneType_t plane() const = 0;
 	
-	/// Convenience function returning the plane as a simple integer
-	virtual int iplane() const { this->plane() - kFirstPlane; }
-
 	/// Consecutive, zero-based index into an ordered sequence of
 	/// wires in their plane
 	virtual int index() const = 0;
