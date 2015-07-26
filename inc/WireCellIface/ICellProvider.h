@@ -15,7 +15,7 @@ namespace WireCell {
 	virtual cell_iterator cells_begin() = 0;
 
 	/// Return iterator to one past last cell provided.
-	virtual cell_iterator cell_end() = 0;
+	virtual cell_iterator cells_end() = 0;
 
 
     };
