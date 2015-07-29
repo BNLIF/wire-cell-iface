@@ -3,6 +3,7 @@
 
 #include "WireCellUtil/Point.h"
 #include "WireCellUtil/Interface.h"
+#include "WireCellIface/ISequence.h"
 
 #include <set>
 #include <map>
@@ -67,50 +68,62 @@ namespace WireCell {
 }
 
 
-namespace WireCell {
-
-    // No use of bare IWires, everybody shares.  Once made they are
-    // forever const.  They are accessed by this pointer-like object
-    // Wire.  No need for bare pointers nor references.
-    typedef std::shared_ptr<const IWire> Wire;
+WIRECELL_SEQUENCE_ITR(Wire,wire);
+WIRECELL_SEQUENCE_ABC(Wire,wire);
+WIRECELL_SEQUENCE_SINK(Wire,wire);
 
 
-    /// Compare two wires by their plane and index
-    struct WirePlaneIndexCompare {
-	bool operator() (Wire lhs, Wire rhs) const;
-    };
 
-    /// A an ordered set of wires.
-    typedef std::set<Wire, WirePlaneIndexCompare> WireSet;
 
-    /// A vector of wires.
-    typedef std::vector<Wire> WireVector;
 
-    /// A set of non-owning pointers to wires, ordered by plane and
-    /// index.  Only use this when you really need a std::set.  See
-    /// also WireCell::IndexedSet from the WireCellUtil package.
-    typedef std::set<Wire, WirePlaneIndexCompare> WireSet;
 
-    /// A pair of wires associated in some way
-    typedef std::pair<Wire, Wire> WirePair;
 
-    /// A mapping between wire and a floating point value
-    typedef std::map<Wire, float> WireValueMap; 
 
-    /// A mapping between wire and an integer point value
-    typedef std::map<Wire, int> WireIndexMap;
+
+// namespace WireCell {
+
+//     // No use of bare IWires, everybody shares.  Once made they are
+//     // forever const.  They are accessed by this pointer-like object
+//     // Wire.  No need for bare pointers nor references.
+//     typedef std::shared_ptr<const IWire> Wire;
+
+
+//     /// Compare two wires by their plane and index
+//     struct WirePlaneIndexCompare {
+// 	bool operator() (Wire lhs, Wire rhs) const;
+//     };
+
+//     /// A an ordered set of wires.
+//     typedef std::set<Wire, WirePlaneIndexCompare> WireSet;
+
+//     /// A vector of wires.
+//     typedef std::vector<Wire> WireVector;
+
+//     /// A set of non-owning pointers to wires, ordered by plane and
+//     /// index.  Only use this when you really need a std::set.  See
+//     /// also WireCell::IndexedSet from the WireCellUtil package.
+//     typedef std::set<Wire, WirePlaneIndexCompare> WireSet;
+
+//     /// A pair of wires associated in some way
+//     typedef std::pair<Wire, Wire> WirePair;
+
+//     /// A mapping between wire and a floating point value
+//     typedef std::map<Wire, float> WireValueMap; 
+
+//     /// A mapping between wire and an integer point value
+//     typedef std::map<Wire, int> WireIndexMap;
 	
 
-    WIRECELL_DEFINE_INTERFACE(IWire);
-}
+//     WIRECELL_DEFINE_INTERFACE(IWire);
+// }
 
-/// Return true if two wires are identical.
-bool operator==(WireCell::Wire lhs, WireCell::Wire rhs);
+// /// Return true if two wires are identical.
+// bool operator==(WireCell::Wire lhs, WireCell::Wire rhs);
 
-/// Compare two wires for inequality, first by plane, then by index
-bool operator<(WireCell::Wire lhs, WireCell::Wire rhs);
+// /// Compare two wires for inequality, first by plane, then by index
+// bool operator<(WireCell::Wire lhs, WireCell::Wire rhs);
 
-/// Stream a Wire
-std::ostream & operator<<(std::ostream &os, WireCell::Wire wire);
+// /// Stream a Wire
+// std::ostream & operator<<(std::ostream &os, WireCell::Wire wire);
 
 #endif

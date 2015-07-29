@@ -2,17 +2,10 @@
 #define WIRECELLIFACE_IFRAME
 
 #include "WireCellIface/ITrace.h"
-#include "WireCellIface/ISliceProvider.h"
-#include "WireCellUtil/Interface.h"
 
 namespace WireCell {
 
-    /** Interface to the digitized charge as functions of the channels
-     * and the time over some time frame.
-     * 
-     * The frame spans a  period which is typically taken
-     * to be one detector readout window, (sometimes familiarly but
-     * confusingly called an "event").
+    /** Interface to a sequence of traces.
      *
      * The charge is organized either in time-major or channel-major.
      *
@@ -21,7 +14,7 @@ namespace WireCell {
      * slices: channel-major, charge on channels for a given time slice.
      * 
      */
-    class IFrame : virtual public Interface {
+    class IFrame : public ITraceSequence {
 
     public:
 	virtual ~IFrame();
@@ -29,16 +22,12 @@ namespace WireCell {
 	/// Return an identifying number of this frame.
 	virtual int ident() const = 0;
 
-	/// Return all traces in the frame
-	virtual const TraceCollection& traces() const = 0;
-
-	/// Return the slices in this frame
-	virtual ISliceProvider& slices() = 0;
-	virtual const ISliceProvider& slices() const = 0;
-
     };
 
-    WIRECELL_DEFINE_INTERFACE(IFrame);
 }
+
+WIRECELL_SEQUENCE_ITR(Frame,frame);
+WIRECELL_SEQUENCE_ABC(Frame,frame);
+WIRECELL_SEQUENCE_SINK(Frame,frame);
 
 #endif

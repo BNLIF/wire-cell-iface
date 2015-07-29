@@ -5,19 +5,18 @@
 
 namespace WireCell {
 
-    /** Interface to information about an aggregation of cells.
+    /** Interface to information about an aggregation of cells which
+     * itself is a cell.
      *
-     * A blob implements the ICell interface.  This means that one may
-     * use a blob to hold other blobs.  When you construct IBlobs be
-     * mindful of using `.ident()` numbers which are degenerated with
-     * their ICell constituents.
+     * A blob implements the ICell and ICellSequence interfaces.  This
+     * means that one may use a blob to hold other blobs.  
+     *
+     * When you construct IBlobs be mindful of using `.ident()`
+     * numbers which are degenerated with their ICell constituents.
      */
-   class IBlob : public ICell {
+    class IBlob : public ICell, public ICellSequence {
     public:
 	virtual ~IBlob();
-
-	/// Return the constituent ICells in this blob.
-	virtual const CellVector& cells() const = 0;
 
     };
 

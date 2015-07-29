@@ -1,46 +1,17 @@
 #include "WireCellIface/IWire.h"
 #include "WireCellUtil/Testing.h"
 
+#include "MyWire.h"
+
 #include <iostream>
 
 using namespace WireCell;
 using namespace std;
 
-class MyWire : public IWire {
-    WirePlaneType_t m_plane;
-    int m_index;
-    Ray m_ray;
-
-public:
-    MyWire(WirePlaneType_t plane, int index, const Ray& ray)
-	: m_plane(plane), m_index(index), m_ray(ray)
-    {}
-    virtual ~MyWire() {}
-
-    int ident() const {
-	int iplane = m_plane - kFirstPlane;
-	++iplane;
-	return iplane*100000 + m_index;
-    }
-
-    WirePlaneType_t plane() const { return m_plane; }
-	
-    int index() const { return m_index; }
-
-    int channel() const { return ident(); }
-
-    WireCell::Ray ray() const { return m_ray; }
-
-    int segment() const {return 0;}
-    int face() const {return 0;}
-    int apa() const {return 0;}
-
-
-};
-
 
 int main()
 {
+    typedef std::shared_ptr<IWire> Wire;
     Wire u0(new MyWire(kUwire, 0, Ray()));
     Wire u1(new MyWire(kUwire, 1, Ray()));
     Wire v0(new MyWire(kVwire, 0, Ray()));

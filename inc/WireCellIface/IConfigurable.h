@@ -12,7 +12,7 @@ namespace WireCell {
      */
     class IConfigurable : virtual public Interface {
     public:
-	virtual ~IConfigurable();
+	virtual ~IConfigurable() {}
 
 	/// Accept a configuration.
 	virtual void configure(const WireCell::Configuration& config) = 0;

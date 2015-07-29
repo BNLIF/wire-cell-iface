@@ -64,7 +64,7 @@ namespace WireCell {
      */
     class IWireParameters : virtual public Interface {
     public:
-	virtual ~IWireParameters();
+	virtual ~IWireParameters() {}
 
 	/** Provide access to the rays which were used to define the wires. */
 

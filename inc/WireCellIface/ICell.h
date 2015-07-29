@@ -36,50 +36,70 @@ namespace WireCell {
 	// Fixme: this may be a bad idea.  Besides adding data to a
 	// very numerous object, the association between a cell and
 	// wires is not 100% guaranteed to be unique.  It's also
-	// redundant with ICellDatabase::wires()
+	// redundant with IWireCell::wires()
 	//virtual WireCell::WireVector wires() const = 0;
 
     };
 
-    // No use of bare ICells, everybody shares.  Once made they are
-    // forever const.  They are accessed by this pointer-like object
-    // Cell.  No need for bare pointers nor references.
-    typedef std::shared_ptr<const ICell> Cell;
-
-    /// Compare two cells by their ident.
-    struct CellIdentCompare {
-	bool operator() (Cell a, Cell b) const {
-	    return a->ident() < b->ident();
-	}
-    };
-
-    /// A a set of cells.
-    typedef std::set<Cell, CellIdentCompare> CellSet;
-
-    /// A vector of non-owning pointers to cells.
-    typedef std::vector<Cell> CellVector;
-
-    /// A pair of cells associated in some way
-    typedef std::pair<Cell, Cell> CellPair;
-
-    /// A mapping between cell and a floating point value
-    typedef std::map<Cell, float> CellValueMap; 
-
-    /// A mapping between cell and an integer point value
-    typedef std::map<Cell, int> CellIndexMap;
-	
-    WIRECELL_DEFINE_INTERFACE(ICell);
-
 }
 
-/// Compare two cells for equality
-bool operator==(WireCell::Cell lhs, WireCell::Cell rhs);
-
-/// Compare two cells for lessthan
-bool operator<(WireCell::Cell lhs, WireCell::Cell rhs);
+WIRECELL_SEQUENCE_ITR(Cell,cell);
+WIRECELL_SEQUENCE_ABC(Cell,cell);
+WIRECELL_SEQUENCE_SINK(Cell,cell);
 
 
-std::ostream & operator<<(std::ostream &os, WireCell::Cell cell);
+
+
+
+
+
+
+
+
+
+
+
+// namespace WireCell {
+
+//     // No use of bare ICells, everybody shares.  Once made they are
+//     // forever const.  They are accessed by this pointer-like object
+//     // Cell.  No need for bare pointers nor references.
+//     typedef std::shared_ptr<const ICell> Cell;
+
+//     /// Compare two cells by their ident.
+//     struct CellIdentCompare {
+// 	bool operator() (Cell a, Cell b) const {
+// 	    return a->ident() < b->ident();
+// 	}
+//     };
+
+//     /// A a set of cells.
+//     typedef std::set<Cell, CellIdentCompare> CellSet;
+
+//     /// A vector of non-owning pointers to cells.
+//     typedef std::vector<Cell> CellVector;
+
+//     /// A pair of cells associated in some way
+//     typedef std::pair<Cell, Cell> CellPair;
+
+//     /// A mapping between cell and a floating point value
+//     typedef std::map<Cell, float> CellValueMap; 
+
+//     /// A mapping between cell and an integer point value
+//     typedef std::map<Cell, int> CellIndexMap;
+	
+//     WIRECELL_DEFINE_INTERFACE(ICell);
+
+// }
+
+// /// Compare two cells for equality
+// bool operator==(WireCell::Cell lhs, WireCell::Cell rhs);
+
+// /// Compare two cells for lessthan
+// bool operator<(WireCell::Cell lhs, WireCell::Cell rhs);
+
+
+// std::ostream & operator<<(std::ostream &os, WireCell::Cell cell);
 
 
 #endif

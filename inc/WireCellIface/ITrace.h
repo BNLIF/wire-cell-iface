@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "WireCellUtil/Interface.h"
+#include "WireCellIface/ISequence.h"
 
 namespace WireCell {
 
@@ -37,9 +38,10 @@ namespace WireCell {
 
     /// A collection of traces.
     typedef std::vector<const ITrace*> TraceCollection;
-
-    WIRECELL_DEFINE_INTERFACE(ITrace);
 }
 
+WIRECELL_SEQUENCE_ITR(Trace,trace);
+WIRECELL_SEQUENCE_ABC(Trace,trace);
+WIRECELL_SEQUENCE_SINK(Trace,trace);
 
 #endif

@@ -1,3 +1,10 @@
+/** WireCell::IWireGenerator is sort of a special interface in that it
+ * denotes some object which will accept a special
+ * WireCell:IWireParameters object.
+ *
+ * The intention is that the object then goes on to generate wires and
+ * make them available via the WireCell:IWireSequence interface.
+ */
 #ifndef WIRECELLIFACE_IWIREGENERATOR
 #define WIRECELLIFACE_IWIREGENERATOR
 
@@ -9,7 +16,7 @@ namespace WireCell {
      * WireCell::IWire objects. */
     class IWireGenerator : virtual public Interface {
     public:
-	virtual ~IWireGenerator();
+	virtual ~IWireGenerator() {}
 	
 	/// Generate your wires.
 	virtual void generate(const WireCell::IWireParameters& params) = 0;

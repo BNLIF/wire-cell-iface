@@ -1,3 +1,10 @@
+/**
+   Some wire selectors.
+
+   Fixme: this isn't really appropriate for an interface package.
+
+ */
+
 #ifndef WIRECELL_WIRESELECTORS
 #define  WIRECELL_WIRESELECTORS
 

@@ -2,6 +2,7 @@
 #define WIRECELLIFACE_ISLICE
 
 #include "WireCellUtil/Interface.h"
+#include "WireCellIface/ISequence.h"
 
 #include <map>
 
@@ -29,8 +30,11 @@ namespace WireCell {
 	virtual const ChannelCharge& charge() const = 0;
 
     };
-
-    WIRECELL_DEFINE_INTERFACE(ISlice);
 }
+
+WIRECELL_SEQUENCE_ITR(Slice,slice);
+WIRECELL_SEQUENCE_ABC(Slice,slice);
+WIRECELL_SEQUENCE_SINK(Slice,slice);
+
 
 #endif

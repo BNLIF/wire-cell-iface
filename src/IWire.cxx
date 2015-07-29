@@ -12,28 +12,28 @@ WireCell::Point WireCell::IWire::center() const
     return 0.5*(seg.first + seg.second);
 }
 
-bool WireCell::WirePlaneIndexCompare ::operator() (Wire lhs, Wire rhs) const
-{
-    return lhs < rhs;
-}
+// bool WireCell::WirePlaneIndexCompare ::operator() (Wire lhs, Wire rhs) const
+// {
+//     return lhs < rhs;
+// }
 
 
-bool operator==(WireCell::Wire lhs, WireCell::Wire rhs) 
-{
-    return lhs->ident() == rhs->ident();
-}
+// bool operator==(WireCell::Wire lhs, WireCell::Wire rhs) 
+// {
+//     return lhs->ident() == rhs->ident();
+// }
 
-bool operator<(WireCell::Wire lhs, WireCell::Wire rhs)
-{
-    if (lhs->plane() == rhs->plane()) {
-	return lhs->index() < rhs->index();
-    }
-    return lhs->plane() < rhs->plane();
-}
+// bool operator<(WireCell::Wire lhs, WireCell::Wire rhs)
+// {
+//     if (lhs->plane() == rhs->plane()) {
+// 	return lhs->index() < rhs->index();
+//     }
+//     return lhs->plane() < rhs->plane();
+// }
 
 
-std::ostream & operator<<(std::ostream &os, WireCell::Wire wire)
-{
-    os << "<WIRE " << wire->ident() << ">";
-}
+// std::ostream & operator<<(std::ostream &os, WireCell::Wire wire)
+// {
+//     os << "<WIRE " << wire->ident() << ">";
+// }
 
