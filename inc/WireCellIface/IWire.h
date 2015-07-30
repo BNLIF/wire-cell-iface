@@ -2,7 +2,6 @@
 #define WIRECELLIFACE_IWIRE
 
 #include "WireCellUtil/Point.h"
-#include "WireCellUtil/Interface.h"
 #include "WireCellIface/ISequence.h"
 
 #include <set>
@@ -20,7 +19,7 @@ namespace WireCell {
 
 
     /// Interface to information about a physical wire segment.
-    class IWire : virtual public Interface {
+    class IWire {
     public:
 	virtual ~IWire();
 
@@ -65,6 +64,8 @@ namespace WireCell {
 
     };				// class IWire
 
+    typedef std::pair<const IWire*, const IWire*> IWirePair;
+    typedef std::vector<const IWire*> IWireVector;
 }
 
 
