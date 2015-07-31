@@ -32,6 +32,14 @@ WIRECELL_SEQUENCE_ITR(Depo,depo);
 WIRECELL_SEQUENCE_ABC(Depo,depo);
 WIRECELL_SEQUENCE_SINK(Depo,depo);
 
+namespace WireCell {
 
+    /** In addition to the abstract base iterator access directly to a
+     * pointer to IDepo, it is helpful to have a share_ptr. */
+    typedef std::shared_ptr<const IDepo> IDepoPtr;
+    typedef IteratorBase<IDepoPtr> depoptr_base_iterator;
+    typedef Iterator<IDepoPtr> depoptr_iterator;
+    typedef std::pair< depoptr_iterator, depoptr > depoptr_range;
+}
 
 #endif
