@@ -8,28 +8,27 @@
 #include <map> 			// for std::pair
 #include <memory> 		// for std::shared_ptr
 
-// namespace WireCell {
 
-//     template <class Type>
-//     class ISequence : virtual public Interface {
-//     public:
-// 	virtual ~ISequence() {};
+// fixme, make ranges be c++11 compliant
 
-// 	virtual Iterator<const Type*> begin() const = 0;
-// 	virtual Iterator<const Type*> end() const = 0;
-// 	// virtual std::pair< Iterator<Type> , Iterator<Type> > range() {
-// 	//     return std::pair< Iterator<Type> , Iterator<Type> >(begin<Type>(), end<Type>());
-// 	// }
-//     };
-
-// }
-
+/// This macro defines "std::shared_ptr<const ICapName*>" and abstract
+/// base iterators to "const ICapName*" and "ICapNamePtr"
 #define WIRECELL_SEQUENCE_ITR(CapName, lowname) \
     namespace WireCell {						\
     typedef IteratorBase<const I##CapName *> lowname##_base_iterator;	\
     typedef Iterator<const I##CapName *> lowname##_iterator;		\
     typedef std::pair< lowname##_iterator, lowname##_iterator > lowname##_range; \
     }
+
+/// This macro defines shared pointers for the given class name 
+#define WIRECELL_SEQUENCE_PTR(CapName, lowname) \
+    namespace WireCell {						\
+    typedef std::shared_ptr<const I##CapName> I##CapName##Ptr;		\
+    typedef IteratorBase<I##CapName##Ptr> lowname##ptr_base_iterator;	\
+    typedef Iterator<I##CapName##Ptr> lowname##ptr_iterator;		\
+    typedef std::pair< lowname##ptr_iterator, lowname##ptr_iterator > lowname##ptr_range;\
+    }
+
 
 #define WIRECELL_SEQUENCE_ABC(CapName,lowname)				\
     namespace WireCell {						\

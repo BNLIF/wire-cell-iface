@@ -2,6 +2,8 @@
 #define WIRECELL_IDEPO
 
 #include "WireCellIface/ISequence.h"
+#include "WireCellIface/ISource.h"
+#include "WireCellIface/IData.h"
 
 #include "WireCellUtil/Point.h"
 #include "WireCellUtil/Units.h"
@@ -13,7 +15,7 @@ namespace WireCell {
 
     /** An interface to information about a deposition of charge.
      */
-    class IDepo {
+    class IDepo : public IData<IDepo> {
     public:
 	virtual ~IDepo() {};
 
@@ -28,22 +30,24 @@ namespace WireCell {
 	virtual double charge() const = 0;
 	
 	/// If the deposition is drifted, this accesses the original.
-	virtual IDepoPtr original() const { return 0; }
+	/// Note, return value is an IDepoPtr.
+	virtual const_ptr original() const { return 0; }
 
     };
 
 }
 
 
+// // Access by bare "const IDepo*"
 WIRECELL_SEQUENCE_ITR(Depo,depo);
 WIRECELL_SEQUENCE_ABC(Depo,depo);
 WIRECELL_SEQUENCE_SINK(Depo,depo);
 
-namespace WireCell {
+// // Access by shared_ptr<const IDepo>
+WIRECELL_SEQUENCE_PTR(Depo,depo);
+WIRECELL_SOURCE_ABC(Depo,depo);
 
-    typedef IteratorBase<IDepoPtr> depoptr_base_iterator;
-    typedef Iterator<IDepoPtr> depoptr_iterator;
-    typedef std::pair< depoptr_iterator, depoptr_iterator > depoptr_range;
+namespace WireCell {
 
     /// Compare how "far" two depositions are from the origin along
     /// the drift-line (metric: dT + dX/V_drift) given a drift velocity.
@@ -55,6 +59,9 @@ namespace WireCell {
 	bool operator()(const IDepoPtr& lhs, const IDepoPtr& rhs) const {
 	    double t1 = lhs->time() + lhs->pos().x()/m_drift_velocity;
 	    double t2 = rhs->time() + rhs->pos().x()/m_drift_velocity;
+	    if (t1 == t2) {
+		return lhs.get() < rhs.get(); // make sure no ties
+	    }
 	    return t1 < t2;
 	}
 	double drift_velocity() { return m_drift_velocity; }
