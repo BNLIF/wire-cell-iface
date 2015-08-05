@@ -1,22 +1,26 @@
 #include "WireCellIface/IWire.h"
 #include "WireCellIface/ICell.h"
 
+#include <iostream>
 
-class MyWireSink : public WireCell::IWireSink
+using namespace WireCell;
+
+
+class MyWireSink : public IWireSink
 {
-    void sink(WireCell::wire_iterator begin, WireCell::wire_iterator end) {
-	for (auto it = begin; it != end; ++it) {
-	    const WireCell::IWire& wire = **it;
+    void sink(const IWireSequence::iterator_range& range) {
+	for (auto it : range) {
+	    const IWire& wire = *it;
 	    std::cout << wire.ident() << std::endl;
 	}
     }
 };
 
-class MyCellSink : public WireCell::ICellSink
+class MyCellSink : public ICellSink
 {
-    void sink(WireCell::cell_iterator begin, WireCell::cell_iterator end) {
-	for (auto it = begin; it != end; ++it) {
-	    const WireCell::ICell& cell = **it;
+    void sink(const ICellSequence::iterator_range& range) {
+	for (auto it : range) {
+	    const ICell& cell = *it;
 	    std::cout << cell.ident() << std::endl;
 	}
     }

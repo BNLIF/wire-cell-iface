@@ -2,6 +2,8 @@
 #define WIRECELLIFACE_IWIRE
 
 #include "WireCellUtil/Point.h"
+#include "WireCellIface/IData.h"
+#include "WireCellIface/ISink.h"
 #include "WireCellIface/ISequence.h"
 
 #include <set>
@@ -12,14 +14,17 @@
 namespace WireCell {
 
     /// Wire set plane/direction types.  W and Y are aliases
-    enum WirePlaneType_t {kFirstPlane, kUwire=0, kVwire, kWwire, kYwire=2, kLastPlane=2, kNPlanes=3, kAllPlanes=4, kUnknownWirePlaneType = -1};
+    enum WirePlaneType_t {kFirstPlane,
+			  kUwire=0, kVwire, kWwire, kYwire=2,
+			  kLastPlane=2, kNPlanes=3, kAllPlanes=4,
+			  kUnknownWirePlaneType = -1};
 
     /// A pair of wire plane/direction type and index w/in that plane of wires
     typedef std::pair<WirePlaneType_t, int> WirePlaneIndex;
 
 
     /// Interface to information about a physical wire segment.
-    class IWire {
+    class IWire : public IData<IWire> {
     public:
 	virtual ~IWire();
 
@@ -64,67 +69,37 @@ namespace WireCell {
 
     };				// class IWire
 
-    typedef std::pair<const IWire*, const IWire*> IWirePair;
-    typedef std::vector<const IWire*> IWireVector;
+    typedef std::pair<IWire::pointer, IWire::pointer> IWirePair;
+    typedef std::vector<IWire::pointer> IWireVector;
+
+    /// An abstract base class for anything that can sink a sequence
+    /// of wires.
+    typedef ISink<IWire> IWireSink;
+
+    /** An abstract base class for a sequence of wires.
+     *
+     * This could simply be a typedef but it is convenient to provide
+     * different names for iterators and begin()/end() to facilitate
+     * any subclassing of both IWireSequence and ICellSequence.  If
+     * you don't want this cruft, just inherit directly from
+     * ISequence<IWire>.
+     */
+    class IWireSequence : virtual public ISequence<IWire> {
+    public:
+	typedef IWire::base_iterator	wire_base_iterator;
+	typedef IWire::iterator		wire_iterator;
+	typedef IWire::iterator_range	wire_range;
+
+	/// Actual subclass must implement:
+	virtual wire_iterator wires_begin() = 0;
+	virtual wire_iterator wires_end() = 0;
+
+	virtual wire_range wires_range() { return wire_range(wires_begin(), wires_end()); }
+
+	virtual wire_iterator begin() { return wires_begin(); };
+	virtual wire_iterator end() { return wires_end(); };
+
+    };
 }
-
-
-WIRECELL_SEQUENCE_ITR(Wire,wire);
-WIRECELL_SEQUENCE_ABC(Wire,wire);
-WIRECELL_SEQUENCE_SINK(Wire,wire);
-
-
-
-
-
-
-
-
-
-// namespace WireCell {
-
-//     // No use of bare IWires, everybody shares.  Once made they are
-//     // forever const.  They are accessed by this pointer-like object
-//     // Wire.  No need for bare pointers nor references.
-//     typedef std::shared_ptr<const IWire> Wire;
-
-
-//     /// Compare two wires by their plane and index
-//     struct WirePlaneIndexCompare {
-// 	bool operator() (Wire lhs, Wire rhs) const;
-//     };
-
-//     /// A an ordered set of wires.
-//     typedef std::set<Wire, WirePlaneIndexCompare> WireSet;
-
-//     /// A vector of wires.
-//     typedef std::vector<Wire> WireVector;
-
-//     /// A set of non-owning pointers to wires, ordered by plane and
-//     /// index.  Only use this when you really need a std::set.  See
-//     /// also WireCell::IndexedSet from the WireCellUtil package.
-//     typedef std::set<Wire, WirePlaneIndexCompare> WireSet;
-
-//     /// A pair of wires associated in some way
-//     typedef std::pair<Wire, Wire> WirePair;
-
-//     /// A mapping between wire and a floating point value
-//     typedef std::map<Wire, float> WireValueMap; 
-
-//     /// A mapping between wire and an integer point value
-//     typedef std::map<Wire, int> WireIndexMap;
-	
-
-//     WIRECELL_DEFINE_INTERFACE(IWire);
-// }
-
-// /// Return true if two wires are identical.
-// bool operator==(WireCell::Wire lhs, WireCell::Wire rhs);
-
-// /// Compare two wires for inequality, first by plane, then by index
-// bool operator<(WireCell::Wire lhs, WireCell::Wire rhs);
-
-// /// Stream a Wire
-// std::ostream & operator<<(std::ostream &os, WireCell::Wire wire);
 
 #endif

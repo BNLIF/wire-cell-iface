@@ -25,7 +25,7 @@ namespace WireCell {
 	/// Return the closest wire along the pitch direction to the
 	/// given point in the given wire plane.  It is assumed the
 	/// point is in the (Y-Z) bounding box of the wire plane.
-	virtual const IWire* closest(const Point& point, WirePlaneType_t plane) const = 0;
+	virtual IWire::pointer closest(const Point& point, WirePlaneType_t plane) const = 0;
 	
 	/// Return a pair of adjacent wires from the given plane which
 	/// bound the given point along the pitch direction.  The pair

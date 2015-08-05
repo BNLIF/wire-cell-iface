@@ -8,24 +8,48 @@
 using namespace WireCell;
 using namespace std;
 
+typedef std::vector<MyWire*> RawVector;
+MyWire* make_wire(RawVector& store, WirePlaneType_t plane, int ind)
+{
+    MyWire* w = new MyWire(plane, ind, Ray());
+    store.push_back(w);
+    cerr << "make_wire(" << plane << ", " << ind << ") -> " << store.size() << endl;
+    return w;
+}
 
 int main()
 {
-    typedef std::shared_ptr<IWire> Wire;
-    Wire u0(new MyWire(kUwire, 0, Ray()));
-    Wire u1(new MyWire(kUwire, 1, Ray()));
-    Wire v0(new MyWire(kVwire, 0, Ray()));
-    Wire v1(new MyWire(kVwire, 1, Ray()));
-    Wire w0(new MyWire(kWwire, 0, Ray()));
-    Wire w1(new MyWire(kWwire, 1, Ray()));
 
-    Assert (u0 < u1);
-//fixme: define
-//    Assert (u0 != u1);
-    Assert (u1 < v0);
-    Assert (u1 < w1);
-//    Assert (w1 > w0);
-    Assert (u0 == u0);
-//    Assert (w0 > v1);
+    RawVector rawvec;
+    typedef IWire::pointer Wire;
+
+    make_wire(rawvec, kUwire, 0);
+    make_wire(rawvec, kUwire, 1);
+    make_wire(rawvec, kVwire, 0);
+    make_wire(rawvec, kVwire, 1);
+    make_wire(rawvec, kWwire, 0);
+    make_wire(rawvec, kWwire, 1);
+
+
+    // Convert raw pointer to one using shared_ptr
+    typedef std::vector<IWire::pointer> CookedVector;
+    CookedVector cooked(rawvec.begin(), rawvec.end());
+
+    // Two ways to convert STL container of shared_ptrs to facade over abstract iterator:
+
+    //IteratorAdapter<CookedVector::const_iterator, IWire::base_iterator> adapted(cooked.begin());
+    IWireSequence::iterator facade_begin = IWireSequence::adapt(cooked.begin());
+    IWireSequence::iterator facade_end = IWireSequence::adapt(cooked.end());
+    for (auto it = facade_begin; it != facade_end; ++it) {
+	IWire::pointer wire = *it;
+	cerr << "facade: " << wire->ident() << endl;
+    }
     
+    // Alternative of the above to make a range and use pretty C++11 loop
+    SequenceAdapter<IWire> range(cooked.begin(), cooked.end());
+    for(auto wire : range) {
+	cerr << "range: " << wire->ident() << endl;
+    }
+
+    return 0;
 }

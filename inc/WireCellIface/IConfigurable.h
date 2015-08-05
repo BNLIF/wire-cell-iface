@@ -24,8 +24,5 @@ namespace WireCell {
 
     };
 
-    WIRECELL_DEFINE_INTERFACE(IConfigurable);
 }
-
-
 #endif

@@ -12,7 +12,7 @@
 namespace WireCell {
 
     /// Interface to information about a cell.
-    class ICell {
+    class ICell : public IData<ICell> {
     public:
 
 	virtual ~ICell();
@@ -41,65 +41,36 @@ namespace WireCell {
 
     };
 
+
+    /// An abstract base class for anything that can sink a sequence
+    /// of cells.
+    typedef ISink<ICell> ICellSink;
+
+
+    /** An abstract base class for a sequence of cells.
+     *
+     * This could simply be a typedef but it is convenient to provide
+     * different names for iterators and begin()/end() to facilitate
+     * any subclassing of both IWireSequence and ICellSequence.  If
+     * you don't want this cruft, just inherit directly from
+     * ISequence<ICell>.
+     */
+    class ICellSequence : virtual public ISequence<ICell> {
+    public:
+	typedef ICell::base_iterator	cell_base_iterator;
+	typedef ICell::iterator		cell_iterator;
+	typedef ICell::iterator_range	cell_range;
+
+	/// Actual subclass must implement:
+	virtual cell_iterator cells_begin() = 0;
+	virtual cell_iterator cells_end() = 0;
+
+	virtual cell_range cells_range() { return cell_range(cells_begin(), cells_end()); }
+
+	virtual cell_iterator begin() { return cells_begin(); };
+	virtual cell_iterator end() { return cells_end(); };
+
+    };
 }
-
-WIRECELL_SEQUENCE_ITR(Cell,cell);
-WIRECELL_SEQUENCE_ABC(Cell,cell);
-WIRECELL_SEQUENCE_SINK(Cell,cell);
-
-
-
-
-
-
-
-
-
-
-
-
-
-// namespace WireCell {
-
-//     // No use of bare ICells, everybody shares.  Once made they are
-//     // forever const.  They are accessed by this pointer-like object
-//     // Cell.  No need for bare pointers nor references.
-//     typedef std::shared_ptr<const ICell> Cell;
-
-//     /// Compare two cells by their ident.
-//     struct CellIdentCompare {
-// 	bool operator() (Cell a, Cell b) const {
-// 	    return a->ident() < b->ident();
-// 	}
-//     };
-
-//     /// A a set of cells.
-//     typedef std::set<Cell, CellIdentCompare> CellSet;
-
-//     /// A vector of non-owning pointers to cells.
-//     typedef std::vector<Cell> CellVector;
-
-//     /// A pair of cells associated in some way
-//     typedef std::pair<Cell, Cell> CellPair;
-
-//     /// A mapping between cell and a floating point value
-//     typedef std::map<Cell, float> CellValueMap; 
-
-//     /// A mapping between cell and an integer point value
-//     typedef std::map<Cell, int> CellIndexMap;
-	
-//     WIRECELL_DEFINE_INTERFACE(ICell);
-
-// }
-
-// /// Compare two cells for equality
-// bool operator==(WireCell::Cell lhs, WireCell::Cell rhs);
-
-// /// Compare two cells for lessthan
-// bool operator<(WireCell::Cell lhs, WireCell::Cell rhs);
-
-
-// std::ostream & operator<<(std::ostream &os, WireCell::Cell cell);
-
 
 #endif

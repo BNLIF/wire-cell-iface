@@ -1,10 +1,11 @@
 #ifndef WIRECELLIFACE_ITRACE
 #define WIRECELLIFACE_ITRACE
 
-#include <vector>
-
-#include "WireCellUtil/Interface.h"
+#include "WireCellIface/IData.h"
+#include "WireCellIface/ISink.h"
 #include "WireCellIface/ISequence.h"
+
+#include <vector>
 
 namespace WireCell {
 
@@ -12,10 +13,8 @@ namespace WireCell {
      *
      *	A trace is an ordered sequence of charge measurements in
      *	contiguous time bins.  
-     *
-     *  See also WireCell::IFrame.
      */
-    class ITrace : virtual public Interface{
+    class ITrace : public IData<ITrace>{
     public:
 	/// Sequential collection of charge.
 	typedef std::vector<float> ChargeSequence;
@@ -36,12 +35,13 @@ namespace WireCell {
 	virtual const ChargeSequence& charge() const = 0;
     };
 
-    /// A collection of traces.
-    typedef std::vector<const ITrace*> TraceCollection;
+    /// Something which takes traces.
+    typedef ISink<ITrace> ITraceSink;
+
+    /// A sequence of traces (aka a "frame").
+    typedef ISequence<ITrace> ITraceSequence;
+
 }
 
-WIRECELL_SEQUENCE_ITR(Trace,trace);
-WIRECELL_SEQUENCE_ABC(Trace,trace);
-WIRECELL_SEQUENCE_SINK(Trace,trace);
 
 #endif

@@ -1,59 +1,73 @@
 #ifndef WIRECELL_ISEQUENCE
 #define WIRECELL_ISEQUENCE
 
-#include "WireCellUtil/Interface.h"
-#include "WireCellUtil/Iterator.h"
-#include "WireCellUtil/IteratorBase.h"
+#include <memory>
 
-#include <map> 			// for std::pair
-#include <memory> 		// for std::shared_ptr
+namespace WireCell {
 
+    /** Abstract base class interface for sequence of data providing
+     * facade iterators over abstract base iterators.
+     *
+     * If a subclass multiply-inherits then one has to do
+     * myobj->ISequence<IThisData>::begin() etc or cast to the desired
+     * interface.
+     */
+    template<class IDataClass>
+    class ISequence {		// note: note a WireCell::Interface
+    public:
 
-// fixme, make ranges be c++11 compliant
+	typedef typename IDataClass::iterator iterator;
+	typedef typename IDataClass::base_iterator base_iterator;
+	typedef typename IDataClass::iterator_range iterator_range;
 
-/// This macro defines "std::shared_ptr<const ICapName*>" and abstract
-/// base iterators to "const ICapName*" and "ICapNamePtr"
-#define WIRECELL_SEQUENCE_ITR(CapName, lowname) \
-    namespace WireCell {						\
-    typedef IteratorBase<const I##CapName *> lowname##_base_iterator;	\
-    typedef Iterator<const I##CapName *> lowname##_iterator;		\
-    typedef std::pair< lowname##_iterator, lowname##_iterator > lowname##_range; \
-    }
+	/// Adapt one iterator to the standard facade iterator.
+	template<typename OtherIter>
+	static iterator adapt(const OtherIter& itr) {
+	    return iterator(IteratorAdapter<OtherIter, base_iterator>(itr));
+	}
 
-/// This macro defines shared pointers for the given class name 
-#define WIRECELL_SEQUENCE_PTR(CapName, lowname) \
-    namespace WireCell {						\
-    typedef std::shared_ptr<const I##CapName> I##CapName##Ptr;		\
-    typedef IteratorBase<I##CapName##Ptr> lowname##ptr_base_iterator;	\
-    typedef Iterator<I##CapName##Ptr> lowname##ptr_iterator;		\
-    typedef std::pair< lowname##ptr_iterator, lowname##ptr_iterator > lowname##ptr_range;\
-    }
+	/// Access this sequence via shared (non-const) pointer.
+	typedef std::shared_ptr<ISequence<IDataClass> > pointer;
 
-
-#define WIRECELL_SEQUENCE_ABC(CapName,lowname)				\
-    namespace WireCell {						\
-	class I##CapName##Sequence : virtual public Interface		\
-	{ public:							\
-	    virtual ~I##CapName##Sequence() {};				\
-	    virtual lowname##_iterator lowname##s_begin() const = 0;	\
-	    virtual lowname##_iterator lowname##s_end() const = 0;	\
-	    virtual std::size_t lowname##s_size() const = 0;		\
-	    virtual lowname##_range lowname##s() const { return lowname##_range(lowname##s_begin(), lowname##s_end()); } \
-	};								\
-	typedef std::shared_ptr<I##CapName##Sequence> I##CapName##SequencePtr;	\
-    }
+	/// Concrete class must implement:
+	virtual iterator begin() = 0;
+	virtual iterator end() = 0;
 
 
+	/// Return begin/end pair as iterator range.
+	virtual iterator_range range() {
+	    return iterator_range(begin(), end());
+	}
+	
+	virtual ~ISequence() {};
+    };
+    
+    /** An ISequence made by adapting begin/end iterators of some
+     * other type.
+     */
+    template<class IDataClass>
+    class SequenceAdapter : public ISequence<IDataClass> {
+    public:
 
-#define WIRECELL_SEQUENCE_SINK(CapName,lowname)				\
-    namespace WireCell {						\
-	class I##CapName##Sink : virtual public Interface		\
-	{ public:							\
-	    virtual ~I##CapName##Sink() {};				\
-	    virtual void sink(lowname##_iterator begin, lowname##_iterator end) = 0; \
-	    virtual void sink(lowname##_range lowname##s) { sink(lowname##s.first, lowname##s.second); } \
-	};								\
-	typedef std::shared_ptr<I##CapName##Sink> I##CapName##SinkPtr;	\
-    }
+	typedef typename ISequence<IDataClass>::iterator iterator;
+
+	template<typename OtherIter>
+	SequenceAdapter(const OtherIter& begin, const OtherIter& end)
+	    : m_begin(ISequence<IDataClass>::adapt(begin))
+	    , m_end((ISequence<IDataClass>::adapt(end)))
+	    {}
+
+	virtual iterator begin() { return m_begin; }
+	virtual iterator end() { return m_end; }
+
+	virtual ~SequenceAdapter(){}
+    private:
+	iterator m_begin, m_end;
+
+    };
+}
+
+
 
 #endif
+

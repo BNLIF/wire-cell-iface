@@ -13,7 +13,7 @@
 
 namespace WireCell {
 
-    typedef boost::function<bool (const IWire*)> wire_selector;
+    typedef boost::function<bool (IWire::pointer)> wire_selector;
 
     /// Select wires by plane (and apa/face)
     struct WirePlaneSelector {
@@ -24,7 +24,7 @@ namespace WireCell {
 	WirePlaneSelector(WirePlaneType_t plane = kAllPlanes, int face = 0, int apa = 0)
 	    : plane(plane), apa(apa), face(face) {}
 
-	bool operator()(const IWire* wire) { 
+	bool operator()(IWire::pointer wire) { 
 	    if (apa >= 0 && wire->apa() != apa) { return false; }
 	    if (face >= 0 && wire->face() != face) { return false; }
 	    if (plane == kAllPlanes) return true;

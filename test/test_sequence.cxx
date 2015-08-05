@@ -1,63 +1,49 @@
-#include "WireCellIface/IWire.h"
-#include "WireCellIface/ICell.h"
-
 #include "MyWire.h"
+#include "MyCell.h"
 #include <vector>
 #include <iostream>
 
-class MyCell : public WireCell::ICell {
-public:
-    virtual ~MyCell() {}
-    int ident() const { return 0; }
+#include <boost/range.hpp>
 
-    double area() const { return 0.0; }
+using namespace WireCell;
 
-    WireCell::Point center() const { return WireCell::Point(); }
-
-    WireCell::PointVector corners() const { return WireCell::PointVector(); }
-};
-
-
-class MyWireSequence : public WireCell::IWireSequence, public WireCell::ICellSequence {
+class MyWireSequence : virtual public IWireSequence,
+		       virtual public ICellSequence {
 public:
 
-    typedef std::vector<MyWire*> MyWireStore;
-    typedef std::vector<MyCell*> MyCellStore;
-
-    // // We can typedef these to general names because we only implement
-    // // a single sequence ABC.
-    // typedef WireCell::IWireSequence::wire_base_iterator base_iterator;
-    // typedef WireCell::IWireSequence::wire_iterator iterator;
-
-    typedef WireCell::IteratorAdapter< MyWireStore::const_iterator, WireCell::wire_base_iterator > my_wire_iterator;
-    typedef WireCell::IteratorAdapter< MyCellStore::const_iterator, WireCell::cell_base_iterator > my_cell_iterator;    
-
+    typedef std::vector<IWire::pointer> MyWireStore;
+    typedef std::vector<ICell::pointer> MyCellStore;
 
     MyWireSequence() {
 	// just add some junk
-	m_wire_store.push_back(new MyWire(WireCell::kUwire, 0, WireCell::Ray()));
-	m_wire_store.push_back(new MyWire(WireCell::kUwire, 1, WireCell::Ray()));
-	m_wire_store.push_back(new MyWire(WireCell::kVwire, 0, WireCell::Ray()));
-	m_wire_store.push_back(new MyWire(WireCell::kVwire, 1, WireCell::Ray()));
-	m_wire_store.push_back(new MyWire(WireCell::kWwire, 0, WireCell::Ray()));
-	m_wire_store.push_back(new MyWire(WireCell::kWwire, 1, WireCell::Ray()));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kUwire, 0, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kUwire, 1, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kVwire, 0, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kVwire, 1, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kWwire, 0, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kWwire, 1, Ray())));
+
+	m_cell_store.push_back(ICell::pointer(new MyCell(0, 1.0)));
+	m_cell_store.push_back(ICell::pointer(new MyCell(1, 2.0)));
+	m_cell_store.push_back(ICell::pointer(new MyCell(2, 3.0)));
+	m_cell_store.push_back(ICell::pointer(new MyCell(3, 4.0)));
+	m_cell_store.push_back(ICell::pointer(new MyCell(4, 5.0)));
     }
 
-    virtual WireCell::wire_iterator wires_begin() const {
-	return my_wire_iterator(m_wire_store.begin());
+    virtual wire_iterator wires_begin() {
+	return IWireSequence::adapt(m_wire_store.begin());
     }
-    virtual WireCell::wire_iterator wires_end() const {
-	return my_wire_iterator(m_wire_store.end());
+    virtual wire_iterator wires_end() {
+	return IWireSequence::adapt(m_wire_store.end());
     }
-    virtual size_t wires_size() const { return m_wire_store.size(); }
 
-    virtual WireCell::cell_iterator cells_begin() const {
-	return my_cell_iterator(m_cell_store.begin());
+    virtual cell_iterator cells_begin() {
+	return ICellSequence::adapt(m_cell_store.begin());
     }
-    virtual WireCell::cell_iterator cells_end() const {
-	return my_cell_iterator(m_cell_store.end());
+    virtual cell_iterator cells_end() {
+	return ICellSequence::adapt(m_cell_store.end());
     }
-    virtual size_t cells_size() const { return m_cell_store.size(); }
+
 private:
     MyWireStore m_wire_store;
     MyCellStore m_cell_store;
@@ -70,16 +56,17 @@ int main()
     using namespace WireCell;
     MyWireSequence mws;
 
-    cout << "#wires: " << mws.wires_size() << ", #cells: " << mws.cells_size() << endl;
+    cout << "#wires: " << boost::distance(mws.wires_range())
+	 << ", #cells: " << boost::distance(mws.cells_range()) << endl;
 
     for (auto it = mws.wires_begin(); it != mws.wires_end(); ++it) {
 	const IWire& wire = **it;
-	cout << wire.ident() << endl;
+	cout << "wire: " << wire.ident() << endl;
     }
 
     for (auto it = mws.cells_begin(); it != mws.cells_end(); ++it) {
 	const ICell& cell = **it;
-	cout << cell.ident() << endl;
+	cout << "cell: " << cell.ident() << endl;
     }
     
 

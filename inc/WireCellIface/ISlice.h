@@ -1,8 +1,10 @@
 #ifndef WIRECELLIFACE_ISLICE
 #define WIRECELLIFACE_ISLICE
 
-#include "WireCellUtil/Interface.h"
+#include "WireCellIface/IData.h"
+#include "WireCellIface/ISink.h"
 #include "WireCellIface/ISequence.h"
+
 
 #include <map>
 
@@ -14,7 +16,7 @@ namespace WireCell {
      * across the various WireCell::ITrace objects that occurred in a
      * particular time slice.
      */
-    class ISlice : virtual public Interface{
+    class ISlice : public IData<ISlice> {
     public:
 
 	typedef std::map<int,float> ChannelCharge;
@@ -30,11 +32,12 @@ namespace WireCell {
 	virtual const ChannelCharge& charge() const = 0;
 
     };
+
+    typedef ISink<ISlice> ISliceSink;
+    typedef ISequence<ISlice> ISliceSequence;
 }
 
-WIRECELL_SEQUENCE_ITR(Slice,slice);
-WIRECELL_SEQUENCE_ABC(Slice,slice);
-WIRECELL_SEQUENCE_SINK(Slice,slice);
+
 
 
 #endif

@@ -27,20 +27,19 @@ namespace WireCell {
 	/// The number charge (in units of number of electrons) deposited.
 	virtual double charge() const = 0;
 	
-	/// If the deposition is drifted, this accesses the original.
-	/// Note, return value is an IDepoPtr.
-	virtual const_ptr original() const { return 0; }
+	/// If the deposition is drifted, this may allow access to the original.
+	virtual pointer original() const { return 0; }
 
     };
 
 
     /// Compare how "far" two depositions are from the origin along
     /// the drift-line (metric: dT + dX/V_drift) given a drift velocity.
-    struct IDepoPtrDriftCompare {
+    struct IDepoDriftCompare {
 	double drift_velocity;
-	IDepoPtrDriftCompare(double drift_velocity = 1.6 *units::mm/units::microsecond)
+	IDepoDriftCompare(double drift_velocity = 1.6 *units::mm/units::microsecond)
 	    : drift_velocity(drift_velocity) {};
-	bool operator()(const IDepo::const_ptr& lhs, const IDepo::const_ptr& rhs) const {
+	bool operator()(const IDepo::pointer& lhs, const IDepo::pointer& rhs) const {
 	    double t1 = lhs->time() + lhs->pos().x()/drift_velocity;
 	    double t2 = rhs->time() + rhs->pos().x()/drift_velocity;
 	    if (t1 == t2) {
@@ -50,7 +49,7 @@ namespace WireCell {
 	    return t1 < t2;
 	}
     };
-    typedef std::set<IDepo::const_ptr, IDepoPtrDriftCompare> DepoTauSortedSet;
+    typedef std::set<IDepo::pointer, IDepoDriftCompare> DepoTauSortedSet;
 
 
 }

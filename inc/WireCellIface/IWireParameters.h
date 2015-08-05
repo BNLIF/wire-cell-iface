@@ -86,7 +86,6 @@ namespace WireCell {
 
     };
 
-    WIRECELL_DEFINE_INTERFACE(IWireParameters);
 }
 
 
