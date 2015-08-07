@@ -19,7 +19,7 @@ namespace WireCell {
 	/// Sequential collection of charge.
 	typedef std::vector<float> ChargeSequence;
 
-	virtual ~ITrace();
+	virtual ~ITrace() {};
 
 	/// Return the identifier number for the channel on which this
 	/// trace was recorded.

@@ -19,6 +19,8 @@ namespace WireCell {
     public:
 	virtual ~IWireSummary() {}
 
+	typedef std::shared_ptr<IWireSummary> pointer;
+
 	/// Return the bounding box of the wire planes.
 	virtual const BoundingBox& box() const = 0;
 
@@ -41,6 +43,14 @@ namespace WireCell {
 
 	/// Return a unit vector along the direction of the pitch.
 	virtual const Vector& pitch_direction(WirePlaneType_t plane) const = 0;
+    };
+
+    class IWireSummaryClient : virtual public Interface {
+    protected:
+	IWireSummary::pointer m_wiresummary;
+    public:
+	virtual ~IWireSummaryClient() {}
+	void set_wiresummary(IWireSummary::pointer ws) { m_wiresummary = ws; }
     };
 }
 
