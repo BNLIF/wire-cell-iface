@@ -17,6 +17,8 @@ namespace WireCell {
     class IFrame : public ITraceSequence {
 
     public:
+	typedef std::shared_ptr<IFrame> pointer;
+
 	virtual ~IFrame() {};
 	
 	/// Return an identifying number of this frame.
