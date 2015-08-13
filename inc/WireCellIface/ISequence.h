@@ -16,6 +16,9 @@ namespace WireCell {
     class ISequence {		// note: note a WireCell::Interface
     public:
 
+	/// Access this sequence via shared (non-const) pointer.
+	typedef std::shared_ptr<ISequence<IDataClass> > pointer;
+
 	typedef typename IDataClass::iterator iterator;
 	typedef typename IDataClass::base_iterator base_iterator;
 	typedef typename IDataClass::iterator_range iterator_range;
@@ -26,13 +29,9 @@ namespace WireCell {
 	    return iterator(IteratorAdapter<OtherIter, base_iterator>(itr));
 	}
 
-	/// Access this sequence via shared (non-const) pointer.
-	typedef std::shared_ptr<ISequence<IDataClass> > pointer;
-
 	/// Concrete class must implement:
 	virtual iterator begin() = 0;
 	virtual iterator end() = 0;
-
 
 	/// Return begin/end pair as iterator range.
 	virtual iterator_range range() {

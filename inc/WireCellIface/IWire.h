@@ -86,6 +86,8 @@ namespace WireCell {
      */
     class IWireSequence : virtual public ISequence<IWire> {
     public:
+	typedef std::shared_ptr<IWireSequence> pointer;
+
 	typedef IWire::base_iterator	wire_base_iterator;
 	typedef IWire::iterator		wire_iterator;
 	typedef IWire::iterator_range	wire_range;

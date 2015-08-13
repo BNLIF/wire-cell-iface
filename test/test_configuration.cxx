@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <sstream>
+#include <iostream>
 
 using namespace WireCell;
 using namespace std;

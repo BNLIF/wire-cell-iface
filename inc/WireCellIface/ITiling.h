@@ -14,6 +14,7 @@ namespace WireCell {
 
     class ITiling : virtual public Interface {
     public:
+	typedef std::shared_ptr<ITiling> pointer;
 	
 	virtual ~ITiling() {}
 

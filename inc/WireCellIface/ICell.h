@@ -30,15 +30,6 @@ namespace WireCell {
         /// going around the cell border.
         virtual WireCell::PointVector corners() const = 0;
 
-	/// Return a collection of wires that have an association with
-	/// this cell.
-	//
-	// Fixme: this may be a bad idea.  Besides adding data to a
-	// very numerous object, the association between a cell and
-	// wires is not 100% guaranteed to be unique.  It's also
-	// redundant with IWireCell::wires()
-	//virtual WireCell::WireVector wires() const = 0;
-
     };
 
 
@@ -57,6 +48,8 @@ namespace WireCell {
      */
     class ICellSequence : virtual public ISequence<ICell> {
     public:
+	typedef std::shared_ptr<ICellSequence> pointer;
+
 	typedef ICell::base_iterator	cell_base_iterator;
 	typedef ICell::iterator		cell_iterator;
 	typedef ICell::iterator_range	cell_range;
