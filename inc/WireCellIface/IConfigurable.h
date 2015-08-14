@@ -10,7 +10,7 @@ namespace WireCell {
      *
      * Configuration is via a Boost property tree.
      */
-    class IConfigurable : virtual public Interface {
+    class IConfigurable : virtual public TypedInterface<IConfigurable> {
     public:
 	virtual ~IConfigurable() {}
 

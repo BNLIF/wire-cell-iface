@@ -15,9 +15,9 @@ namespace WireCell {
      * in order to allow for caching optimization and to avoid having
      * to constantly pass in the wires.
      */
-    class IWireSummary : virtual public Interface {
+    class IWireSummary : virtual public TypedInterface<IWireSummary> {
     public:
-	typedef std::shared_ptr<IWireSummary> pointer;
+	//typedef std::shared_ptr<IWireSummary> pointer;
 
 	virtual ~IWireSummary() {}
 
@@ -45,9 +45,9 @@ namespace WireCell {
 	virtual const Vector& pitch_direction(WirePlaneType_t plane) const = 0;
     };
 
-    class IWireSummaryClient : virtual public Interface {
+    class IWireSummaryClient : virtual public TypedInterface<IWireSummaryClient> {
     public:
-	typedef std::shared_ptr<IWireSummaryClient> pointer;
+	//typedef std::shared_ptr<IWireSummaryClient> pointer;
 
 	virtual ~IWireSummaryClient() {}
 	virtual void set(IWireSummary::pointer ws) = 0;

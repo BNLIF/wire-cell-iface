@@ -62,7 +62,7 @@ namespace WireCell {
      * \param W is same but for for W wire plane.
      *
      */
-    class IWireParameters : virtual public Interface {
+    class IWireParameters : virtual public TypedInterface<IWireParameters> {
     public:
 	virtual ~IWireParameters() {}
 

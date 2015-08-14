@@ -10,9 +10,8 @@ namespace WireCell {
 
     /** An interface bundling together all major geometry components.
      */
-    class IGeometry : virtual public Interface {
+    class IGeometry : virtual public TypedInterface<IGeometry> {
     public:
-	typedef std::shared_ptr<IGeometry> pointer;
 
 	virtual ~IGeometry() {}
 

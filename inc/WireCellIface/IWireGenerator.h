@@ -14,9 +14,9 @@ namespace WireCell {
 
     /** Interface which provides access to a definitive source of
      * WireCell::IWire objects. */
-    class IWireGenerator : virtual public Interface {
+    class IWireGenerator : virtual public TypedInterface<IWireGenerator> {
     public:
-	typedef std::shared_ptr<IWireGenerator> pointer;
+	//typedef std::shared_ptr<IWireGenerator> pointer;
 
 	virtual ~IWireGenerator() {}
 	
