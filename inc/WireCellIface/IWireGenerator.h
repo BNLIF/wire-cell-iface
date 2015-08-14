@@ -16,10 +16,12 @@ namespace WireCell {
      * WireCell::IWire objects. */
     class IWireGenerator : virtual public Interface {
     public:
+	typedef std::shared_ptr<IWireGenerator> pointer;
+
 	virtual ~IWireGenerator() {}
 	
 	/// Generate your wires.
-	virtual void generate(const WireCell::IWireParameters& params) = 0;
+	virtual void generate(WireCell::IWireParameters::pointer params) = 0;
     };
 
 }
