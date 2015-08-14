@@ -32,6 +32,11 @@ namespace WireCell {
 
     };
 
+    /// Some common collections to use.  Note, use ICellSequence as a
+    /// way to pass-by-value an iterator range.
+    typedef std::vector<ICell::pointer> ICellVector;
+    typedef std::pair<ICell::pointer, ICell::pointer> ICellPair;
+
 
     /// An abstract base class for anything that can sink a sequence
     /// of cells.

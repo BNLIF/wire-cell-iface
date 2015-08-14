@@ -69,8 +69,10 @@ namespace WireCell {
 
     };				// class IWire
 
-    typedef std::pair<IWire::pointer, IWire::pointer> IWirePair;
+    /// Some common collections.  Note, use IWireSequence as a way to
+    /// pass-by-value an iterator range.
     typedef std::vector<IWire::pointer> IWireVector;
+    typedef std::pair<IWire::pointer, IWire::pointer> IWirePair;
 
     /// An abstract base class for anything that can sink a sequence
     /// of wires.
