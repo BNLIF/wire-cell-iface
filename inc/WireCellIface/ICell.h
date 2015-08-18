@@ -30,6 +30,14 @@ namespace WireCell {
         /// going around the cell border.
         virtual WireCell::PointVector corners() const = 0;
 
+	/// Return a vector of wires which are associated with this
+	/// cell.  The exact association depends on the algorithm
+	/// followed to produce the cells.  Most typical is that the
+	/// vector will hold one wire from each plane which closely
+	/// intersects the cell boundary.  In general, the content and
+	/// ordering is not specified.
+	virtual WireCell::IWireVector wires() const = 0;
+
     };
 
     /// Some common collections to use.  Note, use ICellSequence as a

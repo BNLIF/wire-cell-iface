@@ -73,6 +73,17 @@ namespace WireCell {
     /// pass-by-value an iterator range.
     typedef std::vector<IWire::pointer> IWireVector;
     typedef std::pair<IWire::pointer, IWire::pointer> IWirePair;
+    struct IWireCompareIdent {
+	bool operator()(const IWire::pointer& lhs, const IWire::pointer& rhs) {
+	    if (lhs->ident() == rhs->ident()) {
+		return lhs.get() < rhs.get(); // break tie with pointer
+	    }
+	    return lhs->ident() < rhs->ident();
+	}
+    };
+    // A set ordered by wire ident
+    typedef std::set<IWire::pointer, IWireCompareIdent> IWireSet;
+
 
     /// An abstract base class for anything that can sink a sequence
     /// of wires.

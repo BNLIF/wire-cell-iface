@@ -17,5 +17,7 @@ public:
     WireCell::Point center() const { return WireCell::Point(); }
 
     WireCell::PointVector corners() const { return WireCell::PointVector(); }
+
+    WireCell::IWireVector wires() const { return WireCell::IWireVector(); }
 };
 #endif
