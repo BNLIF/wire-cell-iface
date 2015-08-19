@@ -77,6 +77,16 @@ namespace WireCell {
 	virtual cell_iterator end() { return cells_end(); };
 
     };
-}
 
+    template <class Collection>
+    class ICellCollection : public ICellSequence {
+	Collection m_collection;
+    public:
+	ICellCollection(const Collection& c) : m_collection(c.begin(),c.end()) {}
+
+	virtual cell_iterator cells_begin() { return adapt(m_collection.begin()); }
+	virtual cell_iterator cells_end() { return adapt(m_collection.end()); }
+	
+    };
+}
 #endif

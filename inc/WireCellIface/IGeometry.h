@@ -8,7 +8,7 @@
 
 namespace WireCell {
 
-    /** An interface bundling together all major geometry components.
+    /** An interface bundling together all major geometry interfaces.
      */
     class IGeometry : virtual public TypedInterface<IGeometry> {
     public:

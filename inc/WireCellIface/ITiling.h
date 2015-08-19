@@ -14,7 +14,7 @@ namespace WireCell {
      * and cells and between cells.
      */
 
-    class ITiling : virtual public Interface {
+    class ITiling : virtual public TypedInterface<ITiling> {
     public:
 
 	typedef std::shared_ptr<ITiling> pointer;
