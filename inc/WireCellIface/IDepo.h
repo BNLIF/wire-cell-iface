@@ -32,6 +32,8 @@ namespace WireCell {
 
     };
 
+    typedef std::vector<IDepo::pointer> IDepoVector;
+
 
     /// Compare how "far" two depositions are from the origin along
     /// the drift-line (metric: dT + dX/V_drift) given a drift velocity.
