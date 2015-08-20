@@ -78,15 +78,22 @@ namespace WireCell {
 
     };
 
-    template <class Collection>
+    /** Adapt a collection to a sequence.
+     * 
+     * If you have an ICellVector, for example, and need to fit it
+     * into the ISequence interface, use this adapter class.
+     */
+    template<class Collection>
     class ICellCollection : public ICellSequence {
 	Collection m_collection;
     public:
 	ICellCollection(const Collection& c) : m_collection(c.begin(),c.end()) {}
-
+	virtual ~ICellCollection() { }
+    
 	virtual cell_iterator cells_begin() { return adapt(m_collection.begin()); }
 	virtual cell_iterator cells_end() { return adapt(m_collection.end()); }
-	
+    
     };
+    
 }
 #endif

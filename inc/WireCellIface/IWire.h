@@ -116,15 +116,21 @@ namespace WireCell {
 
     };
 
-    template <class Collection>
+    /** Adapt a collection to a sequence.
+     * 
+     * If you have an IWireVector, for example, and need to fit it
+     * into the ISequence interface, use this adapter class.
+     */
+    template<class Collection>
     class IWireCollection : public IWireSequence {
 	Collection m_collection;
     public:
 	IWireCollection(const Collection& c) : m_collection(c.begin(),c.end()) {}
-
+	virtual ~IWireCollection() { }
+    
 	virtual wire_iterator wires_begin() { return adapt(m_collection.begin()); }
 	virtual wire_iterator wires_end() { return adapt(m_collection.end()); }
-	
+    
     };
 }
 
