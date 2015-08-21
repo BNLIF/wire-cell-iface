@@ -28,12 +28,16 @@ namespace WireCell {
 	virtual double charge() const = 0;
 	
 	/// If the deposition is drifted, this may allow access to the original.
-	virtual pointer original() const { return 0; }
+	virtual pointer prior() const { return 0; }
 
     };
 
     typedef std::vector<IDepo::pointer> IDepoVector;
 
+    /// Simple utility to return a vector of depositions formed by
+    /// walking the prior() chain.  The vector begins with the most
+    /// recent.
+    IDepoVector depo_chain(IDepo::pointer recent);
 
     /// Compare how "far" two depositions are from the origin along
     /// the drift-line (metric: dT + dX/V_drift) given a drift velocity.
