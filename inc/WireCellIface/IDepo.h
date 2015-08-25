@@ -28,7 +28,7 @@ namespace WireCell {
 	virtual double charge() const = 0;
 	
 	/// If the deposition is drifted, this may allow access to the original.
-	virtual pointer prior() const { return 0; }
+	virtual pointer prior() const = 0;
 
     };
 
