@@ -5,6 +5,7 @@
 #include "WireCellIface/IData.h"
 #include "WireCellIface/ISink.h"
 #include "WireCellIface/ISequence.h"
+#include "WireCellIface/WirePlaneId.h"
 
 #include <set>
 #include <map>
@@ -13,16 +14,7 @@
 
 namespace WireCell {
 
-    /// Wire set plane/direction types.  W and Y are aliases
-    enum WirePlaneType_t {kFirstPlane,
-			  kUwire=0, kVwire, kWwire, kYwire=2,
-			  kLastPlane=2, kNPlanes=3, kAllPlanes=4,
-			  kUnknownWirePlaneType = -1};
-
-    /// A pair of wire plane/direction type and index w/in that plane of wires
-    typedef std::pair<WirePlaneType_t, int> WirePlaneIndex;
-
-
+    
     /// Interface to information about a physical wire segment.
     class IWire : public IData<IWire> {
     public:
@@ -32,8 +24,8 @@ namespace WireCell {
 	/// is illegal, not guaranteed consecutive.
 	virtual int ident() const = 0;
 
-	/// The plane/direction enum of the wire 
-	virtual WirePlaneType_t plane() const = 0;
+	/// The ID of the plane this wire is in
+	virtual WirePlaneId planeid() const = 0;
 	
 	/// Consecutive, zero-based index into an ordered sequence of
 	/// wires in their plane
@@ -47,25 +39,12 @@ namespace WireCell {
         /// input is segment==0.
         virtual int segment() const = 0;
 
-        /// Return which side of the APA this wire exists.  Nominal or
-        /// "front" face is 0, other or "back" face is 1.
-        virtual int face() const = 0;
-
-        /// Return the APA number associated with this wire.
-        virtual int apa() const = 0;
-
-
 	/// Return the ray representing the wire segment.
 	// fixme: may want to change this to a const reference to save the copy
 	virtual WireCell::Ray ray() const = 0;
 
 	/// Return the center point of the wire.  Convenience method.
 	virtual WireCell::Point center() const;
-
-	/// Convenience function to return the plane+index pair.
-	virtual WirePlaneIndex plane_index() const {
-	    return WirePlaneIndex(this->plane(), this->index());
-	}
 
     };				// class IWire
 

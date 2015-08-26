@@ -9,11 +9,11 @@ using namespace WireCell;
 using namespace std;
 
 typedef std::vector<MyWire*> RawVector;
-MyWire* make_wire(RawVector& store, WirePlaneType_t plane, int ind)
+MyWire* make_wire(RawVector& store, WirePlaneLayer_t layer, int ind)
 {
-    MyWire* w = new MyWire(plane, ind, Ray());
+    MyWire* w = new MyWire(layer, ind, Ray());
     store.push_back(w);
-    cerr << "make_wire(" << plane << ", " << ind << ") -> " << store.size() << endl;
+    cerr << "make_wire(" << layer << ", " << ind << ") -> " << store.size() << endl;
     return w;
 }
 
@@ -23,12 +23,12 @@ int main()
     RawVector rawvec;
     typedef IWire::pointer Wire;
 
-    make_wire(rawvec, kUwire, 0);
-    make_wire(rawvec, kUwire, 1);
-    make_wire(rawvec, kVwire, 0);
-    make_wire(rawvec, kVwire, 1);
-    make_wire(rawvec, kWwire, 0);
-    make_wire(rawvec, kWwire, 1);
+    make_wire(rawvec, kUlayer, 0);
+    make_wire(rawvec, kUlayer, 1);
+    make_wire(rawvec, kVlayer, 0);
+    make_wire(rawvec, kVlayer, 1);
+    make_wire(rawvec, kWlayer, 0);
+    make_wire(rawvec, kWlayer, 1);
 
 
     // Convert raw pointer to one using shared_ptr

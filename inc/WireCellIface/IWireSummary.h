@@ -27,7 +27,7 @@ namespace WireCell {
 	/// Return the closest wire along the pitch direction to the
 	/// given point in the given wire plane.  It is assumed the
 	/// point is in the (Y-Z) bounding box of the wire plane.
-	virtual IWire::pointer closest(const Point& point, WirePlaneType_t plane) const = 0;
+	virtual IWire::pointer closest(const Point& point, WirePlaneId wpid) const = 0;
 	
 	/// Return a pair of adjacent wires from the given plane which
 	/// bound the given point along the pitch direction.  The pair
@@ -35,14 +35,14 @@ namespace WireCell {
 	/// both sides of the point are unbound by wire (segments) the
 	/// associated pointer will be zero.  It is assumed the point
 	/// is in the (Y-Z) bounding box of the wire plane.
-	virtual IWirePair bounding_wires(const Point& point, WirePlaneType_t plane) const = 0;
+	virtual IWirePair bounding_wires(const Point& point, WirePlaneId wpid) const = 0;
 
 	/// Return the distance along the pitch of the given wire
 	/// plane to the given point as measured from the zeroth wire.
-	virtual double pitch_distance(const Point& point, WirePlaneType_t plane) const = 0;
+	virtual double pitch_distance(const Point& point, WirePlaneId wpid) const = 0;
 
 	/// Return a unit vector along the direction of the pitch.
-	virtual const Vector& pitch_direction(WirePlaneType_t plane) const = 0;
+	virtual const Vector& pitch_direction(WirePlaneId wpid) const = 0;
     };
 
     class IWireSummaryClient : virtual public TypedInterface<IWireSummaryClient> {

@@ -17,18 +17,19 @@ namespace WireCell {
 
     /// Select wires by plane (and apa/face)
     struct WirePlaneSelector {
-	WirePlaneType_t plane;
-	int apa, face;
+	int layers, face, apa;
 
-	// Set face<0 or apa<0 to allow any, default it first face/apa.
-	WirePlaneSelector(WirePlaneType_t plane = kAllPlanes, int face = 0, int apa = 0)
-	    : plane(plane), apa(apa), face(face) {}
+	WirePlaneSelector(int layer_mask, int face=0, int apa=0)
+	    : layers(layer_mask), face(face), apa(apa) {}
 
 	bool operator()(IWire::pointer wire) { 
-	    if (apa >= 0 && wire->apa() != apa) { return false; }
-	    if (face >= 0 && wire->face() != face) { return false; }
-	    if (plane == kAllPlanes) return true;
-	    return wire->plane() == plane;
+	    WirePlaneId ident = wire->planeid();
+
+	    if (layers && !(layers&ident.ilayer())) { return false; }
+	    if (apa >= 0 && ident.apa() != apa) { return false; }
+	    if (face >= 0 && ident.face() != face) { return false; }
+
+	    return true;
 	}
     };
 	

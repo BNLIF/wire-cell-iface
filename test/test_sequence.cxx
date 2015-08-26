@@ -16,12 +16,12 @@ public:
 
     MyWireSequence() {
 	// just add some junk
-	m_wire_store.push_back(IWire::pointer(new MyWire(kUwire, 0, Ray())));
-	m_wire_store.push_back(IWire::pointer(new MyWire(kUwire, 1, Ray())));
-	m_wire_store.push_back(IWire::pointer(new MyWire(kVwire, 0, Ray())));
-	m_wire_store.push_back(IWire::pointer(new MyWire(kVwire, 1, Ray())));
-	m_wire_store.push_back(IWire::pointer(new MyWire(kWwire, 0, Ray())));
-	m_wire_store.push_back(IWire::pointer(new MyWire(kWwire, 1, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kUlayer, 0, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kUlayer, 1, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kVlayer, 0, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kVlayer, 1, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kWlayer, 0, Ray())));
+	m_wire_store.push_back(IWire::pointer(new MyWire(kWlayer, 1, Ray())));
 
 	m_cell_store.push_back(ICell::pointer(new MyCell(0, 1.0)));
 	m_cell_store.push_back(ICell::pointer(new MyCell(1, 2.0)));
