@@ -8,6 +8,7 @@
 
 
 #include <map>
+#include <vector>
 
 namespace WireCell {
 
@@ -17,22 +18,23 @@ namespace WireCell {
     class IPlaneSlice : public IData<IPlaneSlice> {
     public:
 
+	// A mapping of a starting wire index to a run of
+	// charge-on-wires starting at that index.
+	typedef std::map<int, std::vector<double> > ChargeGrouping;
+
 	virtual ~IPlaneSlice() {}
 
-	/// The plane ident
+	/// Where: the plane ID
 	virtual WirePlaneId planeid() const = 0;
 
 
-	/// Return the absolute time to which this slice corresponds.
+	/// When: the absolute time to which this slice corresponds.
 	virtual double time() const = 0;
 
 
-	/// Return the wire index of the first entry of charge vector.
-	virtual int first() const = 0;
-
-	/// Return the vector of charge indexed by wire index + first().
-	virtual const std::vector<double>& charge() const = 0;
-
+	/// What: the charge groupings in the plane slice.
+	virtual ChargeGrouping charge_groups() const = 0;
+	// fixme: should this return an ISequence of some type?
     };
 
 }
