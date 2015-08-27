@@ -4,6 +4,7 @@
 #include "WireCellUtil/Iterator.h"
 #include "WireCellUtil/IteratorBase.h"
 
+#include <boost/signals2.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <memory>		// std::shared_ptr
 
@@ -27,6 +28,10 @@ namespace WireCell {
 	/// A range of iterators.
 	typedef boost::iterator_range<iterator> iterator_range;
 
+
+	/// A signal and slot producing one instance each call.
+	typedef boost::signals2::signal<pointer ()> source_signal;
+	typedef typename source_signal::slot_type source_slot;
 
     };
 }

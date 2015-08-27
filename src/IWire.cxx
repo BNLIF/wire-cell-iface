@@ -12,6 +12,15 @@ WireCell::Point WireCell::IWire::center() const
     return 0.5*(seg.first + seg.second);
 }
 
+
+bool WireCell::ascending_index(IWire::pointer lhs, IWire::pointer rhs)
+{
+    if (lhs->planeid() == rhs->planeid()) {
+	return lhs->index() < rhs->index();
+    }
+    return lhs->planeid() < lhs->planeid();
+};
+
 // bool WireCell::WirePlaneIndexCompare ::operator() (Wire lhs, Wire rhs) const
 // {
 //     return lhs < rhs;

@@ -27,7 +27,7 @@ namespace WireCell {
 
 	/// Return a mapping from channel identity number and the
 	/// charge in that channel in this time slice.
-	virtual const ChannelCharge& charge() const = 0;
+	virtual ChannelCharge charge() const = 0;
 
     };
 

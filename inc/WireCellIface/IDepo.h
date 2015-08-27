@@ -57,6 +57,12 @@ namespace WireCell {
     };
     typedef std::set<IDepo::pointer, IDepoDriftCompare> DepoTauSortedSet;
 
+    /// Compare two IDepo::pointer by time (ascending).  x is used to break tie
+    bool ascending_time(const WireCell::IDepo::pointer& lhs, const WireCell::IDepo::pointer& rhs);
+
+    /// Compare two IDepo::pointers for by time, descending.   x is used to break tie
+    bool descending_time(const WireCell::IDepo::pointer& lhs, const WireCell::IDepo::pointer& rhs);
+
 
 }
 

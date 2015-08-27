@@ -48,6 +48,8 @@ namespace WireCell {
 
     };				// class IWire
 
+    bool ascending_index(IWire::pointer lhs, IWire::pointer rhs);
+
     /// Some common collections.  Note, use IWireSequence as a way to
     /// pass-by-value an iterator range.
     typedef std::vector<IWire::pointer> IWireVector;

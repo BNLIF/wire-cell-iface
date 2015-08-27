@@ -37,6 +37,8 @@ namespace WireCell {
 	// fixme: should this return an ISequence of some type?
     };
 
+    typedef std::vector<IPlaneSlice::pointer> IPlaneSliceVector;
+
 }
 
 
