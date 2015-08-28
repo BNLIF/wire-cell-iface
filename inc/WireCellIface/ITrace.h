@@ -35,6 +35,8 @@ namespace WireCell {
 	virtual const ChargeSequence& charge() const = 0;
     };
 
+    typedef std::vector<ITrace::pointer> ITraceVector;
+
     /// Something which takes traces.
     typedef ISink<ITrace> ITraceSink;
 
