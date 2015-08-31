@@ -29,10 +29,6 @@ namespace WireCell {
 	typedef boost::iterator_range<iterator> iterator_range;
 
 
-	/// A signal and slot producing one instance each call.
-	typedef boost::signals2::signal<pointer ()> source_signal;
-	typedef typename source_signal::slot_type source_slot;
-
     };
 }
 

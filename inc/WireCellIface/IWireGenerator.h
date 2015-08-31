@@ -1,27 +1,26 @@
-/** WireCell::IWireGenerator is sort of a special interface in that it
- * denotes some object which will accept a special
- * WireCell:IWireParameters object.
- *
- * The intention is that the object then goes on to generate wires and
- * make them available via the WireCell:IWireSequence interface.
- */
 #ifndef WIRECELLIFACE_IWIREGENERATOR
 #define WIRECELLIFACE_IWIREGENERATOR
 
+#include "WireCellUtil/IComponent.h"
+#include "WireCellIface/IProcessor.h"
 #include "WireCellIface/IWireParameters.h"
+#include "WireCellIface/IWire.h"
 
 namespace WireCell {
 
-    /** Interface which provides access to a definitive source of
-     * WireCell::IWire objects. */
-    class IWireGenerator : virtual public IComponent<IWireGenerator> {
+    /** A wire generator takes a set of parameters and generates a
+     * vector of wires.
+     */
+    class IWireGenerator
+	: public IComponent<IWireGenerator>
+	, public IProcessor
+	, public ISink<IWireParameters::pointer>
+	, public ISource<IWireVector>
+    {
     public:
-	//typedef std::shared_ptr<IWireGenerator> pointer;
 
 	virtual ~IWireGenerator() {}
 	
-	/// Generate your wires.
-	virtual void generate(WireCell::IWireParameters::pointer params) = 0;
     };
 
 }

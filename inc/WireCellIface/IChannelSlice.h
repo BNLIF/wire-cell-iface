@@ -2,7 +2,6 @@
 #define WIRECELLIFACE_ICHANNELSLICE
 
 #include "WireCellIface/IData.h"
-#include "WireCellIface/ISink.h"
 #include "WireCellIface/ISequence.h"
 
 

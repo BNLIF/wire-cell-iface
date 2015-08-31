@@ -3,7 +3,6 @@
 
 #include "WireCellUtil/Point.h"
 #include "WireCellIface/IData.h"
-#include "WireCellIface/ISink.h"
 #include "WireCellIface/ISequence.h"
 #include "WireCellIface/WirePlaneId.h"
 
@@ -65,10 +64,6 @@ namespace WireCell {
     // A set ordered by wire ident
     typedef std::set<IWire::pointer, IWireCompareIdent> IWireSet;
 
-
-    /// An abstract base class for anything that can sink a sequence
-    /// of wires.
-    typedef ISink<IWire> IWireSink;
 
     /** An abstract base class for a sequence of wires.
      *

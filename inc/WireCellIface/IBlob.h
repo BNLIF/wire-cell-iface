@@ -21,13 +21,6 @@ namespace WireCell {
     };
 
     
-    /// An abstract base class for anything that can sink a sequence
-    /// of blobs.
-    typedef ISink<IBlob> IBlobSink;
-    
-    /// An abstract base class for a sequence of blobs.
-    typedef ISequence<IBlob> IBlobSequence;
-
 }
 
 /// Return true if two blobs are identical.

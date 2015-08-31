@@ -2,7 +2,6 @@
 #define WIRECELLIFACE_IPLANESLICE
 
 #include "WireCellIface/IData.h"
-#include "WireCellIface/ISink.h"
 #include "WireCellIface/ISequence.h"
 #include "WireCellIface/WirePlaneId.h"
 

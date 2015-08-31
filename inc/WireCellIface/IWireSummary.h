@@ -1,8 +1,6 @@
 #ifndef WIRECELL_IWIRESUMMARY
 #define WIRECELL_IWIRESUMMARY
 
-#include "WireCellUtil/IComponent.h"
-#include "WireCellUtil/Point.h"
 #include "WireCellUtil/BoundingBox.h"
 #include "WireCellIface/IWire.h"
 
@@ -15,7 +13,7 @@ namespace WireCell {
      * in order to allow for caching optimization and to avoid having
      * to constantly pass in the wires.
      */
-    class IWireSummary : virtual public IComponent<IWireSummary> {
+    class IWireSummary : public IData<IWireSummary> {
     public:
 	//typedef std::shared_ptr<IWireSummary> pointer;
 

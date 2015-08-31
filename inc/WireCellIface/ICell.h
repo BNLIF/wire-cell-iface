@@ -46,11 +46,6 @@ namespace WireCell {
     typedef std::pair<ICell::pointer, ICell::pointer> ICellPair;
 
 
-    /// An abstract base class for anything that can sink a sequence
-    /// of cells.
-    typedef ISink<ICell> ICellSink;
-
-
     /** An abstract base class for a sequence of cells.
      *
      * This could simply be a typedef but it is convenient to provide

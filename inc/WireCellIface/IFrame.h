@@ -29,10 +29,6 @@ namespace WireCell {
 	virtual double time() const = 0;
     };
 
-    /// An abstract base class for anything that can sink a sequence
-    /// of frames.
-    typedef ISink<IFrame> IFrameSink;
-
 }
 
 

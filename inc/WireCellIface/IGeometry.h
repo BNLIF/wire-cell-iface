@@ -24,14 +24,6 @@ namespace WireCell {
     };
 
 
-    class IGeomSink : virtual public Interface {
-    public:
-
-	virtual ~IGeomSink() {}
-
-	virtual void sink(IGeometry::pointer geom) = 0;
-    };
-
 }
 
 #endif

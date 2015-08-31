@@ -2,7 +2,6 @@
 #define WIRECELLIFACE_ITRACE
 
 #include "WireCellIface/IData.h"
-#include "WireCellIface/ISink.h"
 #include "WireCellIface/ISequence.h"
 
 #include <vector>
@@ -36,9 +35,6 @@ namespace WireCell {
     };
 
     typedef std::vector<ITrace::pointer> ITraceVector;
-
-    /// Something which takes traces.
-    typedef ISink<ITrace> ITraceSink;
 
     /// A sequence of traces (aka a "frame").
     typedef ISequence<ITrace> ITraceSequence;
