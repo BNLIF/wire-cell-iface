@@ -1,7 +1,7 @@
 #ifndef WIRECELLIFACE_IWIREPARAMETERS
 #define WIRECELLIFACE_IWIREPARAMETERS
 
-#include "WireCellUtil/Interface.h"
+#include "WireCellUtil/IComponent.h"
 #include "WireCellUtil/Point.h"
 
 namespace WireCell {
@@ -62,7 +62,10 @@ namespace WireCell {
      * \param W is same but for for W wire plane.
      *
      */
-    class IWireParameters : virtual public TypedInterface<IWireParameters> {
+
+    // fixme: this doesn't need to be so grand as to be an IComponent,
+    // it is just to give an initial test vehicle.
+    class IWireParameters : virtual public IComponent<IWireParameters> {
     public:
 	virtual ~IWireParameters() {}
 

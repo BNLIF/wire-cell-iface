@@ -2,7 +2,7 @@
 #define WIRECELLIFACE_ICONFIGURABLE
 
 #include "WireCellUtil/Configuration.h"
-#include "WireCellUtil/Interface.h"
+#include "WireCellUtil/IComponent.h"
 
 namespace WireCell {
 
@@ -10,7 +10,7 @@ namespace WireCell {
      *
      * Configuration is via a Boost property tree.
      */
-    class IConfigurable : virtual public TypedInterface<IConfigurable> {
+    class IConfigurable : virtual public IComponent<IConfigurable> {
     public:
 	virtual ~IConfigurable() {}
 

@@ -1,7 +1,7 @@
 #ifndef WIRECELL_ISINK
 #define WIRECELL_ISINK
 
-#include "WireCellUtil/Interface.h"
+#include "WireCellUtil/IComponent.h"
 #include "WireCellIface/ISequence.h"
 
 namespace WireCell {
@@ -10,7 +10,7 @@ namespace WireCell {
      * range of data.
      */
     template<class IDataClass>
-    class ISink : virtual public TypedInterface< ISink<IDataClass> > {
+    class ISink : virtual public IComponent< ISink<IDataClass> > {
     public:
 	//typedef std::shared_ptr< ISink<IDataClass> > pointer;
 	typedef typename IDataClass::iterator_range iterator_range;

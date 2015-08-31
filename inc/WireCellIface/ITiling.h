@@ -1,7 +1,7 @@
 #ifndef WIRECELL_ITILING
 #define WIRECELL_ITILING
 
-#include "WireCellUtil/Interface.h"
+#include "WireCellUtil/IComponent.h"
 
 #include "WireCellIface/IWire.h"
 #include "WireCellIface/ICell.h"
@@ -14,7 +14,7 @@ namespace WireCell {
      * and cells and between cells.
      */
 
-    class ITiling : virtual public TypedInterface<ITiling> {
+    class ITiling : virtual public IComponent<ITiling> {
     public:
 
 	typedef std::shared_ptr<ITiling> pointer;

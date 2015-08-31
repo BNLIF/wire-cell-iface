@@ -1,7 +1,7 @@
 #ifndef WIRECELL_IWIRESUMMARY
 #define WIRECELL_IWIRESUMMARY
 
-#include "WireCellUtil/Interface.h"
+#include "WireCellUtil/IComponent.h"
 #include "WireCellUtil/Point.h"
 #include "WireCellUtil/BoundingBox.h"
 #include "WireCellIface/IWire.h"
@@ -15,7 +15,7 @@ namespace WireCell {
      * in order to allow for caching optimization and to avoid having
      * to constantly pass in the wires.
      */
-    class IWireSummary : virtual public TypedInterface<IWireSummary> {
+    class IWireSummary : virtual public IComponent<IWireSummary> {
     public:
 	//typedef std::shared_ptr<IWireSummary> pointer;
 
@@ -43,14 +43,6 @@ namespace WireCell {
 
 	/// Return a unit vector along the direction of the pitch.
 	virtual const Vector& pitch_direction(WirePlaneId wpid) const = 0;
-    };
-
-    class IWireSummaryClient : virtual public TypedInterface<IWireSummaryClient> {
-    public:
-	//typedef std::shared_ptr<IWireSummaryClient> pointer;
-
-	virtual ~IWireSummaryClient() {}
-	virtual void set(IWireSummary::pointer ws) = 0;
     };
 }
 

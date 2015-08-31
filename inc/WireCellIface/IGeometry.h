@@ -1,6 +1,7 @@
 #ifndef WIRECELL_IGEOMETRY
 #define WIRECELL_IGEOMETRY
 
+#include "WireCellUtil/IComponent.h"
 #include "WireCellIface/IWire.h"
 #include "WireCellIface/ICell.h"
 #include "WireCellIface/IWireSummary.h"
@@ -10,7 +11,7 @@ namespace WireCell {
 
     /** An interface bundling together all major geometry interfaces.
      */
-    class IGeometry : virtual public TypedInterface<IGeometry> {
+    class IGeometry : virtual public IComponent<IGeometry> {
     public:
 
 	virtual ~IGeometry() {}
