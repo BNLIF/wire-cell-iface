@@ -15,7 +15,6 @@ namespace WireCell {
      */
     class ICellMaker
 	: public IComponent<ICellMaker> 
-	, public IProcessor
 	, public ISink<IWireVector>
 	, public ISource<ICellVector>
     {

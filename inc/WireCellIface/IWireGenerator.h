@@ -13,7 +13,6 @@ namespace WireCell {
      */
     class IWireGenerator
 	: public IComponent<IWireGenerator>
-	, public IProcessor
 	, public ISink<IWireParameters::pointer>
 	, public ISource<IWireVector>
     {

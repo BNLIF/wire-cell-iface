@@ -16,7 +16,6 @@ namespace WireCell {
      */
     class IDigitizer
 	: public IComponent<IDigitizer>
-	, public IProcessor
 	, public ISink<IWireVector>
 	, public ISink<IPlaneSliceVector>
 	, public ISource<IChannelSlice::pointer>

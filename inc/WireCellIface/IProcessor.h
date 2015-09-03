@@ -5,25 +5,6 @@
 
 namespace WireCell {
 
-    /** A processor is a unit of computation.
-     *
-     * Instead of a concrete instance inheriting directly from
-     * IProcessor, it is recommended to define an intermediate
-     * IComponent which aggregates IProcessor and one or more ISink
-     * and ISource types.
-     */
-    class IProcessor : virtual public Interface {
-    public:
-	virtual ~IProcessor() {}
-
-	/** Perform one unit of processing.
-	 *
-	 * A true return value is interpreted to mean the internal
-	 * state of the object is such that further processing is
-	 * possible.
-	 */
-	virtual bool process() = 0;
-    };
 
     
     /** A sink accepts a unit of data of a particular type. 
@@ -54,6 +35,28 @@ namespace WireCell {
 	// fixme: change to exceptions?
 	virtual bool source(Type& ret) = 0;
     };
+
+
+    /** A processor is a unit of computation.
+     *
+     * Instead of a concrete instance inheriting directly from
+     * IProcessor, it is recommended to define an intermediate
+     * IComponent which aggregates IProcessor and one or more ISink
+     * and ISource types.
+     */
+    class IProcessor : virtual public Interface {
+    public:
+	virtual ~IProcessor() {}
+
+	/** Perform one unit of processing.
+	 *
+	 * A true return value is interpreted to mean the internal
+	 * state of the object is such that further processing is
+	 * possible.
+	 */
+	//virtual bool process() = 0;
+    };
+
 
 };
 

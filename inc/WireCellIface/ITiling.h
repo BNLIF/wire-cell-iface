@@ -12,7 +12,6 @@ namespace WireCell {
      */
     class ITiling
 	: public IComponent<ITiling>
-	, public IProcessor
 	, public ISink<ICellVector>
 	, public ISource<ICellSummary::pointer>
     {
