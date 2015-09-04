@@ -2,7 +2,7 @@
 #define WIRECELLIFACE_IWIREGENERATOR
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/IProcessor.h"
+#include "WireCellIface/IConverter.h"
 #include "WireCellIface/IWireParameters.h"
 #include "WireCellIface/IWire.h"
 
@@ -13,8 +13,7 @@ namespace WireCell {
      */
     class IWireGenerator
 	: public IComponent<IWireGenerator>
-	, public ISink<IWireParameters::pointer>
-	, public ISource<IWireVector>
+	, public IConverter<IWireParameters::pointer, IWireVector>
     {
     public:
 

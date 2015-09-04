@@ -2,7 +2,7 @@
 #define WIRECELL_IDRIFTER
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/IProcessor.h"
+#include "WireCellIface/IConverter.h"
 #include "WireCellIface/IDepo.h"
 
 namespace WireCell {
@@ -17,13 +17,12 @@ namespace WireCell {
      * subsequent ones.
      */
     class IDrifter
-	: IComponent<IDrifter>
-	, IProcessor
-	, ISink<IDepo::pointer>
-	, ISource<IDepo::pointer>
+	: public IComponent<IDrifter>
+	, public IConverter<IDepo::pointer, IDepo::pointer>
     {
     public:
 	virtual ~IDrifter() {}
+
     };
 }
 

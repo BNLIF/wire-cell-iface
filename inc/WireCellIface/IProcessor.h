@@ -3,58 +3,42 @@
 
 #include "WireCellUtil/Interface.h"
 
+#include <boost/any.hpp>
+
 namespace WireCell {
 
 
-    
-    /** A sink accepts a unit of data of a particular type. 
+    /** A processor is a synchronous unit of computation.
      *
-     * See also WireCell::IProcessor and IWireCell::ISource.
-     */
-    template<typename Type>
-    class ISink : virtual public Interface {
-    public:
-	virtual ~ISink() {}
-
-	/// Accept an object of Type, return true if successful.
-	// fixme: change to exceptions?
-	virtual bool sink(const Type& obj) = 0;
-    };
-
-
-    /** A source produces a unit of data of a particular type. 
-     *
-     * See also WireCell::IProcessor and IWireCell::ISink.
-     */
-    template<typename Type>
-    class ISource : virtual public Interface {
-    public:
-	virtual ~ISource() {}
-
-	/// Set <ret>, return true if successful.
-	// fixme: change to exceptions?
-	virtual bool source(Type& ret) = 0;
-    };
-
-
-    /** A processor is a unit of computation.
-     *
-     * Instead of a concrete instance inheriting directly from
-     * IProcessor, it is recommended to define an intermediate
-     * IComponent which aggregates IProcessor and one or more ISink
-     * and ISource types.
+     * All methods are optional.
      */
     class IProcessor : virtual public Interface {
     public:
 	virtual ~IProcessor() {}
 
-	/** Perform one unit of processing.
-	 *
-	 * A true return value is interpreted to mean the internal
-	 * state of the object is such that further processing is
-	 * possible.
-	 */
-	//virtual bool process() = 0;
+	/// Get notification before data flow begins.
+	virtual void initialize() { }
+
+	/// Get notification after all data flow is over.
+	virtual void finalize() { }
+
+	/// Implement to receive input data on given port.  Return
+	/// false if unable to accept (default).  If data.empty() then
+	/// an end-of-input (EOI) on that port has been reached.
+	/// Reacting to EOI is implementation-dependent.
+	virtual bool input(const boost::any& data, int port=0) {
+	    return false;
+	}
+
+	/// Produce output data from given port.  Return false if
+	/// unable to produce.
+	virtual bool output(boost::any& data, int port=0) {
+	    return false;
+	}
+
+	/// Get notification that the global data stream is no longer
+	/// valid.  Flush all internal buffers.
+	virtual void reset() { }
     };
 
 

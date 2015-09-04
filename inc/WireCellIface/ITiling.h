@@ -2,7 +2,7 @@
 #define WIRECELL_ITILING
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/IProcessor.h"
+#include "WireCellIface/IConverter.h"
 #include "WireCellIface/ICellSummary.h"
 
 namespace WireCell {
@@ -12,8 +12,7 @@ namespace WireCell {
      */
     class ITiling
 	: public IComponent<ITiling>
-	, public ISink<ICellVector>
-	, public ISource<ICellSummary::pointer>
+	, public IConverter<ICellVector,ICellSummary::pointer>
     {
     public:
 
