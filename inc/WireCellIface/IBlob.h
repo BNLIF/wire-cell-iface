@@ -6,7 +6,7 @@
 namespace WireCell {
 
     /** Interface to information about an aggregation of cells which
-     * itself is a cell.
+     * itself is a cell (implements WireCell::ICell interface).
      *
      * A blob implements both the ICell and ICellSequence interfaces.
      * This means that one may use a blob to hold other blobs.

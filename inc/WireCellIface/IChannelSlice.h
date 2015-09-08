@@ -1,6 +1,7 @@
 #ifndef WIRECELLIFACE_ICHANNELSLICE
 #define WIRECELLIFACE_ICHANNELSLICE
 
+#include "WireCellUtil/Quantity.h" 
 #include "WireCellIface/IData.h"
 #include "WireCellIface/ISequence.h"
 
@@ -9,6 +10,11 @@
 
 namespace WireCell {
 
+    // fixme: put this someplace more generic.
+    /// A mapping from channel number to charge, with possible uncertainty.
+    typedef std::map<int,Quantity> ChannelCharge;
+
+
     /** Interface to one time slice across channels.
      *
      * A channel slice provides access to a collection of charge
@@ -16,8 +22,6 @@ namespace WireCell {
      */
     class IChannelSlice : public IData<IChannelSlice> {
     public:
-
-	typedef std::map<int,float> ChannelCharge;
 
 	virtual ~IChannelSlice() {}
 
