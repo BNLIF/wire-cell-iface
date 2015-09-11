@@ -41,6 +41,9 @@ namespace WireCell {
 
 	/// Return a unit vector along the direction of the pitch.
 	virtual const Vector& pitch_direction(WirePlaneId wpid) const = 0;
+
+	/// Return all wires, in order of segment number, attached to the channel.
+	virtual IWireVector by_channel(int channel) const = 0;
     };
 }
 
