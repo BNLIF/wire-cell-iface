@@ -3,7 +3,7 @@
 
 #include "WireCellUtil/IComponent.h"
 #include "WireCellIface/IConverter.h"
-#include "WireCellIface/IDepo.h"
+#include "WireCellIface/IDiffusion.h"
 #include "WireCellIface/IPlaneSlice.h"
 
 namespace WireCell {
@@ -11,13 +11,12 @@ namespace WireCell {
     /**
      * The PlaneDuctor ("ductor" = either an inductor or a conductor)
      * produces digitized charge signals on its plane of wires from
-     * depositions that have been drifted to the plane.  It handles
-     * the buffering required for diffusion to be applied, as well as
-     * actually applying it.  There is one PlaneDuctor per plane.  See
-     * also WireCell::Digitizer.
+     * diffusions (diffuse depositions) that have already been drifted
+     * to the vicinity of the plane.  There is one PlaneDuctor per
+     * plane.  See also WireCell::Digitizer.
     */
     class IPlaneDuctor : public IComponent<IPlaneDuctor>
-		       , public IConverter<IDepo::pointer, IPlaneSlice::pointer>
+		       , public IConverter<IDiffusion::pointer, IPlaneSlice::pointer>
     {
     public:
 	virtual ~IPlaneDuctor() {};
