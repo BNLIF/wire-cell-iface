@@ -42,7 +42,7 @@ int WireCell::WirePlaneId::apa() const
     return m_pack>>apa_shift;
 }
 
-WireCell::WirePlaneId::operator bool() const
+bool WireCell::WirePlaneId::valid() const
 {
     int ind = index();
     return 0 <= ind && ind < 3;
@@ -60,7 +60,7 @@ bool WireCell::WirePlaneId::operator!=(const WirePlaneId& rhs)
 
 bool WireCell::WirePlaneId::operator<(const WirePlaneId& rhs)
 {
-    if (!*this || !rhs) { return false; }
+    if (!this->valid() || !rhs.valid()) { return false; }
 
     if (apa() == rhs.apa()) {
 	if (face() == rhs.face()) {
@@ -72,15 +72,15 @@ bool WireCell::WirePlaneId::operator<(const WirePlaneId& rhs)
 }
 
 
-std::ostream& operator<<(std::ostream& o, const WireCell::WirePlaneId& wpid)
+std::ostream& WireCell::operator<<(std::ostream& o, const WireCell::WirePlaneId& wpid)
 {
     o << "[WirePlaneId "<< wpid.ident() << " ind:" << wpid.index() << " layer:" << wpid.layer() << " apa:" << wpid.apa() << " face:" << wpid.face();
-    if (!wpid) { o << " bogus"; }
+    if (!wpid.valid()) { o << " bogus"; }
     o << "]";
     return o;
 }
 
-std::ostream& operator<<(std::ostream& o, const WireCell::WirePlaneLayer_t& layer)
+std::ostream& WireCell::operator<<(std::ostream& o, const WireCell::WirePlaneLayer_t& layer)
 {
     switch (layer) {
     case WireCell::kUlayer : o << "<U>"; break;

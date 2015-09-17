@@ -11,7 +11,7 @@ namespace WireCell {
 
     class WirePlaneId {
     public:
-	WirePlaneId(WirePlaneLayer_t layer = kUnknownLayer, int face = 0, int apa = 0);
+	explicit WirePlaneId(WirePlaneLayer_t layer, int face = 0, int apa = 0);
 
 	/// Unit ID as integer 
 	int ident() const;
@@ -32,7 +32,8 @@ namespace WireCell {
 	int apa() const;
 
 	/// return true if valid
-	operator bool() const;
+	//operator bool() const;
+	bool valid() const;
 
 	bool operator==(const WirePlaneId& rhs);
 
@@ -40,15 +41,15 @@ namespace WireCell {
 	
 	bool operator<(const WirePlaneId& rhs);
 
+
     private:
 	int m_pack;
     };
     
-    
-
+    std::ostream& operator<<(std::ostream& os, const WireCell::WirePlaneId& wpid);
+    std::ostream& operator<<(std::ostream& o, const WireCell::WirePlaneLayer_t& layer);
 }
 
-std::ostream& operator<<(std::ostream& o, const WireCell::WirePlaneId& wpid);
-std::ostream& operator<<(std::ostream& o, const WireCell::WirePlaneLayer_t& layer);
+
 
 #endif

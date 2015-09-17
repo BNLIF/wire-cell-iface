@@ -1,3 +1,4 @@
+#include "WireCellIface/SimplePlaneSlice.h"
 #include "WireCellIface/WirePlaneId.h"
 #include "WireCellUtil/Testing.h"
 
@@ -14,6 +15,7 @@ int main()
     WirePlaneId u(kUlayer), v(kVlayer), w(kWlayer);
 
     cerr << "u.ident=" << u.ident() << " v.ident=" << v.ident() << " w.ident=" << w.ident() << endl;
+    cerr << "u=" << u << " v=" << v << " w=" << w << endl;
 
     Assert(u.ident() == 1);
     Assert(v.ident() == 2);
@@ -44,8 +46,8 @@ int main()
 
 		cerr << wpid << endl;
 
-		if (ilayer) { AssertMsg(wpid, "known layer should give true wpid"); }
-		else {AssertMsg(!wpid, "unknown layer should give false wpid");}
+		if (ilayer) { AssertMsg(wpid.valid(), "known layer should give true wpid"); }
+		else {AssertMsg(wpid.valid(), "unknown layer should give false wpid");}
 
 		Assert(ilayer-1 == wpid.index());
 		Assert(face == wpid.face());
