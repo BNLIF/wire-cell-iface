@@ -5,7 +5,7 @@
 #include "WireCellIface/IData.h"
 #include "WireCellIface/ISequence.h"
 
-
+#include <vector>
 #include <map>
 
 namespace WireCell {
@@ -34,6 +34,7 @@ namespace WireCell {
 
     };
 
+    typedef std::vector<IChannelSlice::pointer> IChannelSliceVector;
 }
 
 

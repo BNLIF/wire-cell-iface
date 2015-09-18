@@ -5,7 +5,7 @@
 #include "WireCellIface/IData.h"
 #include "WireCellIface/ICell.h"
 
-
+#include <vector>
 #include <map>
 
 namespace WireCell {
@@ -28,6 +28,8 @@ namespace WireCell {
 	virtual ICellVector cells() const = 0;
 
     };
+
+    typedef std::vector<ICellSlice::pointer> ICellSliceVector;
 
 }
 
