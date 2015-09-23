@@ -42,12 +42,16 @@ int main()
 
 		WirePlaneId wpid(layer, face, apa);
 
-		cerr << "\tident=" << wpid.ident() <<" ilayer=" << wpid.ilayer() << " layer=" << wpid.layer() << " index=" << wpid.index() << endl;
+		cerr << "\twpid=" << wpid << endl;
 
-		cerr << wpid << endl;
+		cerr << "\tident=" << wpid.ident()
+		     <<" ilayer=" << wpid.ilayer()
+		     << " layer=" << wpid.layer()
+		     << " index=" << wpid.index() << endl;
+
 
 		if (ilayer) { AssertMsg(wpid.valid(), "known layer should give true wpid"); }
-		else {AssertMsg(wpid.valid(), "unknown layer should give false wpid");}
+		else {AssertMsg(!wpid.valid(), "unknown layer should give false wpid");}
 
 		Assert(ilayer-1 == wpid.index());
 		Assert(face == wpid.face());
