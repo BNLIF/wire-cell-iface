@@ -16,12 +16,12 @@ namespace WireCell {
      */
     class IDigitizer
 	: public IComponent<IDigitizer>
-	, public IConverter<IPlaneSliceVector, IChannelSlice::pointer>
+	, public IConverter<IPlaneSlice::vector, IChannelSlice>
     {
     public:
 	virtual ~IDigitizer() {}
 
-	virtual bool set_wires(const IWireVector& wires) = 0;
+	virtual bool set_wires(const IWire::shared_vector& wires) = 0;
     };
 
 }

@@ -84,41 +84,41 @@ namespace WireCell {
      * you don't want this cruft, just inherit directly from
      * ISequence<IWire>.
      */
-    class IWireSequence : virtual public ISequence<IWire> {
-    public:
-	typedef std::shared_ptr<IWireSequence> pointer;
+    // class IWireSequence : virtual public ISequence<IWire> {
+    // public:
+    // 	typedef std::shared_ptr<IWireSequence> pointer;
 
-	typedef IWire::base_iterator	wire_base_iterator;
-	typedef IWire::iterator		wire_iterator;
-	typedef IWire::iterator_range	wire_range;
+    // 	typedef IWire::base_iterator	wire_base_iterator;
+    // 	typedef IWire::iterator		wire_iterator;
+    // 	typedef IWire::iterator_range	wire_range;
 
-	/// Actual subclass must implement:
-	virtual wire_iterator wires_begin() = 0;
-	virtual wire_iterator wires_end() = 0;
+    // 	/// Actual subclass must implement:
+    // 	virtual wire_iterator wires_begin() = 0;
+    // 	virtual wire_iterator wires_end() = 0;
 
-	virtual wire_range wires_range() { return wire_range(wires_begin(), wires_end()); }
+    // 	virtual wire_range wires_range() { return wire_range(wires_begin(), wires_end()); }
 
-	virtual wire_iterator begin() { return wires_begin(); };
-	virtual wire_iterator end() { return wires_end(); };
+    // 	virtual wire_iterator begin() { return wires_begin(); };
+    // 	virtual wire_iterator end() { return wires_end(); };
 
-    };
+    // };
 
     /** Adapt a collection to a sequence.
      * 
      * If you have an IWireVector, for example, and need to fit it
      * into the ISequence interface, use this adapter class.
      */
-    template<class Collection>
-    class IWireCollection : public IWireSequence {
-	Collection m_collection;
-    public:
-	IWireCollection(const Collection& c) : m_collection(c.begin(),c.end()) {}
-	virtual ~IWireCollection() { }
+    // template<class Collection>
+    // class IWireCollection : public IWireSequence {
+    // 	Collection m_collection;
+    // public:
+    // 	IWireCollection(const Collection& c) : m_collection(c.begin(),c.end()) {}
+    // 	virtual ~IWireCollection() { }
     
-	virtual wire_iterator wires_begin() { return adapt(m_collection.begin()); }
-	virtual wire_iterator wires_end() { return adapt(m_collection.end()); }
+    // 	virtual wire_iterator wires_begin() { return adapt(m_collection.begin()); }
+    // 	virtual wire_iterator wires_end() { return adapt(m_collection.end()); }
     
-    };
+    // };
 }
 
 

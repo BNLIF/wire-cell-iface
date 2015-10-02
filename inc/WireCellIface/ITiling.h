@@ -12,7 +12,7 @@ namespace WireCell {
      */
     class ITiling
 	: public IComponent<ITiling>
-	, public IConverter<ICellVector,ICellSummary::pointer>
+	, public IConverter<ICellVector, ICellSummary>
     {
     public:
 

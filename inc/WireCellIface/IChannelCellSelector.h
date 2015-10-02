@@ -1,8 +1,8 @@
 #ifndef WIRECELLIFACE_ICHANNELCELLSELECTOR
 #define WIRECELLIFACE_ICHANNELCELLSELECTOR
 
-
 #include "WireCellIface/IConverter.h"
+
 #include "WireCellIface/IChannelSlice.h"
 #include "WireCellIface/ICellSlice.h"
 
@@ -15,13 +15,14 @@ namespace WireCell {
      */
     class IChannelCellSelector
 	: public IComponent<IChannelCellSelector>
-	, public IConverter<IChannelSlice::pointer, ICellSlice::pointer>
+	, public IConverter<IChannelSlice, ICellSlice>
     {
     public:
 	virtual ~IChannelCellSelector() {}
 
 	/// Deliver all cells to the selector for later use.
-	virtual void set_cells(const ICellVector& all_cells) = 0;
+	// fixme: handle by the implementation constructor?
+	virtual void set_cells(const ICell::shared_vector& all_cells) = 0;
     };
 }
 

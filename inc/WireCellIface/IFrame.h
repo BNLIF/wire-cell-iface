@@ -14,13 +14,14 @@ namespace WireCell {
      * slices: channel-major, charge on channels for a given time slice.
      * 
      */
-    class IFrame : public ITraceSequence {
+    class IFrame : public IData<IFrame> {
 
     public:
-	typedef std::shared_ptr<IFrame> pointer;
-
 	virtual ~IFrame() {};
 	
+	/// Return a vector of traces
+	virtual ITrace::shared_vector traces() const = 0;
+
 	/// Return an identifying number of this frame.
 	virtual int ident() const = 0;
 

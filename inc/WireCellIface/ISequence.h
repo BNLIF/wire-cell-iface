@@ -1,6 +1,8 @@
 #ifndef WIRECELL_ISEQUENCE
 #define WIRECELL_ISEQUENCE
 
+#include "WireCellUtil/IteratorBase.h"
+
 #include <memory>
 
 namespace WireCell {
@@ -13,13 +15,15 @@ namespace WireCell {
      * interface.
      */
     template<class IDataClass>
-    class ISequence {		// note: note a WireCell::Interface
+    class ISequence {		// note: not a WireCell::Interface
     public:
+	typedef ISequence<IDataClass> this_type;
 
 	/// Access this sequence via shared (non-const) pointer.
-	typedef std::shared_ptr<ISequence<IDataClass> > pointer;
+	typedef std::shared_ptr<this_type> pointer;
 
 	typedef typename IDataClass::iterator iterator;
+	typedef typename IDataClass::const_iterator const_iterator;
 	typedef typename IDataClass::base_iterator base_iterator;
 	typedef typename IDataClass::iterator_range iterator_range;
 
@@ -28,10 +32,19 @@ namespace WireCell {
 	static iterator adapt(const OtherIter& itr) {
 	    return iterator(IteratorAdapter<OtherIter, base_iterator>(itr));
 	}
+	template<typename OtherIter>
+	static const_iterator cadapt(const OtherIter& itr) {
+	    return const_iterator(IteratorAdapter<OtherIter, base_iterator>(itr));
+	}
 
 	/// Concrete class must implement:
-	virtual iterator begin() = 0;
-	virtual iterator end() = 0;
+	virtual const_iterator cbegin() const = 0;
+	virtual const_iterator cend() const = 0;
+	virtual const_iterator begin() const { return cbegin(); }
+	virtual const_iterator end() const { return cbegin(); }
+	virtual iterator begin() { return iterator(cbegin()); }
+	virtual iterator end() { return iterator(cbegin()); }
+
 
 	/// Return begin/end pair as iterator range.
 	virtual iterator_range range() {

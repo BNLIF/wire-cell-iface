@@ -54,41 +54,41 @@ namespace WireCell {
      * you don't want this cruft, just inherit directly from
      * ISequence<ICell>.
      */
-    class ICellSequence : virtual public ISequence<ICell> {
-    public:
-	typedef std::shared_ptr<ICellSequence> pointer;
+    // class ICellSequence : virtual public ISequence<ICell> {
+    // public:
+    // 	typedef std::shared_ptr<ICellSequence> pointer;
 
-	typedef ICell::base_iterator	cell_base_iterator;
-	typedef ICell::iterator		cell_iterator;
-	typedef ICell::iterator_range	cell_range;
+    // 	typedef ICell::base_iterator	cell_base_iterator;
+    // 	typedef ICell::iterator		cell_iterator;
+    // 	typedef ICell::iterator_range	cell_range;
 
-	/// Actual subclass must implement:
-	virtual cell_iterator cells_begin() = 0;
-	virtual cell_iterator cells_end() = 0;
+    // 	/// Actual subclass must implement:
+    // 	virtual cell_iterator cells_begin() = 0;
+    // 	virtual cell_iterator cells_end() = 0;
 
-	virtual cell_range cells_range() { return cell_range(cells_begin(), cells_end()); }
+    // 	virtual cell_range cells_range() { return cell_range(cells_begin(), cells_end()); }
 
-	virtual cell_iterator begin() { return cells_begin(); };
-	virtual cell_iterator end() { return cells_end(); };
+    // 	virtual cell_iterator begin() { return cells_begin(); };
+    // 	virtual cell_iterator end() { return cells_end(); };
 
-    };
+    // };
 
     /** Adapt a collection to a sequence.
      * 
      * If you have an ICellVector, for example, and need to fit it
      * into the ISequence interface, use this adapter class.
      */
-    template<class Collection>
-    class ICellCollection : public ICellSequence {
-	Collection m_collection;
-    public:
-	ICellCollection(const Collection& c) : m_collection(c.begin(),c.end()) {}
-	virtual ~ICellCollection() { }
+    // template<class Collection>
+    // class ICellCollection : public ICellSequence {
+    // 	Collection m_collection;
+    // public:
+    // 	ICellCollection(const Collection& c) : m_collection(c.begin(),c.end()) {}
+    // 	virtual ~ICellCollection() { }
     
-	virtual cell_iterator cells_begin() { return adapt(m_collection.begin()); }
-	virtual cell_iterator cells_end() { return adapt(m_collection.end()); }
+    // 	virtual cell_iterator cells_begin() { return adapt(m_collection.begin()); }
+    // 	virtual cell_iterator cells_end() { return adapt(m_collection.end()); }
     
-    };
+    // };
     
 }
 #endif

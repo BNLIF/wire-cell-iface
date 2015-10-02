@@ -25,7 +25,7 @@ namespace WireCell {
 
 	/// Return a mapping from channel identity number and the
 	/// charge in that channel in this time slice.
-	virtual ICellVector cells() const = 0;
+	virtual ICell::shared_vector cells() const = 0;
 
     };
 

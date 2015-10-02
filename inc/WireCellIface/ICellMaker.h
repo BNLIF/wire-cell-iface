@@ -2,7 +2,6 @@
 #define WIRECELL_ICELLMAKER
 
 #include "WireCellUtil/IComponent.h"
-
 #include "WireCellIface/IConverter.h"
 #include "WireCellIface/IWire.h"
 #include "WireCellIface/ICell.h"
@@ -15,7 +14,7 @@ namespace WireCell {
      */
     class ICellMaker
 	: public IComponent<ICellMaker> 
-	, public IConverter<IWireVector, ICellVector>
+	, public IConverter<IWireVector,ICellVector>
     {
     public:
 	virtual ~ICellMaker() {}

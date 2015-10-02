@@ -1,3 +1,5 @@
+#include "WireCellUtil/Testing.h"
+
 #include "MyWire.h"
 #include "MyCell.h"
 #include <vector>
@@ -69,6 +71,9 @@ int main()
 	cout << "cell: " << cell.ident() << endl;
     }
     
+
+    const MyWireSequence &cmws(mws);
+    Assert (cmws.IWireSequence::begin() != cmws.IWireSequence::end()); // just to call
 
     return 0;
 }

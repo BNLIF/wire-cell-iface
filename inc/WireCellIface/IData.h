@@ -1,10 +1,9 @@
 #ifndef WIRECELL_IDATA
 #define WIRECELL_IDATA
 
-#include "WireCellUtil/Iterator.h"
-#include "WireCellUtil/IteratorBase.h"
+//#include "WireCellUtil/Iterator.h"
+//#include "WireCellUtil/IteratorBase.h"
 
-#include <boost/signals2.hpp>
 #include <boost/range/iterator_range.hpp>
 #include <memory>		// std::shared_ptr
 
@@ -19,15 +18,17 @@ namespace WireCell {
 	/// through shared, const pointers.
 	typedef std::shared_ptr<const Type> pointer;
 
-	/// Abstract base iterator
-	typedef IteratorBase<pointer> base_iterator;
+	typedef std::vector<pointer> vector;
+	typedef std::shared_ptr<const vector> shared_vector;
 
-	/// The facade-iterator which wraps an instance of derived abstract iterator.
-	typedef Iterator<pointer> iterator;
+	// /// Abstract base iterator
+	// typedef IteratorBase<pointer> base_iterator;
 
-	/// A range of iterators.
-	typedef boost::iterator_range<iterator> iterator_range;
-
+	// /// The facade-iterator which wraps an instance of derived abstract iterator.
+	// typedef Iterator<pointer> iterator;
+	
+	// /// A range of iterators.
+	// typedef boost::iterator_range<iterator> iterator_range;
 
     };
 }

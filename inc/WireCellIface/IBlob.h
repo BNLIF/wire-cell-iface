@@ -14,10 +14,12 @@ namespace WireCell {
      * When you construct IBlobs be mindful of using `.ident()`
      * numbers which are degenerated with their ICell constituents.
      */
-    class IBlob : public ICell, public ICellSequence {
+    class IBlob : public ICell {
     public:
 	virtual ~IBlob();
 
+	/// Return a vector of individual cells.
+	virtual ICellVector cells() = 0;
     };
 
     
