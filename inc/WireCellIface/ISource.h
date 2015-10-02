@@ -7,11 +7,11 @@ namespace WireCell {
 
     /** A source of something 
      */
-    template<typename Output>
-    class ISource : public ISending<Output>
+    template<typename OutputType>
+    class ISource : public ISending<OutputType>
     {
     public:
-	virtual ~IFrameSource() {}
+	virtual ~ISource() {}
 
 	typedef std::shared_ptr<OutputType> output_type;
 	// supply:

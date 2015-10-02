@@ -20,6 +20,8 @@ namespace WireCell {
 	// virtual bool extract(IFrame::pointer& frame);
 
     };
+
+
 }
 
 #endif
