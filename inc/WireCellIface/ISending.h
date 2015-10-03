@@ -1,6 +1,7 @@
 #ifndef WIRECELL_ISENDING
 #define WIRECELL_ISENDING
 
+#include "WireCellIface/IProcessor.h"
 #include <memory>
 
 namespace WireCell {
@@ -8,7 +9,9 @@ namespace WireCell {
     /** A DFP base for any node that provides output of a certain type.
      */
     template<typename OutputType>
-    class ISending {
+    class ISending
+	: virtual public IProcessor
+    {
     public:
 	virtual ~ISending() {}
 
