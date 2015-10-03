@@ -28,6 +28,9 @@ namespace WireCell {
 	/// Return the start time of the frame in seconds w.r.t. some
 	/// global time.
 	virtual double time() const = 0;
+
+	/// Return the length of a digitization time bin.
+	virtual double tick() const = 0;
     };
 
 }

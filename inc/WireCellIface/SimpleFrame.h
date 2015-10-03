@@ -2,6 +2,7 @@
 #define  WIRECELL_SIMPLEFRAME
 
 #include "WireCellIface/IFrame.h"
+#include "WireCellUtil/Units.h"
 #include <vector>
 
 namespace WireCell {
@@ -13,16 +14,17 @@ namespace WireCell {
     class SimpleFrame : public IFrame {
     public:
 
-	SimpleFrame(int ident, double time, const ITrace::vector& traces);
+	SimpleFrame(int ident, double time, const ITrace::vector& traces, double tick=0.5*units::microsecond);
 	~SimpleFrame();
 	virtual int ident() const;
 	virtual double time() const;
+	virtual double tick() const;
     
 	virtual ITrace::shared_vector traces() const;
 
     private:
 	int m_ident;
-	double m_time;
+	double m_time, m_tick;
 	ITrace::shared_vector m_traces;
     };
 

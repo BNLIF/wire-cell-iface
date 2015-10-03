@@ -11,10 +11,12 @@ namespace WireCell {
      */
     class IFrameSource
 	: public IComponent<IFrameSource>
-	, public ISending<IFrame>
+	, public ISource<IFrame>
     {
     public:
 	virtual ~IFrameSource() {}
+
+	typedef IFrame::pointer output_type;
 
 	// supply:
 	// virtual bool extract(IFrame::pointer& frame);

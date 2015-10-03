@@ -8,6 +8,7 @@ namespace WireCell {
 
     /// Enumerate layer IDs.  These are not indices!
     enum WirePlaneLayer_t { kUnknownLayer=0, kUlayer=1, kVlayer=2, kWlayer=4 };
+    const WirePlaneLayer_t iplane2layer[3] = { kUlayer, kVlayer, kWlayer };
 
     class WirePlaneId {
     public:
