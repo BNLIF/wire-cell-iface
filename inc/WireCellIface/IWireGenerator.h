@@ -14,7 +14,7 @@ namespace WireCell {
      */
     class IWireGenerator
 	: public IComponent<IWireGenerator>
-	, public IConverter<IWireParameters, IWireVector>
+	, public IConverter<IWireParameters, IWire::vector>
     {
     public:
 

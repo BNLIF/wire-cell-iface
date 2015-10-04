@@ -34,11 +34,6 @@ namespace WireCell {
 	virtual const ChargeSequence& charge() const = 0;
     };
 
-    typedef std::vector<ITrace::pointer> ITraceVector;
-
-    /// A sequence of traces (aka a "frame").
-    //typedef ISequence<ITrace> ITraceSequence;
-
 }
 
 

@@ -10,7 +10,7 @@ namespace WireCell {
 
     class IWireSummarizer
 	: public IComponent<IWireSummarizer>
-	, public IConverter<IWireVector, IWireSummary>
+	, public IConverter<IWire::vector, IWireSummary>
     {
     public:
 	virtual ~IWireSummarizer() {}

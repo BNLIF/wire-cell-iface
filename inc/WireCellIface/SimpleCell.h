@@ -13,12 +13,12 @@ namespace WireCell {
      */
     class SimpleCell : public WireCell::ICell {
 	int m_ident;
-	IWireVector m_wires;
+	IWire::vector m_wires;
 	PointVector m_corners;
     
     public:
 	SimpleCell(int ident,
-		   const IWireVector& wires = IWireVector(),
+		   const IWire::vector& wires = IWire::vector(),
 		   const PointVector& corners = PointVector())
 	    : m_ident(ident)
 	    , m_wires(wires)
@@ -44,11 +44,11 @@ namespace WireCell {
 	}	
 
 	virtual WireCell::PointVector corners() const {
-	    return WireCell::PointVector(m_corners.begin(), m_corners.end());
+	    return m_corners;
 	}
 	
-	virtual WireCell::IWireVector wires() const {
-	    return WireCell::IWireVector(m_wires.begin(), m_wires.end());
+	virtual WireCell::IWire::vector wires() const {
+	    return m_wires;
 	}
     };
 

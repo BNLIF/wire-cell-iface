@@ -14,7 +14,7 @@ namespace WireCell {
      */
     class ICellMaker
 	: public IComponent<ICellMaker> 
-	, public IConverter<IWireVector,ICellVector>
+	, public IConverter<IWire::vector,ICell::vector>
     {
     public:
 	virtual ~ICellMaker() {}

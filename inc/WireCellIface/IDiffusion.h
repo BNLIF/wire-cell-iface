@@ -64,7 +64,6 @@ namespace WireCell {
 	}
     };
     typedef std::set<IDiffusion::pointer, IDiffusionCompareLbegin> IDiffusionSet;
-    typedef std::vector<IDiffusion::pointer> IDiffusionVector;
 
     
 }

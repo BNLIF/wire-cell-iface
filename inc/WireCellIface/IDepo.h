@@ -32,12 +32,10 @@ namespace WireCell {
 
     };
 
-    typedef std::vector<IDepo::pointer> IDepoVector;
-
     /// Simple utility to return a vector of depositions formed by
     /// walking the prior() chain.  The vector begins with the most
     /// recent.
-    IDepoVector depo_chain(IDepo::pointer recent);
+    IDepo::vector depo_chain(IDepo::pointer recent);
 
     /// Compare how "far" two depositions are from the origin along
     /// the drift-line (metric: dT + dX/V_drift) given a drift velocity.

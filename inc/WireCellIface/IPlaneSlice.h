@@ -51,11 +51,6 @@ namespace WireCell {
 
     };
 
-    typedef std::vector<IPlaneSlice::pointer> IPlaneSliceVector;
-
 }
-
-
-
 
 #endif

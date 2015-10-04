@@ -49,9 +49,7 @@ namespace WireCell {
 
     bool ascending_index(IWire::pointer lhs, IWire::pointer rhs);
 
-    /// Some common collections.  Note, use IWireSequence as a way to
-    /// pass-by-value an iterator range.
-    typedef std::vector<IWire::pointer> IWireVector;
+    /// Some common collections.  
     typedef std::pair<IWire::pointer, IWire::pointer> IWirePair;
 
     // A set ordered by wire ident
@@ -76,49 +74,6 @@ namespace WireCell {
     };
     typedef std::set<IWire::pointer, IWireCompareSegment> IWireSegmentSet;
 
-    /** An abstract base class for a sequence of wires.
-     *
-     * This could simply be a typedef but it is convenient to provide
-     * different names for iterators and begin()/end() to facilitate
-     * any subclassing of both IWireSequence and ICellSequence.  If
-     * you don't want this cruft, just inherit directly from
-     * ISequence<IWire>.
-     */
-    // class IWireSequence : virtual public ISequence<IWire> {
-    // public:
-    // 	typedef std::shared_ptr<IWireSequence> pointer;
-
-    // 	typedef IWire::base_iterator	wire_base_iterator;
-    // 	typedef IWire::iterator		wire_iterator;
-    // 	typedef IWire::iterator_range	wire_range;
-
-    // 	/// Actual subclass must implement:
-    // 	virtual wire_iterator wires_begin() = 0;
-    // 	virtual wire_iterator wires_end() = 0;
-
-    // 	virtual wire_range wires_range() { return wire_range(wires_begin(), wires_end()); }
-
-    // 	virtual wire_iterator begin() { return wires_begin(); };
-    // 	virtual wire_iterator end() { return wires_end(); };
-
-    // };
-
-    /** Adapt a collection to a sequence.
-     * 
-     * If you have an IWireVector, for example, and need to fit it
-     * into the ISequence interface, use this adapter class.
-     */
-    // template<class Collection>
-    // class IWireCollection : public IWireSequence {
-    // 	Collection m_collection;
-    // public:
-    // 	IWireCollection(const Collection& c) : m_collection(c.begin(),c.end()) {}
-    // 	virtual ~IWireCollection() { }
-    
-    // 	virtual wire_iterator wires_begin() { return adapt(m_collection.begin()); }
-    // 	virtual wire_iterator wires_end() { return adapt(m_collection.end()); }
-    
-    // };
 }
 
 
