@@ -13,7 +13,7 @@ namespace WireCell {
     public:
 	virtual ~ISink() {}
 
-	typedef std::shared_ptr<InputType> input_type;
+	typedef std::shared_ptr<const InputType> input_type;
 	// supply:
 	// virtual bool insert(const input_type& in);
 
