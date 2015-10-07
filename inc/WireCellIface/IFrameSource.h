@@ -16,8 +16,6 @@ namespace WireCell {
     public:
 	virtual ~IFrameSource() {}
 
-	typedef IFrame::pointer output_type;
-
 	// supply:
 	// virtual bool extract(IFrame::pointer& frame);
 
