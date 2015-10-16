@@ -1,23 +1,36 @@
 #ifndef WIRECELL_ISENDING
 #define WIRECELL_ISENDING
 
-#include "WireCellIface/IProcessor.h"
-#include <memory>
+#include "WireCellUtil/IComponent.h"
+#include "WireCellIface/IPort.h"
+#include <string>
 
 namespace WireCell {
 
-    /** A DFP base for any node that provides output of a certain type.
-     */
-    template<typename OutputType>
     class ISending
-	: virtual public IProcessor
+	: public IComponent<ISending>
+	, virtual public IPort
     {
     public:
 	virtual ~ISending() {}
+    };
 
-	// Extract one output data object.  Return true if "out" was
-	// set successfully.
-	virtual bool extract(std::shared_ptr<const OutputType>& out) = 0;
+
+    /** A DFP base for any node that provides output of a certain type.
+     */
+    template<typename PortType>
+    class ISendingT : virtual public ISending , public IPortT<PortType>
+    {
+    public:
+	virtual ~ISendingT() {}
+
+	typedef ISendingT<PortType> this_type;
+	typedef std::shared_ptr< this_type > pointer;
+	typedef typename IPortT<PortType>::port_pointer port_pointer;
+
+	/// Extract one output data object.  Return true if "out" was
+	/// set successfully.
+	virtual bool extract(port_pointer& out) = 0;
 	
     };
 
