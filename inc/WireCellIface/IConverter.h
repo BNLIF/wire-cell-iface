@@ -12,8 +12,8 @@ namespace WireCell {
      */
     template<typename InputType, typename OutputType>
     class IConverter
-	: virtual public IReceiving<InputType>, 
-	  virtual public ISending<OutputType>
+	: virtual public IReceivingT<InputType> 
+	, virtual public ISendingT<OutputType>
     {
     public:
 

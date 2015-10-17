@@ -16,7 +16,7 @@ namespace WireCell {
      */
     class IDigitizer
 	: public IComponent<IDigitizer>
-	, public IConverter<IPlaneSlice::vector, IChannelSlice>
+	, virtual public IConverter<IPlaneSlice::vector, IChannelSlice>
     {
     public:
 	virtual ~IDigitizer() {}

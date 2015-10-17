@@ -15,7 +15,7 @@ namespace WireCell {
      */
     class IChannelCellSelector
 	: public IComponent<IChannelCellSelector>
-	, public IConverter<IChannelSlice, ICellSlice>
+	, virtual public IConverter<IChannelSlice, ICellSlice>
     {
     public:
 	virtual ~IChannelCellSelector() {}

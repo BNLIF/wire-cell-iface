@@ -16,7 +16,7 @@ namespace WireCell {
      */
     class IFramer
 	: public IComponent<IFramer>
-	, public IConverter<IChannelSlice, IFrame>
+	, virtual public IConverter<IChannelSlice, IFrame>
     {
     public:
 	virtual ~IFramer() {}

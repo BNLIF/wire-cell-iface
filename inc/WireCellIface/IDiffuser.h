@@ -12,7 +12,7 @@ namespace WireCell {
 
     class IDiffuser
 	: public IComponent<IDiffuser>
-	, public IConverter<IDepo, IDiffusion>
+	, virtual public IConverter<IDepo, IDiffusion>
     {
     public:
 	virtual ~IDiffuser() {};

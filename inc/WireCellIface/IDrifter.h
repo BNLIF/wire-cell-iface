@@ -18,7 +18,7 @@ namespace WireCell {
      */
     class IDrifter
 	: public IComponent<IDrifter>
-	, public IConverter<IDepo, IDepo>
+	, virtual public IConverter<IDepo, IDepo>
     {
     public:
 	virtual ~IDrifter() {}

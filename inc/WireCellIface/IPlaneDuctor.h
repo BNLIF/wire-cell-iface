@@ -16,7 +16,7 @@ namespace WireCell {
      * plane.  See also WireCell::Digitizer.
     */
     class IPlaneDuctor : public IComponent<IPlaneDuctor>
-		       , public IConverter<IDiffusion, IPlaneSlice>
+		       , virtual public IConverter<IDiffusion, IPlaneSlice>
     {
     public:
 	virtual ~IPlaneDuctor() {};
