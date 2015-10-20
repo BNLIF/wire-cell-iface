@@ -1,5 +1,5 @@
-#include "WireCellIface/IConnector.h"
-#include "WireCellIface/IConverter.h"
+#include "WireCellIface/IPort.h"
+#include "WireCellIface/INode.h"
 #include "WireCellUtil/Testing.h"
 
 #include <iostream>
