@@ -2,7 +2,7 @@
 #define WIRECELL_IPOINTFIELDSINK
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/ISink.h"
+#include "WireCellIface/IReceiving.h"
 #include "WireCellUtil/Point.h"
 
 
@@ -11,7 +11,7 @@ namespace WireCell {
     /** Base class for a sink of cells. */
     class IPointFieldSink
        	: public IComponent<IPointFieldSink>
-	, virtual public ISink< PointVector >
+	, virtual public IReceiving< PointVector >
     {
     public:
 	virtual ~IPointFieldSink() {}

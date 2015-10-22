@@ -2,7 +2,7 @@
 #define WIRECELL_IFRAMESINK
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/ISink.h"
+#include "WireCellIface/IReceving.h"
 #include "WireCellIface/IFrame.h"
 
 namespace WireCell {
@@ -11,7 +11,7 @@ namespace WireCell {
      */
     class IFrameSink
 	: public IComponent<IFrameSink>
-	, public ISink<IFrame>
+	, public IReceiving<IFrame>
     {
     public:
 	virtual ~IFrameSink() {}

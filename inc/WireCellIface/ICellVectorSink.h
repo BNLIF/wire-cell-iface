@@ -2,7 +2,7 @@
 #define WIRECELL_ICELLVECTORSINK
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/ISink.h"
+#include "WireCellIface/IReceiving.h"
 #include "WireCellIface/ICell.h"
 
 namespace WireCell {
@@ -10,7 +10,7 @@ namespace WireCell {
     /** Base class for a sink of a vector of cells. */
     class ICellVectorSink
        	: public IComponent<ICellVectorSink>
-	, virtual public ISink<ICell::vector>
+	, virtual public IReceiving<ICell::vector>
     {
     public:
 	virtual ~ICellVectorSink() {}

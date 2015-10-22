@@ -12,13 +12,13 @@ namespace WireCell {
      */
     template<typename InputType, typename OutputType>
     class IConverter
-	: virtual public IReceivingT<InputType> 
-	, virtual public ISendingT<OutputType>
+	: virtual public IReceiving<InputType> 
+	, virtual public ISending<OutputType>
     {
     public:
 
-	typedef std::shared_ptr<const InputType> input_type;
-	typedef std::shared_ptr<const OutputType> output_type;
+	//typedef std::shared_ptr<const InputType> input_pointer;
+	//typedef std::shared_ptr<const OutputType> output_pointer;
 
 	virtual ~IConverter() {}
     };

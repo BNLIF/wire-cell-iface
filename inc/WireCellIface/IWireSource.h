@@ -1,7 +1,7 @@
 #ifndef WIRECELLIFACE_IWIRESOURCE
 #define WIRECELLIFACE_IWIRESOURCE
 
-#include "WireCellIface/ISource.h"
+#include "WireCellIface/ISending.h"
 #include "WireCellIface/IWire.h"
 
 #include "WireCellUtil/IComponent.h"
@@ -12,15 +12,13 @@ namespace WireCell {
      */
     class IWireSource
 	: public IComponent<IWireSource>
-	, public ISource<IWire::vector>
+	, public ISending<IWire::vector>
     {
     public:
 	virtual ~IWireSource() {}
 
-	typedef IWire::shared_vector output_type;
-
 	// supply:
-	// virtual bool extract(output_type& wires);
+	// virtual bool extract(output_pointer& wires);
     };
 
 }
