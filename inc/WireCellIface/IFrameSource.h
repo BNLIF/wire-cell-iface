@@ -2,7 +2,7 @@
 #define WIRECELL_IFRAMESOURCE
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/ISending.h"
+#include "WireCellIface/SimpleNodes.h"
 #include "WireCellIface/IFrame.h"
 
 namespace WireCell {
@@ -11,7 +11,7 @@ namespace WireCell {
      */
     class IFrameSource
 	: public IComponent<IFrameSource>
-	, public ISending<IFrame>
+	, public ISendingNode<IFrame>
     {
     public:
 	virtual ~IFrameSource() {}

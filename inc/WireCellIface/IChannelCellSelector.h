@@ -1,7 +1,7 @@
 #ifndef WIRECELLIFACE_ICHANNELCELLSELECTOR
 #define WIRECELLIFACE_ICHANNELCELLSELECTOR
 
-#include "WireCellIface/IConverter.h"
+#include "WireCellIface/SimpleNodes.h"
 
 #include "WireCellIface/IChannelSlice.h"
 #include "WireCellIface/ICellSlice.h"
@@ -15,7 +15,7 @@ namespace WireCell {
      */
     class IChannelCellSelector
 	: public IComponent<IChannelCellSelector>
-	, virtual public IConverter<IChannelSlice, ICellSlice>
+	, public IConverterNode<IChannelSlice, ICellSlice>
     {
     public:
 	virtual ~IChannelCellSelector() {}

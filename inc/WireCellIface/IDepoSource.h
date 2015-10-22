@@ -2,7 +2,7 @@
 #define WIRECELL_IDEPOSOURCE
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/ISending.h"
+#include "WireCellIface/SimpleNodes.h"
 #include "WireCellIface/IDepo.h"
 
 namespace WireCell {
@@ -11,7 +11,7 @@ namespace WireCell {
      */
     class IDepoSource
 	: public IComponent<IDepoSource>
-	, public ISending<IDepo>
+	, public ISendingNode<IDepo>
     {
     public:
 	virtual ~IDepoSource() {}

@@ -1,7 +1,7 @@
 #ifndef WIRECELL_IWIRESUMMARIZER
 #define WIRECELL_IWIRESUMMARIZER
 
-#include "WireCellIface/IConverter.h"
+#include "WireCellIface/SimpleNodes.h"
 #include "WireCellIface/IWireSummary.h"
 
 #include "WireCellUtil/IComponent.h"
@@ -10,7 +10,7 @@ namespace WireCell {
 
     class IWireSummarizer
 	: public IComponent<IWireSummarizer>
-	, virtual public IConverter<IWire::vector, IWireSummary>
+	, public IConverterNode<IWire::vector, IWireSummary>
     {
     public:
 	virtual ~IWireSummarizer() {}

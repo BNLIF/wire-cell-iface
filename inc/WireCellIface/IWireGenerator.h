@@ -1,7 +1,7 @@
 #ifndef WIRECELLIFACE_IWIREGENERATOR
 #define WIRECELLIFACE_IWIREGENERATOR
 
-#include "WireCellIface/IConverter.h"
+#include "WireCellIface/SimpleNodes.h"
 #include "WireCellIface/IWireParameters.h"
 #include "WireCellIface/IWire.h"
 
@@ -14,7 +14,7 @@ namespace WireCell {
      */
     class IWireGenerator
 	: public IComponent<IWireGenerator>
-	, virtual public IConverter<IWireParameters, IWire::vector>
+	, public IConverterNode<IWireParameters, IWire::vector>
     {
     public:
 

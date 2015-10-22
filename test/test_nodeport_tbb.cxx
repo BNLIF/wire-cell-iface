@@ -12,12 +12,11 @@ template<typename DataType>
 struct source_body_adapter {
     typedef DataType data_type;
     typedef std::shared_ptr<const data_type> data_pointer;
-    typedef IPortOutputT<DataType> port_type;
-    typedef std::shared_ptr<port_type> port_pointer;
+    typedef ISending<DataType> port_type;
 
-    port_pointer port;
+    port_type* port;
     source_body_adapter(INode& node) {
-	port = dynamic_pointer_cast<port_type>(node.output_ports()[0]);
+	port = dynamic_cast<port_type*>(node.output_ports()[0]);
     }
 
     bool operator()(data_pointer& out) {
@@ -62,20 +61,18 @@ struct function_body_adapter {
     // input
     typedef InputType input_data_type;
     typedef std::shared_ptr<const input_data_type> input_data_pointer;
-    typedef IPortInputT<InputType> input_port_type;
-    typedef std::shared_ptr<input_port_type> input_port_pointer;
+    typedef IReceiving<InputType> input_port_type;
 
     // output
     typedef OutputType output_data_type;
     typedef std::shared_ptr<const output_data_type> output_data_pointer;
-    typedef IPortOutputT<OutputType> output_port_type;
-    typedef std::shared_ptr<output_port_type> output_port_pointer;
+    typedef ISending<OutputType> output_port_type;
 
-    input_port_pointer input_port;
-    output_port_pointer output_port;
+    input_port_type* input_port;
+    output_port_type* output_port;
     function_body_adapter(INode& node) {
-	input_port = dynamic_pointer_cast<input_port_type>(node.input_ports()[0]);
-	output_port = dynamic_pointer_cast<output_port_type>(node.output_ports()[0]);
+	input_port = dynamic_cast<input_port_type*>(node.input_ports()[0]);
+	output_port = dynamic_cast<output_port_type*>(node.output_ports()[0]);
     }
 
     output_data_pointer operator()(const input_data_pointer& in) {

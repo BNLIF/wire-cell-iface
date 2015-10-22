@@ -2,7 +2,7 @@
 #define WIRECELL_IPLANEDUCTOR
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/IConverter.h"
+#include "WireCellIface/SimpleNodes.h"
 #include "WireCellIface/IDiffusion.h"
 #include "WireCellIface/IPlaneSlice.h"
 
@@ -16,7 +16,7 @@ namespace WireCell {
      * plane.  See also WireCell::Digitizer.
     */
     class IPlaneDuctor : public IComponent<IPlaneDuctor>
-		       , virtual public IConverter<IDiffusion, IPlaneSlice>
+		       , public IConverterNode<IDiffusion, IPlaneSlice>
     {
     public:
 	virtual ~IPlaneDuctor() {};

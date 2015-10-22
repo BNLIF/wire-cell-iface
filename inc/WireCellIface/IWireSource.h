@@ -1,7 +1,7 @@
 #ifndef WIRECELLIFACE_IWIRESOURCE
 #define WIRECELLIFACE_IWIRESOURCE
 
-#include "WireCellIface/ISending.h"
+#include "WireCellIface/SimpleNodes.h"
 #include "WireCellIface/IWire.h"
 
 #include "WireCellUtil/IComponent.h"
@@ -12,7 +12,7 @@ namespace WireCell {
      */
     class IWireSource
 	: public IComponent<IWireSource>
-	, public ISending<IWire::vector>
+	, public ISendingNode<IWire::vector>
     {
     public:
 	virtual ~IWireSource() {}

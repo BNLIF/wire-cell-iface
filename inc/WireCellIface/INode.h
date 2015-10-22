@@ -2,7 +2,11 @@
 #define WIRECELL_INODE
 
 #include "WireCellIface/IPort.h"
+
+#include "WireCellUtil/IComponent.h"
+
 #include <memory>
+#include <vector>
 
 namespace WireCell {
 
@@ -12,13 +16,13 @@ namespace WireCell {
     public:
 	virtual ~INode(){}
 
-	typedef std::shared_ptr<INode> pointer;
+	typedef std::vector<IPort*> port_vector;
 
-	virtual IPort::port_vector input_ports() const {
-	    return IPort::port_vector();
+	virtual port_vector input_ports() const {
+	    return port_vector();
 	}
-	virtual IPort::port_vector output_ports() const {
-	    return IPort::port_vector();
+	virtual port_vector output_ports() const {
+	    return port_vector();
 	}
     };
 }

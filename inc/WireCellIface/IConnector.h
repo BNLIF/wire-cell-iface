@@ -25,7 +25,7 @@ namespace WireCell {
 	virtual std::string port_type_name() const = 0;
 
 	/// Connect a sender to a receiver return false on error.
-	virtual bool connect(IPort::pointer sender, IPort::pointer receiver) = 0;
+	virtual bool connect(IPort& sender, IPort& receiver) = 0;
 
     };
 
@@ -37,7 +37,6 @@ namespace WireCell {
     public:
 
 	typedef PortType port_type;
-	typedef std::shared_ptr<const PortType> pointer;
 
 	virtual ~IConnectorT() {}
 
@@ -46,34 +45,35 @@ namespace WireCell {
 	}
 
 	/// Forward to type specific typed version of connect().
-	virtual bool connect(IPort::pointer sender, IPort::pointer receiver) {
-	    pointer s = std::dynamic_pointer_cast<port_type>(sender);
-	    pointer r = std::dynamic_pointer_cast<port_type>(receiver);	    
+	virtual bool connect(IPort& sender, IPort& receiver) {
+	    PortType* s = std::dynamic_pointer_cast<PortType*>(&sender);
+	    PortType* r = std::dynamic_pointer_cast<PortType*>(&receiver);	    
 	    if (!s || !r) { return false; }
-	    return connect(s, r);
+	    return connect(*s, *r);
 	}
 
 	/// Convenience method to start from nodes.
-	virtual bool connect(INode::pointer sender, INode::pointer receiver) {
-	    IPort::pointer s, r;
+	virtual bool connect(INode& sender, INode& receiver) {
+	    IPort *s = nullptr, *r = nullptr;
 	    std::string me = port_type_name();
-	    for (auto maybe : sender->input_ports()) {
+	    for (auto maybe : sender.input_ports()) {
 		if (me != maybe->port_type_name()) {
 		    break;
 		}
 		s = maybe;
 	    }
-	    for (auto maybe : receiver->input_ports()) {
+	    for (auto maybe : receiver.input_ports()) {
 		if (me != maybe->port_type_name()) {
 		    break;
 		}
 		r = maybe;
 	    }
-	    return connect(s, r);
+	    if (!r && !s) { return false; }
+	    return connect(*s, *r);
 	}
 
 	/** Subclass must implement. */
-	virtual bool connect(pointer sender, pointer receiver) = 0;
+	virtual bool connect(PortType& sender, PortType& receiver) = 0;
 
     };
 

@@ -2,7 +2,7 @@
 #define WIRECELL_IFRAMER
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/IConverter.h"
+#include "WireCellIface/SimpleNodes.h"
 #include "WireCellIface/IFrame.h"
 #include "WireCellIface/IChannelSlice.h"
 
@@ -16,7 +16,7 @@ namespace WireCell {
      */
     class IFramer
 	: public IComponent<IFramer>
-	, virtual public IConverter<IChannelSlice, IFrame>
+	, public IConverterNode<IChannelSlice, IFrame>
     {
     public:
 	virtual ~IFramer() {}

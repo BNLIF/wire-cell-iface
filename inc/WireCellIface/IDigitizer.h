@@ -3,7 +3,7 @@
 
 #include "WireCellUtil/IComponent.h"
 
-#include "WireCellIface/IConverter.h"
+#include "WireCellIface/SimpleNodes.h"
 #include "WireCellIface/IChannelSlice.h"
 #include "WireCellIface/IPlaneSlice.h"
 #include "WireCellIface/IWire.h"
@@ -16,7 +16,7 @@ namespace WireCell {
      */
     class IDigitizer
 	: public IComponent<IDigitizer>
-	, virtual public IConverter<IPlaneSlice::vector, IChannelSlice>
+	, public IConverterNode<IPlaneSlice::vector, IChannelSlice>
     {
     public:
 	virtual ~IDigitizer() {}

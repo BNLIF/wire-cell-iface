@@ -37,24 +37,23 @@ void test_simple_source_node_action() {
     shared_ptr<const int> dat = make_shared<const int>(99);
 
     Assert(source.input_ports().empty());
+    cerr << "Source has " << source.output_ports().size() << " output ports" << endl;
     Assert(source.output_ports().size() == 1);
-    IPort::pointer port = source.output_ports()[0];
+    IPort* port = source.output_ports()[0];
     Assert(port);
 
     // concrete execution model works at the typed level
-    typedef IPortOutputT<int> output_port_type;
-    typedef shared_ptr<output_port_type> output_port_pointer;
-
-    output_port_pointer oport = dynamic_pointer_cast< output_port_type >(port);
+    ISending<int>* oport = dynamic_cast< ISending<int>* >(port);
     Assert(oport);
 
     while (*dat > 0) {
 	Assert(oport->extract(dat));
 	Assert(*dat >= 0);
     }
+    cerr << "Next line should hit EOS" << endl;
     Assert(oport->extract(dat));
     Assert(!dat);		// eos
-    
+    cerr << "Next line should give error" << endl;
     Assert(!oport->extract(dat));// should fail
 }
 
@@ -63,23 +62,23 @@ void test_simple_sink_node_action() {
     TestSinkNode sink;
 
     Assert(sink.output_ports().empty());
+    cerr << "Sink has " << sink.input_ports().size() << " input ports" << endl;
     Assert(sink.input_ports().size() == 1);
-    IPort::pointer port = sink.input_ports()[0];
+    IPort* port = sink.input_ports()[0];
     Assert(port);
 
     // concrete execution model works at the typed level
-    typedef IPortInputT<float> input_port_type;
-    typedef shared_ptr<input_port_type> input_port_pointer;
-    input_port_pointer iport = dynamic_pointer_cast< input_port_type >(port);
+    IReceiving<float>* iport = dynamic_cast< IReceiving<float>* >(port);
     Assert(iport);
 
     for (float num : datastream) {
 	shared_ptr<const float> dat = make_shared<const float>(num);
 	Assert(iport->insert(dat));
     }
+    cerr << "Next line should hit EOS" << endl;
     Assert(iport->insert(nullptr));  // EOS
+    cerr << "Next line should give error" << endl;
     Assert(!iport->insert(nullptr)); // past EOS
-
 }
 
 void test_simple_converter_node_action() {
@@ -88,20 +87,15 @@ void test_simple_converter_node_action() {
 
     Assert(converter.input_ports().size() == 1);
     Assert(converter.output_ports().size() == 1);
-    IPort::pointer iport = converter.input_ports()[0];
-    IPort::pointer oport = converter.output_ports()[0];
+    IPort* iport = converter.input_ports()[0];
+    IPort* oport = converter.output_ports()[0];
     Assert(iport);
     Assert(oport);
 
     // concrete execution model works at the typed level
-    typedef IPortInputT<int> input_port_type;
-    typedef shared_ptr<input_port_type> input_port_pointer;
-    typedef IPortOutputT<float> output_port_type;
-    typedef shared_ptr<output_port_type> output_port_pointer;
-
-    input_port_pointer itport = dynamic_pointer_cast< input_port_type >(iport);
+    IReceiving<int>* itport = dynamic_cast< IReceiving<int>* >(iport);
     Assert(itport);
-    output_port_pointer otport = dynamic_pointer_cast< output_port_type >(oport);
+    ISending<float>* otport = dynamic_cast< ISending<float>* >(oport);
     Assert(otport);
 
     // synchronous
