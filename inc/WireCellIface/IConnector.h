@@ -3,7 +3,6 @@
 
 #include "WireCellIface/IPort.h"
 #include "WireCellIface/INode.h"
-#include "WireCellUtil/IComponent.h"
 
 #include <string>
 #include <memory>
@@ -14,9 +13,10 @@ namespace WireCell {
     /** A connector is responsible for forging a connection between an
      * output port and an input port.  A connector instance is
      * associated with the data type that the ports accept.
+     *
+     * See WireCell::IConnectorT
      */
     class IConnector 
-	: public IComponent<IConnector>
     {
     public:
 	virtual ~IConnector() {}
@@ -29,7 +29,11 @@ namespace WireCell {
 
     };
 
-
+    /** A helper base for implementing an IDataFlowGraph.  
+     *
+     * Not typically exposed but assists in writing typed connectors
+     * for later lookup by a concrete IDataFlowGraph.
+     */
     template<typename PortType>
     class IConnectorT : public IConnector
     {

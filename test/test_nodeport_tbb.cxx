@@ -4,6 +4,8 @@
 
 #include "PortsAndNodes.h"
 
+#include "WireCellUtil/Testing.h"
+
 using namespace std;
 namespace dfp = tbb::flow;
 
@@ -22,7 +24,7 @@ struct source_body_adapter {
     bool operator()(data_pointer& out) {
 	if (port->extract(out)) {
 	    if (!out) {
-		cerr << "EOS" << endl;
+		cerr << "source EOS" << endl;
 		return true; 
 	    }
 	    cerr << "Extracted " << *out << endl;
@@ -108,8 +110,20 @@ int main() {
     std::vector<int> numbers{5,4,3,2,1,0};
 
     TestSourceNode source(numbers);
-    TestConverterNode converter;
+    TestConverterNode* pconverter = new TestConverterNode;
+    TestConverterNode& converter = *pconverter;
     //TestSinkNode sink;
+
+    INode::pointer node_ptr(pconverter);
+    Assert(node_ptr);
+    ITestConverter::pointer tc_ptr = dynamic_pointer_cast<ITestConverter>(node_ptr);
+    Assert(tc_ptr);
+    IConfigurable::pointer cfg_ptr = dynamic_pointer_cast<IConfigurable>(node_ptr);
+    Assert(cfg_ptr);
+    auto cfg = cfg_ptr->default_configuration();
+    cerr << "Default config: " << cfg << endl;
+    
+
 
     typedef std::shared_ptr<const int> int_pointer;
     typedef std::shared_ptr<const float> float_pointer;

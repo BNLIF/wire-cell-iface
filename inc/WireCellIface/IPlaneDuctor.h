@@ -19,6 +19,8 @@ namespace WireCell {
 		       , public IConverterNode<IDiffusion, IPlaneSlice>
     {
     public:
+	typedef std::shared_ptr<IPlaneDuctor> pointer;
+
 	virtual ~IPlaneDuctor() {};
     };
 

@@ -12,7 +12,7 @@ namespace WireCell {
 
     /** A node is the ports associated with one computing unit.
      */ 
-    class INode {
+    class INode : public IComponent<INode> {
     public:
 	virtual ~INode(){}
 

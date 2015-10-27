@@ -2,6 +2,7 @@
 #define WIRECELL_TEST_PORTSANDNODES
 
 #include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/IConfigurable.h"
 
 #include <deque>
 #include <iostream>
@@ -142,12 +143,24 @@ public:
 };
 
 
-class TestConverterNode : public IConverterNode<int,float>
+class ITestConverter : public IComponent<ITestConverter>
+		     , public IConverterNode<int, float>
+{
+public:
+    typedef std::shared_ptr<ITestConverter> pointer;
+    virtual ~ITestConverter() {};
+};
+
+class TestConverterNode : public ITestConverter, public IConfigurable
 {
     deque<float> m_data;
 public:
 
     virtual ~TestConverterNode() {}
+
+    virtual void configure(const WireCell::Configuration& config) {
+	cerr << "Configured with " << config << endl;
+    }
 
     virtual bool extract(output_pointer& out) {
 	if (m_data.empty()) { return false; }
