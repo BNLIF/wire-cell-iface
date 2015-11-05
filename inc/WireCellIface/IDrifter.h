@@ -16,9 +16,7 @@ namespace WireCell {
      * that its earliest drifted deposition will not superseded by any
      * subsequent ones.
      */
-    class IDrifter
-	: public IComponent<IDrifter>
-	, public IConverterNode<IDepo, IDepo>
+    class IDrifter : public IConverterNode<IDepo, IDepo>
     {
     public:
 	virtual ~IDrifter() {}

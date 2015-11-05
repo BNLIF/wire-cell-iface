@@ -77,7 +77,7 @@ namespace WireCell {
 	}
 
 	/** Subclass must implement. */
-	virtual bool connect(PortType& sender, PortType& receiver) = 0;
+	virtual bool connect(ISending<PortType>& sender, IReceiving<PortType>& receiver) = 0;
 
     };
 
