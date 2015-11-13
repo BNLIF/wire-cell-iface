@@ -1,8 +1,7 @@
 #ifndef WIRECELL_IDIFFUSER
 #define WIRECELL_IDIFFUSER
 
-#include "WireCellUtil/IComponent.h"
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/IBufferNode.h"
 
 #include "WireCellIface/IDepo.h"
 #include "WireCellIface/IDiffusion.h"
@@ -10,9 +9,10 @@
 
 namespace WireCell {
 
-    class IDiffuser
-	: public IComponent<IDiffuser>
-	, public IConverterNode<IDepo, IDiffusion>
+    /** Interface for a diffuser.  This buffer node takes one
+     * deposition and returns one diffusion.
+     */
+    class IDiffuser : public IBufferNode<IDepo, IDiffusion>
     {
     public:
 	virtual ~IDiffuser() {};

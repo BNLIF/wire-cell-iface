@@ -1,22 +1,19 @@
 #ifndef WIRECELL_IFRAMER
 #define WIRECELL_IFRAMER
 
-#include "WireCellUtil/IComponent.h"
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/IBufferNode.h"
 #include "WireCellIface/IFrame.h"
 #include "WireCellIface/IChannelSlice.h"
 
 namespace WireCell {
 
     /** A framer is something that builds a block of digitized data
-     * over some period of time.
+     * that spans some period of time from a number of channel slices.
      *
      * A framer is the inverse of a WireCell::ISlicer.
      *
      */
-    class IFramer
-	: public IComponent<IFramer>
-	, public IConverterNode<IChannelSlice, IFrame>
+    class IFramer : public IBufferNode<IChannelSlice, IFrame>
     {
     public:
 	virtual ~IFramer() {}

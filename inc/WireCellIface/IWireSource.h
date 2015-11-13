@@ -1,18 +1,14 @@
 #ifndef WIRECELLIFACE_IWIRESOURCE
 #define WIRECELLIFACE_IWIRESOURCE
 
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/ISourceNode.h"
 #include "WireCellIface/IWire.h"
-
-#include "WireCellUtil/IComponent.h"
 
 namespace WireCell {
 
     /** Return a vector of wires.
      */
-    class IWireSource
-	: public IComponent<IWireSource>
-	, public ISendingNode<IWire::vector>
+    class IWireSource : public ISourceNode<IWire::vector>
     {
     public:
 	virtual ~IWireSource() {}

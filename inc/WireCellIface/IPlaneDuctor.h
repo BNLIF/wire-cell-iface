@@ -1,8 +1,7 @@
 #ifndef WIRECELL_IPLANEDUCTOR
 #define WIRECELL_IPLANEDUCTOR
 
-#include "WireCellUtil/IComponent.h"
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/IBufferNode.h"
 #include "WireCellIface/IDiffusion.h"
 #include "WireCellIface/IPlaneSlice.h"
 
@@ -15,11 +14,9 @@ namespace WireCell {
      * to the vicinity of the plane.  There is one PlaneDuctor per
      * plane.  See also WireCell::Digitizer.
     */
-    class IPlaneDuctor : public IComponent<IPlaneDuctor>
-		       , public IConverterNode<IDiffusion, IPlaneSlice>
+    class IPlaneDuctor : public IBufferNode<IDiffusion, IPlaneSlice>
     {
     public:
-	typedef std::shared_ptr<IPlaneDuctor> pointer;
 
 	virtual ~IPlaneDuctor() {};
     };

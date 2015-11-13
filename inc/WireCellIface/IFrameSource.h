@@ -2,16 +2,14 @@
 #define WIRECELL_IFRAMESOURCE
 
 #include "WireCellUtil/IComponent.h"
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/ISourceNode.h"
 #include "WireCellIface/IFrame.h"
 
 namespace WireCell {
 
     /** A frame source is something that generates IFrames.
      */
-    class IFrameSource
-	: public IComponent<IFrameSource>
-	, public ISendingNode<IFrame>
+    class IFrameSource : public ISourceNode<IFrame>
     {
     public:
 	virtual ~IFrameSource() {}

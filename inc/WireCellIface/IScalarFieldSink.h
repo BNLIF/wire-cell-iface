@@ -1,17 +1,14 @@
 #ifndef WIRECELL_ISCALARFIELDSINK
 #define WIRECELL_ISCALARFIELDSINK
 
-#include "WireCellUtil/IComponent.h"
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/ISinkNode.h"
 #include "WireCellUtil/Point.h"
 
 
 namespace WireCell {
 
     /** Base class for a sink of cells. */
-    class IScalarFieldSink
-       	: public IComponent<IScalarFieldSink>
-	, public IReceivingNode< ScalarField >
+    class IScalarFieldSink : public ISinkNode< ScalarField >
     {
     public:
 	virtual ~IScalarFieldSink() {}

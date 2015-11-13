@@ -1,14 +1,14 @@
 #ifndef WIRECELL_IDEPOSOURCE
 #define WIRECELL_IDEPOSOURCE
 
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/ISourceNode.h"
 #include "WireCellIface/IDepo.h"
 
 namespace WireCell {
 
-    /** A depo source is a sending node that generates IDepos.
+    /** A depo source is a node that generates IDepo objects.
      */
-    class IDepoSource : public ISendingNode<IDepo>
+    class IDepoSource : public ISourceNode<IDepo>
     {
     public:
 	virtual ~IDepoSource() {}

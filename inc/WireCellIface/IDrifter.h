@@ -1,8 +1,7 @@
 #ifndef WIRECELL_IDRIFTER
 #define WIRECELL_IDRIFTER
 
-#include "WireCellUtil/IComponent.h"
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/IBufferNode.h"
 #include "WireCellIface/IDepo.h"
 
 namespace WireCell {
@@ -16,7 +15,7 @@ namespace WireCell {
      * that its earliest drifted deposition will not superseded by any
      * subsequent ones.
      */
-    class IDrifter : public IConverterNode<IDepo, IDepo>
+    class IDrifter : public IBufferNode<IDepo, IDepo>
     {
     public:
 	virtual ~IDrifter() {}

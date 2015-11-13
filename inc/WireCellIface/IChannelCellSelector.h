@@ -1,7 +1,7 @@
 #ifndef WIRECELLIFACE_ICHANNELCELLSELECTOR
 #define WIRECELLIFACE_ICHANNELCELLSELECTOR
 
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/IFunctionNode.h"
 
 #include "WireCellIface/IChannelSlice.h"
 #include "WireCellIface/ICellSlice.h"
@@ -13,9 +13,7 @@ namespace WireCell {
     /** A channel-cell selector produce a subset of all cells are
      * associated with a given channel slice. 
      */
-    class IChannelCellSelector
-	: public IComponent<IChannelCellSelector>
-	, public IConverterNode<IChannelSlice, ICellSlice>
+    class IChannelCellSelector : public IFunctionNode<IChannelSlice, ICellSlice>
     {
     public:
 	virtual ~IChannelCellSelector() {}

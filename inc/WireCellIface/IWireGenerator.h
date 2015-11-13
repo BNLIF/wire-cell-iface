@@ -1,7 +1,7 @@
 #ifndef WIRECELLIFACE_IWIREGENERATOR
 #define WIRECELLIFACE_IWIREGENERATOR
 
-#include "WireCellIface/SimpleNodes.h"
+#include "WireCellIface/IFunctionNode.h"
 #include "WireCellIface/IWireParameters.h"
 #include "WireCellIface/IWire.h"
 
@@ -9,12 +9,10 @@
 
 namespace WireCell {
 
-    /** A wire generator takes a set of parameters and generates a
-     * vector of wires.
+    /** A wire generator is a function node takes a set of parameters
+     * and generates a vector of wires.
      */
-    class IWireGenerator
-	: public IComponent<IWireGenerator>
-	, public IConverterNode<IWireParameters, IWire::vector>
+    class IWireGenerator : public IFunctionNode<IWireParameters, IWire::vector>
     {
     public:
 

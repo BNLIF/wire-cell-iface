@@ -10,20 +10,24 @@
 
 namespace WireCell {
 
-    /** A node is the ports associated with one computing unit.
+    /** A data flow node
      */ 
     class INode : public IComponent<INode> {
     public:
 	virtual ~INode(){}
 
-	typedef std::vector<IPort*> port_vector;
+	// The signature is string unique to all classes that
+	// implement a particular calling signature.  These should be
+	// defined in lower level interfaces such as a mythical
+	// IMyFooToBarConverter.
+	virtual std::string signature() = 0;
+	
+	// Subclasses may override to provide the number of instances
+	// that can run concurrently.  Default is 1.  Return 0 for
+	// unlimited.  If the implementation buffers data between
+	// calls to its signature it should likely return 1.
+	virtual int concurrency() { return 1; }
 
-	virtual port_vector input_ports() const {
-	    return port_vector();
-	}
-	virtual port_vector output_ports() const {
-	    return port_vector();
-	}
     };
 }
 
