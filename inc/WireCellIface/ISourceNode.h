@@ -12,14 +12,14 @@ namespace WireCell {
     {
     public:
 	typedef OutputType output_type;
-	typedef ISourceNode<OutputType> this_type;
+	typedef ISourceNode<OutputType> signature_type;
 	typedef std::shared_ptr<const OutputType> output_pointer;
 
 	virtual ~ISourceNode() {}
 
-	/// Set the signature for all subclasses.  
+	/// Set the signature for all subclasses.
 	virtual std::string signature() {
-	    return typeid(this_type).name();
+	   return typeid(signature_type).name();
 	}
 
 	/// The calling signature:

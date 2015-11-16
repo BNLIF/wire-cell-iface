@@ -13,7 +13,7 @@ namespace WireCell {
     public:
 	typedef InputType input_type;
 	typedef OutputType output_type;
-	typedef IFunctionNode<InputType,OutputType> this_type;
+	typedef IFunctionNode<InputType,OutputType> signature_type;
 	typedef std::shared_ptr<const InputType> input_pointer;
 	typedef std::shared_ptr<const OutputType> output_pointer;
 
@@ -21,7 +21,7 @@ namespace WireCell {
 
 	/// Set the signature for all subclasses.  
 	virtual std::string signature() {
-	    return typeid(this_type).name();
+	    return typeid(signature_type).name();
 	}
 
 	/// The calling signature:

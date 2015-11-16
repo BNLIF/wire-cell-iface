@@ -12,14 +12,14 @@ namespace WireCell {
     {
     public:
 	typedef InputType input_type;
-	typedef ISinkNode<InputType> this_type;
+	typedef ISinkNode<InputType> signature_type;
 	typedef std::shared_ptr<const InputType> input_pointer;
 
 	virtual ~ISinkNode() {}
 
 	/// Set the signature for all subclasses.  
 	virtual std::string signature() {
-	    return typeid(this_type).name();
+	    return typeid(signature_type).name();
 	}
 
 	/// The calling signature:

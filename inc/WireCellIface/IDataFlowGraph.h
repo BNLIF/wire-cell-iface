@@ -2,6 +2,7 @@
 #define WIRECELL_IDATAFLOWGRAPH
 
 #include "WireCellUtil/IComponent.h"
+#include "WireCellIface/INode.h"
 
 namespace WireCell {
 
