@@ -1,8 +1,11 @@
 #ifndef WIRECELLIFACE_IWIREPARAMETERS
 #define WIRECELLIFACE_IWIREPARAMETERS
 
+#include "WireCellIface/WirePlaneId.h"
+
 #include "WireCellUtil/IComponent.h"
 #include "WireCellUtil/Point.h"
+
 
 namespace WireCell {
 
@@ -86,6 +89,16 @@ namespace WireCell {
 	/// second and perpendicular to both.
 	virtual const Ray& pitchW() const = 0;
 
+	// helper to return the pitch based on dynamic layer value
+	virtual const Ray& pitch(WireCell::WirePlaneLayer_t layer) const {
+	    switch(layer) {
+	    case kUlayer: return pitchU();
+	    case kVlayer: return pitchV();
+	    case kWlayer: return pitchW();
+	    }
+	    static Ray bogus;
+	    return bogus;
+	}
 
     };
 

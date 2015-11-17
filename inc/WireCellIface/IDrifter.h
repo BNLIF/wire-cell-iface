@@ -20,6 +20,9 @@ namespace WireCell {
     public:
 	virtual ~IDrifter() {}
 
+	virtual std::string signature() {
+	   return typeid(IDrifter).name();
+	}
     };
 }
 

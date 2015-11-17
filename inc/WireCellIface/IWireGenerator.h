@@ -18,6 +18,10 @@ namespace WireCell {
 
 	virtual ~IWireGenerator() {}
 	
+	virtual std::string signature() {
+	   return typeid(IWireGenerator).name();
+	}
+
     };
 
 }

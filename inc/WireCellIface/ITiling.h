@@ -15,6 +15,10 @@ namespace WireCell {
 
 	virtual ~ITiling() {}
 
+	virtual std::string signature() {
+	   return typeid(ITiling).name();
+	}
+
     };
 
 }

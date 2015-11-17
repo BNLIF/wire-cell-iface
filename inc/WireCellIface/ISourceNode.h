@@ -25,6 +25,10 @@ namespace WireCell {
 	/// The calling signature:
 	virtual bool extract(output_pointer& out) = 0;
 
+	// Return the names of the types this node takes as output.
+	virtual std::vector<std::string>  output_types() {
+	    return std::vector<std::string>{typeid(output_type).name()};
+	}
 
     };
 

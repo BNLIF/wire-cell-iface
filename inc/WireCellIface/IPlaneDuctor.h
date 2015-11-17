@@ -19,6 +19,11 @@ namespace WireCell {
     public:
 
 	virtual ~IPlaneDuctor() {};
+
+	virtual std::string signature() {
+	   return typeid(IPlaneDuctor).name();
+	}
+
     };
 
 }

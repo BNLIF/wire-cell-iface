@@ -16,7 +16,15 @@ namespace WireCell {
     {
     public:
 	virtual ~IDiffuser() {};
+
+
+	virtual std::string signature() {
+	    return typeid(IDiffuser).name();
+	}
+
+
     };
+
 
 
 };

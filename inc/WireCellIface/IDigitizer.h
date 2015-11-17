@@ -16,6 +16,9 @@ namespace WireCell {
     public:
 	virtual ~IDigitizer() {}
 
+	virtual std::string signature() {
+	   return typeid(IDigitizer).name();
+	}
     };
 
 }

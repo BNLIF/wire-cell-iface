@@ -13,10 +13,8 @@ namespace WireCell {
     public:
 	virtual ~IDepoSource() {}
 
-	typedef IDepoSource signature_type;
-
 	virtual std::string signature() {
-	   return typeid(signature_type).name();
+	   return typeid(IDepoSource).name();
 	}
 
 	// supply:

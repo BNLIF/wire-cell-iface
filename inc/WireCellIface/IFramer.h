@@ -18,6 +18,10 @@ namespace WireCell {
     public:
 	virtual ~IFramer() {}
 
+	virtual std::string signature() {
+	   return typeid(IFramer).name();
+	}
+
     };
 }
 

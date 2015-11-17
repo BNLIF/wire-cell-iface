@@ -12,19 +12,17 @@ namespace WireCell {
     {
     public:
 	typedef InputType input_type;
-	typedef ISinkNode<InputType> signature_type;
 	typedef std::shared_ptr<const InputType> input_pointer;
 
 	virtual ~ISinkNode() {}
 
-	/// Set the signature for all subclasses.  
-	virtual std::string signature() {
-	    return typeid(signature_type).name();
-	}
-
 	/// The calling signature:
 	virtual bool insert(const input_pointer& in) = 0;
 
+	// Return the names of the types this node takes as input.
+	virtual std::vector<std::string>  input_types() {
+	    return std::vector<std::string>{typeid(input_type).name()};
+	}
 
     };
 

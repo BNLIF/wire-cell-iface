@@ -12,6 +12,11 @@ namespace WireCell {
     {
     public:
 	virtual ~IWireSummarizer() {}
+
+	virtual std::string signature() {
+	   return typeid(IWireSummarizer).name();
+	}
+
     };
 }
 
