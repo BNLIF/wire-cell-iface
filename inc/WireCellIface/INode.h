@@ -37,6 +37,8 @@ namespace WireCell {
 	    return std::vector<std::string> ();
 	}
 
+	virtual int nin() { return 0; }
+	virtual int nout() { return 0; }
 
     };
 }

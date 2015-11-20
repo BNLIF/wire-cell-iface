@@ -12,11 +12,12 @@ namespace WireCell {
      */
     class IDataFlowGraph : IComponent<IDataFlowGraph> {
     public:
-	~IDataFlowGraph() {}
+	virtual ~IDataFlowGraph() {}
 
 	/// Connect two nodes so that data runs from tail to head.
 	/// Return false on error.
-	virtual bool connect(INode::pointer tail, INode::pointer head) = 0;
+	virtual bool connect(INode::pointer tail, INode::pointer head,
+			     int tail_port=0, int head_port=0) = 0;
 
 	/// Run the graph, return false on error.
 	virtual bool run() = 0;
