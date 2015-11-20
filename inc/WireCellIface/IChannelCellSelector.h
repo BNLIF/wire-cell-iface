@@ -21,6 +21,11 @@ namespace WireCell {
 	/// Deliver all cells to the selector for later use.
 	// fixme: handle by the implementation constructor?
 	virtual void set_cells(const ICell::shared_vector& all_cells) = 0;
+
+	virtual std::string signature() {
+	   return typeid(IChannelCellSelector).name();
+	}
+
     };
 }
 
