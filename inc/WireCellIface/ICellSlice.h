@@ -27,6 +27,18 @@ namespace WireCell {
 	/// charge in that channel in this time slice.
 	virtual ICell::shared_vector cells() const = 0;
     };
+
+    // A set ordered by time
+    struct ICellSliceCompareTime {
+	bool operator()(const ICellSlice::pointer& lhs, const ICellSlice::pointer& rhs) {
+	    if (lhs->time() == rhs->time()) {
+		return lhs.get() < rhs.get(); // break tie with pointer
+	    }
+	    return lhs->time() < rhs->time();
+	}
+    };
+    typedef std::set<ICellSlice::pointer, ICellSliceCompareTime> ICellSliceSet;
+
 }
 
 
