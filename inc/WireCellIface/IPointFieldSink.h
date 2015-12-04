@@ -13,6 +13,9 @@ namespace WireCell {
     public:
 	virtual ~IPointFieldSink() {}
 
+	virtual std::string signature() {
+	   return typeid(IPointFieldSink).name();
+	}
 	/// supply:
 	/// virtual bool insert(const std::shared_ptr<PointVector>& field);
 

@@ -13,6 +13,9 @@ namespace WireCell {
     public:
 	virtual ~IScalarFieldSink() {}
 
+	virtual std::string signature() {
+	   return typeid(IScalarFieldSink).name();
+	}
 	/// supply:
 	/// virtual bool insert(const std::shared_ptr<ScalarField>& field);
 
