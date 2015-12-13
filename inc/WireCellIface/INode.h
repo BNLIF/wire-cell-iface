@@ -16,6 +16,20 @@ namespace WireCell {
     public:
 	virtual ~INode(){}
 
+	enum NodeCategory {
+	    unknown,
+	    sourceNode,   // one pointer output
+	    sinkNode,	  // one pointer input
+	    functionNode, // one pointer input / output
+	    joinNode,	  // tuple input, pointer output
+	    splitNode,	  // pointer input, tuple output
+	    multioutNode, // pointer input multi-queue output
+	    hydraNode,	  // multi-queue input and output
+	};
+
+	// Return the category type
+	virtual NodeCategory category() = 0;
+
 	// The signature is string unique to all classes that
 	// implement a particular calling signature.  These should be
 	// defined in lower level interfaces such as a mythical

@@ -16,6 +16,10 @@ namespace WireCell {
 
 	virtual ~ISinkNode() {}
 
+	virtual NodeCategory category() {
+	    return sinkNode;
+	}
+
 	/// The calling signature:
 	virtual bool insert(const input_pointer& in) = 0;
 

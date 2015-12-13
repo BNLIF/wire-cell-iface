@@ -17,6 +17,10 @@ namespace WireCell {
 
 	virtual ~ISourceNode() {}
 
+	virtual NodeCategory category() {
+	    return sourceNode;
+	}
+
 	/// Set the signature for all subclasses.
 	virtual std::string signature() {
 	   return typeid(signature_type).name();

@@ -21,6 +21,9 @@ namespace WireCell {
 	/// The calling signature:
 	virtual bool operator()(const input_pointer& in, output_pointer& out) = 0;
 
+	virtual NodeCategory category() {
+	    return functionNode;
+	}
 
 	/// By default assume all subclasses are stateless.
 	virtual int concurrency() { return 0; }
