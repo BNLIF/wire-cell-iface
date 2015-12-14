@@ -3,12 +3,29 @@
 
 #include "WireCellIface/INode.h"
 
+#include <boost/any.hpp>
+
 namespace WireCell {
 
     /** A node which acts as a stateful buffer.
      */
+    class IBufferNodeBase : public INode
+    {
+    public:
+	typedef std::shared_ptr<IBufferNodeBase> pointer;
+
+	virtual ~IBufferNodeBase() {}
+
+	virtual NodeCategory category() {
+	    return multioutNode;
+	}
+
+	virtual bool insert(const boost::any& in) = 0;
+	virtual bool extract(boost::any& anyout)=0;
+    };
+
     template <typename InputType, typename OutputType>
-    class IBufferNode : public INode
+    class IBufferNode : public IBufferNodeBase
     {
     public:
 	typedef InputType input_type;
@@ -17,6 +34,18 @@ namespace WireCell {
 	typedef std::shared_ptr<const OutputType> output_pointer;
 
 	virtual ~IBufferNode() {}
+
+	virtual bool insert(const boost::any& anyin){
+	    input_pointer in = boost::any_cast<input_pointer>(anyin);
+	    return this->insert(in);
+	}
+	virtual bool extract(boost::any& anyout){
+	    output_pointer out;
+	    bool ok = this->extract(out);
+	    if (!ok) return false;
+	    anyout = out;
+	    return true;
+	}
 
 	/// The calling signature:
 	virtual bool insert(const input_pointer& in) = 0;
@@ -32,7 +61,7 @@ namespace WireCell {
 	    return std::vector<std::string>{typeid(output_type).name()};
 	}
     };
-
+    
 }
 
 #endif

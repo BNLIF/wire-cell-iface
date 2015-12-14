@@ -3,12 +3,30 @@
 
 #include "WireCellIface/INode.h"
 
+#include <boost/any.hpp>
+
 namespace WireCell {
 
     /** A node which acts as a source.
      */
+    class ISourceNodeBase : public INode
+    {
+    public:
+	typedef std::shared_ptr<ISourceNodeBase> pointer;
+	
+
+	virtual ~ISourceNodeBase() {}
+
+	virtual NodeCategory category() {
+	    return sourceNode;
+	}
+
+	virtual bool extract(boost::any& anyout)=0;
+    };
+    
+
     template <typename OutputType>
-    class ISourceNode : public INode
+    class ISourceNode : public ISourceNodeBase
     {
     public:
 	typedef OutputType output_type;
@@ -24,6 +42,14 @@ namespace WireCell {
 	/// Set the signature for all subclasses.
 	virtual std::string signature() {
 	   return typeid(signature_type).name();
+	}
+
+	virtual bool extract(boost::any& anyout) {
+	    output_pointer out;
+	    bool ok = this->extract(out);
+	    if (!ok) return false;
+	    anyout = out;
+	    return true;
 	}
 
 	/// The calling signature:

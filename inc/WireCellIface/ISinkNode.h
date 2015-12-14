@@ -3,12 +3,28 @@
 
 #include "WireCellIface/INode.h"
 
+#include <boost/any.hpp>
+
 namespace WireCell {
 
     /** A node which acts as a sink.
      */
+    class ISinkNodeBase : public INode
+    {
+    public:
+	typedef std::shared_ptr<ISinkNodeBase> pointer;
+
+	virtual ~ISinkNodeBase() {}
+
+	virtual NodeCategory category() {
+	    return sinkNode;
+	}
+
+	virtual bool insert(const boost::any& in) = 0;
+    };
+
     template <typename InputType>
-    class ISinkNode : public INode
+    class ISinkNode : public ISinkNodeBase
     {
     public:
 	typedef InputType input_type;
@@ -16,8 +32,9 @@ namespace WireCell {
 
 	virtual ~ISinkNode() {}
 
-	virtual NodeCategory category() {
-	    return sinkNode;
+	virtual bool insert(const boost::any& anyin) {
+	    input_pointer in = boost::any_cast<const input_pointer>(anyin);
+	    return this->insert(in);
 	}
 
 	/// The calling signature:
@@ -29,7 +46,7 @@ namespace WireCell {
 	}
 
     };
-
+    
 }
 
 #endif

@@ -3,12 +3,32 @@
 
 #include "WireCellIface/INode.h"
 
+#include <boost/any.hpp>
+
 namespace WireCell {
 
     /** A node which acts as a stateless function.
      */
+    class IFunctionNodeBase : public INode
+    {
+    public:
+	virtual ~IFunctionNodeBase() {}
+
+	/// The calling signature:
+	virtual bool operator()(const boost::any& anyin, boost::any& anyout) = 0;
+
+	virtual NodeCategory category() {
+	    return functionNode;
+	}
+
+	/// By default assume all subclasses are stateless.
+	virtual int concurrency() { return 0; }
+
+
+    };
+
     template <typename InputType, typename OutputType>
-    class IFunctionNode : public INode
+    class IFunctionNode : public IFunctionNodeBase
     {
     public:
 	typedef InputType input_type;
@@ -18,15 +38,18 @@ namespace WireCell {
 
 	virtual ~IFunctionNode() {}
 
-	/// The calling signature:
-	virtual bool operator()(const input_pointer& in, output_pointer& out) = 0;
 
-	virtual NodeCategory category() {
-	    return functionNode;
+	virtual bool operator()(const boost::any& anyin, boost::any& anyout) {
+	    const input_pointer& in = boost::any_cast<const input_pointer&>(anyin);
+	    output_pointer out;
+	    bool ok = (*this)(in, out);
+	    if (!ok) return false;
+	    anyout = out;
+	    return true;
 	}
 
-	/// By default assume all subclasses are stateless.
-	virtual int concurrency() { return 0; }
+	/// The calling signature:
+	virtual bool operator()(const input_pointer& in, output_pointer& out) = 0;
 
 	// Return the names of the types this node takes as input.
 	virtual std::vector<std::string>  input_types() {
