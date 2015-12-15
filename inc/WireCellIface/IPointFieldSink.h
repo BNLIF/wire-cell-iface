@@ -17,7 +17,7 @@ namespace WireCell {
 	   return typeid(IPointFieldSink).name();
 	}
 	/// supply:
-	/// virtual bool insert(const std::shared_ptr<PointVector>& field);
+	/// virtual bool operator()(const std::shared_ptr<PointVector>& field);
 
     };
 

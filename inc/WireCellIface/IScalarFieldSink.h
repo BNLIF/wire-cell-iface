@@ -17,7 +17,7 @@ namespace WireCell {
 	   return typeid(IScalarFieldSink).name();
 	}
 	/// supply:
-	/// virtual bool insert(const std::shared_ptr<ScalarField>& field);
+	/// virtual bool operator()(const std::shared_ptr<ScalarField>& field);
 
     };
 

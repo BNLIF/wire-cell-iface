@@ -14,8 +14,9 @@ namespace WireCell {
     public:
 	virtual ~IDataFlowGraph() {}
 
-	/// Connect two nodes so that data runs from tail to head.
-	/// Return false on error.
+	/// Connect tail and head nodes so data runs from given tail
+	/// port number to given head port number Return false on
+	/// error.
 	virtual bool connect(INode::pointer tail, INode::pointer head,
 			     int tail_port=0, int head_port=0) = 0;
 

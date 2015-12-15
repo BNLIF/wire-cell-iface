@@ -21,7 +21,7 @@ namespace WireCell {
 	    return sourceNode;
 	}
 
-	virtual bool extract(boost::any& anyout)=0;
+	virtual bool operator()(boost::any& anyout)=0;
     };
     
 
@@ -44,16 +44,16 @@ namespace WireCell {
 	   return typeid(signature_type).name();
 	}
 
-	virtual bool extract(boost::any& anyout) {
+	virtual bool operator()(boost::any& anyout) {
 	    output_pointer out;
-	    bool ok = this->extract(out);
+	    bool ok = (*this)(out);
 	    if (!ok) return false;
 	    anyout = out;
 	    return true;
 	}
 
 	/// The calling signature:
-	virtual bool extract(output_pointer& out) = 0;
+	virtual bool operator()(output_pointer& out) = 0;
 
 	// Return the names of the types this node takes as output.
 	virtual std::vector<std::string>  output_types() {

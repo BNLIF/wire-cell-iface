@@ -15,7 +15,7 @@ namespace WireCell {
 	virtual ~IFrameSource() {}
 
 	// supply:
-	// virtual bool extract(IFrame::pointer& frame);
+	// virtual bool operator()(IFrame::pointer& frame);
 
     };
 

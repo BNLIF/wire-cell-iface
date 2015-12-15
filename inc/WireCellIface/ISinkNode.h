@@ -20,7 +20,7 @@ namespace WireCell {
 	    return sinkNode;
 	}
 
-	virtual bool insert(const boost::any& in) = 0;
+	virtual bool operator()(const boost::any& in) = 0;
     };
 
     template <typename InputType>
@@ -32,13 +32,13 @@ namespace WireCell {
 
 	virtual ~ISinkNode() {}
 
-	virtual bool insert(const boost::any& anyin) {
+	virtual bool operator()(const boost::any& anyin) {
 	    input_pointer in = boost::any_cast<const input_pointer>(anyin);
-	    return this->insert(in);
+	    return (*this)(in);
 	}
 
 	/// The calling signature:
-	virtual bool insert(const input_pointer& in) = 0;
+	virtual bool operator()(const input_pointer& in) = 0;
 
 	// Return the names of the types this node takes as input.
 	virtual std::vector<std::string>  input_types() {

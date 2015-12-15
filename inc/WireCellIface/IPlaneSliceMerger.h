@@ -13,8 +13,6 @@ namespace WireCell {
     public:
 	virtual ~IPlaneSliceMerger() {}
 
-	virtual int ninputs() { return 3; }
-
 	virtual std::string signature() {
 	   return typeid(IPlaneSliceMerger).name();
 	}

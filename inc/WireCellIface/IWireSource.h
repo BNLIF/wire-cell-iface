@@ -14,7 +14,7 @@ namespace WireCell {
 	virtual ~IWireSource() {}
 
 	// supply:
-	// virtual bool extract(output_pointer& wires);
+	// virtual bool operator()(output_pointer& wires);
     };
 
 }

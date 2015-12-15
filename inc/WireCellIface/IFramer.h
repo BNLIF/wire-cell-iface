@@ -1,7 +1,7 @@
 #ifndef WIRECELL_IFRAMER
 #define WIRECELL_IFRAMER
 
-#include "WireCellIface/IBufferNode.h"
+#include "WireCellIface/IQueuedoutNode.h"
 #include "WireCellIface/IFrame.h"
 #include "WireCellIface/IChannelSlice.h"
 
@@ -13,7 +13,7 @@ namespace WireCell {
      * A framer is the inverse of a WireCell::ISlicer.
      *
      */
-    class IFramer : public IBufferNode<IChannelSlice, IFrame>
+    class IFramer : public IQueuedoutNode<IChannelSlice, IFrame>
     {
     public:
 	virtual ~IFramer() {}

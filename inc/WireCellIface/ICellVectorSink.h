@@ -13,7 +13,7 @@ namespace WireCell {
 	virtual ~ICellVectorSink() {}
 
 	/// supply:
-	/// virtual bool insert(const ICell::shared_vector& cells);
+	/// virtual bool operator()(const ICell::shared_vector& cells);
 
     };
 

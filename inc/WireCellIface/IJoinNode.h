@@ -3,35 +3,65 @@
 
 #include "WireCellIface/INode.h"
 
+#include <boost/any.hpp>
+#include <vector>
+
 namespace WireCell {
 
-    /** A node which joins N distinct data of the same point on
-     * different ports and produces one instance of an output type
-     * when some condition is met.
+    /** A node which joins N data objects of a given InputType to
+     * produce the given OutputType.
      */
-    template <typename InputType, typename OutputType>
-    class IJoinNode : public INode {
+
+    class IJoinNodeBase : public INode
+    {
+    public:
+	virtual ~IJoinNodeBase() {}
+
+	typedef std::vector<boost::any> vectorany;
+
+	/// The calling signature:
+	virtual bool operator()(const vectorany& anyin, boost::any& anyout) = 0;
+
+	virtual NodeCategory category() {
+	    return joinNode;
+	}
+
+	/// Join nodes can usually do their thing stateless.
+	virtual int concurrency() { return 0; }
+
+
+    };
+
+    template <typename InputType, typename OutputType, int JoinMultiplicity=3>
+    class IJoinNode : public IJoinNodeBase {
     public:
 	typedef InputType input_type;
 	typedef OutputType output_type;
 	typedef std::shared_ptr<const InputType> input_pointer;
 	typedef std::shared_ptr<const OutputType> output_pointer;
+	typedef std::vector<input_pointer> input_vector;
 
 	virtual ~IJoinNode() {}
 
-	virtual bool insert(const input_pointer& in, int port) = 0;
-	virtual bool extract(output_pointer& out) = 0;
+	virtual bool operator()(const vectorany& anyv, boost::any& anyout) {
+	    input_vector invec;
+	    for (auto a : anyv) {
+		auto in = boost::any_cast<input_pointer>(a);
+		invec.push_back(in);
+	    }
+	    output_pointer out;
+	    bool ok = (*this)(invec, out);
+	    if (ok) {
+		anyout = out;
+	    }
+	    return ok;
+	}
 
-	/// determine how many input ports the node requires.
-	virtual int ninputs() = 0;
+	virtual bool operator()(const input_vector& invec, output_pointer& out) = 0;
 
 	// Return the names of the types this node takes as input.
 	virtual std::vector<std::string>  input_types() {
-	    std::string n = typeid(input_type).name();
-	    std::vector<std::string> ret;
-	    for (int ind=0; ind<ninputs(); ++ind) {
-		ret.push_back(n);
-	    }
+	    static std::vector<std::string> ret(JoinMultiplicity, std::string(typeid(input_type).name()));
 	    return ret;
 	}
 	// Return the names of the types this node produces as output.

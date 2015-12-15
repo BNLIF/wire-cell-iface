@@ -1,8 +1,6 @@
 #ifndef WIRECELL_INODE
 #define WIRECELL_INODE
 
-#include "WireCellIface/IPort.h"
-
 #include "WireCellUtil/IComponent.h"
 
 #include <memory>
@@ -18,13 +16,14 @@ namespace WireCell {
 
 	enum NodeCategory {
 	    unknown,
-	    sourceNode,   // one pointer output
-	    sinkNode,	  // one pointer input
-	    functionNode, // one pointer input / output
-	    joinNode,	  // tuple input, pointer output
-	    splitNode,	  // pointer input, tuple output
-	    multioutNode, // pointer input multi-queue output
-	    hydraNode,	  // multi-queue input and output
+	    sourceNode,         // one pointer output
+	    sinkNode,		// one pointer input
+	    functionNode,       // one pointer input / output
+	    queuedoutNode,	// one pointer input, queue of output
+	    joinNode,		// tuple input, pointer output
+	    splitNode,		// pointer input, tuple output
+	    multioutNode,	// pointer input multi-queue output
+	    hydraNode,		// multi-queue input and output
 	};
 
 	// Return the category type
@@ -51,10 +50,8 @@ namespace WireCell {
 	    return std::vector<std::string> ();
 	}
 
-	virtual int nin() { return 0; }
-	virtual int nout() { return 0; }
-
     };
 }
+
 
 #endif

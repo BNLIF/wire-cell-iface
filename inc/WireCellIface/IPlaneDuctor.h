@@ -1,7 +1,7 @@
 #ifndef WIRECELL_IPLANEDUCTOR
 #define WIRECELL_IPLANEDUCTOR
 
-#include "WireCellIface/IBufferNode.h"
+#include "WireCellIface/IQueuedoutNode.h"
 #include "WireCellIface/IDiffusion.h"
 #include "WireCellIface/IPlaneSlice.h"
 
@@ -14,7 +14,7 @@ namespace WireCell {
      * to the vicinity of the plane.  There is one PlaneDuctor per
      * plane.  See also WireCell::Digitizer.
     */
-    class IPlaneDuctor : public IBufferNode<IDiffusion, IPlaneSlice>
+    class IPlaneDuctor : public IQueuedoutNode<IDiffusion, IPlaneSlice>
     {
     public:
 

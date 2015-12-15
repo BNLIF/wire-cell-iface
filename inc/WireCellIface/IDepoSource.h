@@ -18,7 +18,7 @@ namespace WireCell {
 	}
 
 	// supply:
-	// virtual bool extract(IDepo::pointer& depo);
+	// virtual bool operator()(IDepo::pointer& depo);
 
     };
 

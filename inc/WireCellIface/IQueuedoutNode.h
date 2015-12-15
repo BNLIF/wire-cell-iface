@@ -1,55 +1,63 @@
-#ifndef WIRECELL_IFUNCTIONNODE
-#define WIRECELL_IFUNCTIONNODE
+#ifndef WIRECELL_IQUEUEDOUTNODE
+#define WIRECELL_IQUEUEDOUTNODE
 
 #include "WireCellIface/INode.h"
 
 #include <boost/any.hpp>
+#include <deque>
 
 namespace WireCell {
 
-    /** A node which acts as a simple function.
+    /** A node which is a function producing a zero or more output
      */
-    class IFunctionNodeBase : public INode
+    class IQueuedoutNodeBase : public INode
     {
     public:
-	virtual ~IFunctionNodeBase() {}
+	typedef std::shared_ptr<IQueuedoutNodeBase> pointer;
+
+	virtual ~IQueuedoutNodeBase() {}
+
+	typedef std::deque<boost::any> queuedany;
 
 	/// The calling signature:
-	virtual bool operator()(const boost::any& anyin, boost::any& anyout) = 0;
+	virtual bool operator()(const boost::any& anyin, queuedany& out) = 0;
 
 	virtual NodeCategory category() {
-	    return functionNode;
+	    return queuedoutNode;
 	}
 
-	/// By default assume all subclasses are stateless.
-	virtual int concurrency() { return 0; }
+	/// By default assume all subclasses maintain state.
+	virtual int concurrency() { return 1; }
 
 
     };
 
     template <typename InputType, typename OutputType>
-    class IFunctionNode : public IFunctionNodeBase
+    class IQueuedoutNode : public IQueuedoutNodeBase
     {
     public:
 	typedef InputType input_type;
 	typedef OutputType output_type;
 	typedef std::shared_ptr<const InputType> input_pointer;
 	typedef std::shared_ptr<const OutputType> output_pointer;
+	typedef std::deque<output_pointer> output_queue;
 
-	virtual ~IFunctionNode() {}
+	virtual ~IQueuedoutNode() {}
 
 
-	virtual bool operator()(const boost::any& anyin, boost::any& anyout) {
+	virtual bool operator()(const boost::any& anyin, queuedany& outanyq) {
 	    const input_pointer& in = boost::any_cast<const input_pointer&>(anyin);
-	    output_pointer out;
-	    bool ok = (*this)(in, out);
+	    output_queue outq;
+	    bool ok = (*this)(in, outq);
 	    if (!ok) return false;
-	    anyout = out;
+	    for (auto o : outq) { // transfer typed to any
+		outanyq.push_back(o);
+	    }
 	    return true;
 	}
 
 	/// The calling signature:
-	virtual bool operator()(const input_pointer& in, output_pointer& out) = 0;
+	virtual bool operator()(const input_pointer& in, output_queue& outq) = 0;
 
 	// Return the names of the types this node takes as input.
 	virtual std::vector<std::string>  input_types() {
