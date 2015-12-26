@@ -15,6 +15,8 @@ namespace WireCell {
     class IJoinNodeBase : public INode
     {
     public:
+	typedef std::shared_ptr<IJoinNodeBase> pointer;
+
 	virtual ~IJoinNodeBase() {}
 
 	typedef std::vector<boost::any> vectorany;
@@ -35,6 +37,7 @@ namespace WireCell {
     template <typename InputType, typename OutputType, int JoinMultiplicity=3>
     class IJoinNode : public IJoinNodeBase {
     public:
+
 	typedef InputType input_type;
 	typedef OutputType output_type;
 	typedef std::shared_ptr<const InputType> input_pointer;
