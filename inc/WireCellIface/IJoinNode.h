@@ -19,10 +19,10 @@ namespace WireCell {
 
 	virtual ~IJoinNodeBase() {}
 
-	typedef std::vector<boost::any> vectorany;
+	typedef std::vector<boost::any> any_vector;
 
 	/// The calling signature:
-	virtual bool operator()(const vectorany& anyin, boost::any& anyout) = 0;
+	virtual bool operator()(const any_vector& anyin, boost::any& anyout) = 0;
 
 	virtual NodeCategory category() {
 	    return joinNode;
@@ -46,7 +46,7 @@ namespace WireCell {
 
 	virtual ~IJoinNode() {}
 
-	virtual bool operator()(const vectorany& anyv, boost::any& anyout) {
+	virtual bool operator()(const any_vector& anyv, boost::any& anyout) {
 	    input_vector invec;
 	    for (auto a : anyv) {
 		auto in = boost::any_cast<input_pointer>(a);
