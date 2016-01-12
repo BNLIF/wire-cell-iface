@@ -12,6 +12,8 @@ namespace WireCell {
     class IFunctionNodeBase : public INode
     {
     public:
+	typedef std::shared_ptr<IFunctionNodeBase> pointer;
+
 	virtual ~IFunctionNodeBase() {}
 
 	/// The calling signature:
