@@ -65,7 +65,7 @@ namespace WireCell {
 	    input_helper_type ih;
 	    output_helper_type oh;
 
-	    auto intup = in_helper.from_any(anyin);
+	    auto intup = ih.from_any(anyin);
 	    output_queues_type outq;
 
 	    bool ok = (*this)(intup, outq);

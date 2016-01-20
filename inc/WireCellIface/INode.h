@@ -22,6 +22,8 @@ namespace WireCell {
 	    queuedoutNode,	// one pointer input, queue of output
 	    joinNode,		// tuple input, pointer output
 	    splitNode,		// pointer input, tuple output
+	    faninNode,		// vector input, pointer output
+	    fanoutNode,		// pointer input, vector output
 	    multioutNode,	// pointer input multi-queue output
 	    hydraNode,		// multi-queue input and output
 	};

@@ -3,13 +3,15 @@
 
 #include "WireCellIface/INode.h"
 
+#include "WireCellUtil/TupleHelpers.h"
+
 #include <boost/any.hpp>
 #include <vector>
 
 namespace WireCell {
 
-    /** A node which joins N data objects of a given InputType to
-     * produce the given OutputType.
+    /** A node which joins N data objects each of a distinct type and
+     * arriving synchronously to produce a single output object.
      */
 
     class IJoinNodeBase : public INode
@@ -34,38 +36,36 @@ namespace WireCell {
 
     };
 
-    template <typename InputType, typename OutputType, int JoinMultiplicity=3>
+    template <typename InputTuple, typename OutputType>
     class IJoinNode : public IJoinNodeBase {
     public:
 
-	typedef InputType input_type;
+	typedef InputTuple input_tuple_type;
 	typedef OutputType output_type;
-	typedef std::shared_ptr<const InputType> input_pointer;
+
+	typedef tuple_helper<InputTuple> input_helper_type;
 	typedef std::shared_ptr<const OutputType> output_pointer;
-	typedef std::vector<input_pointer> input_vector;
 
 	virtual ~IJoinNode() {}
 
 	virtual bool operator()(const any_vector& anyv, boost::any& anyout) {
-	    input_vector invec;
-	    for (auto a : anyv) {
-		auto in = boost::any_cast<input_pointer>(a);
-		invec.push_back(in);
-	    }
+	    input_helper_type ih;
+	    auto intup = ih.from_any(anyv);
+
 	    output_pointer out;
-	    bool ok = (*this)(invec, out);
+	    bool ok = (*this)(intup, out);
 	    if (ok) {
 		anyout = out;
 	    }
 	    return ok;
 	}
 
-	virtual bool operator()(const input_vector& invec, output_pointer& out) = 0;
+	virtual bool operator()(const input_tuple_type& intup, output_pointer& out) = 0;
 
 	// Return the names of the types this node takes as input.
 	virtual std::vector<std::string>  input_types() {
-	    static std::vector<std::string> ret(JoinMultiplicity, std::string(typeid(input_type).name()));
-	    return ret;
+	    input_helper_type ih;
+	    return ih.type_names();
 	}
 	// Return the names of the types this node produces as output.
 	virtual std::vector<std::string>  output_types() {

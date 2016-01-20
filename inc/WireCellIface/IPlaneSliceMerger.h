@@ -1,14 +1,14 @@
 #ifndef WIRECELL_IPLANESLICEMERGER
 #define WIRECELL_IPLANESLICEMERGER
 
-#include "WireCellIface/IJoinNode.h"
+#include "WireCellIface/IFaninNode.h"
 #include "WireCellIface/IPlaneSlice.h"
 
 #include <string>
 
 namespace WireCell {
 
-    class IPlaneSliceMerger : public IJoinNode<IPlaneSlice, IPlaneSlice::vector>
+    class IPlaneSliceMerger : public IFaninNode<IPlaneSlice, IPlaneSlice::vector>
     {
     public:
 	virtual ~IPlaneSliceMerger() {}

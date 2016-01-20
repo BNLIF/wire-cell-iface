@@ -1,6 +1,7 @@
 #ifndef WIRECELL_WIREPLANEID
 #define WIRECELL_WIREPLANEID
 
+#include "WireCellUtil/Configuration.h"
 #include <ostream>
 
 namespace WireCell {
@@ -49,6 +50,14 @@ namespace WireCell {
     
     std::ostream& operator<<(std::ostream& os, const WireCell::WirePlaneId& wpid);
     std::ostream& operator<<(std::ostream& o, const WireCell::WirePlaneLayer_t& layer);
+
+    template<>
+    inline
+    WireCell::WirePlaneId convert< WireCell::WirePlaneId>(const Configuration& cfg, const WireCell::WirePlaneId& def) {
+	return WireCell::WirePlaneId(iplane2layer[convert<int>(cfg[0])],
+				     convert<int>(cfg[1],0), convert<int>(cfg[2], 0));
+    }
+    
 }
 
 

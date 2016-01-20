@@ -13,6 +13,9 @@ namespace WireCell {
     public:
 	virtual ~IWireSource() {}
 
+	virtual std::string signature() {
+	   return typeid(IWireSource).name();
+	}
 	// supply:
 	// virtual bool operator()(output_pointer& wires);
     };
