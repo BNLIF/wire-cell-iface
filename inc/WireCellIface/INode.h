@@ -28,13 +28,14 @@ namespace WireCell {
 	    hydraNode,		// multi-queue input and output
 	};
 
-	// Return the category type
+	/// Return the behavior category type
 	virtual NodeCategory category() = 0;
 
-	// The signature is string unique to all classes that
-	// implement a particular calling signature.  These should be
-	// defined in lower level interfaces such as a mythical
-	// IMyFooToBarConverter.
+	// fixme: I can probably remove this from the API.
+	/// The signature is string unique to all classes that
+	/// implement a particular calling signature.  These should be
+	/// defined in lower level interfaces such as a mythical
+	/// IMyFooToBarConverter.
 	virtual std::string signature() = 0;
 	
 	// Subclasses may override to provide the number of instances

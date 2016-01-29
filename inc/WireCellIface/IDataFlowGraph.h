@@ -10,7 +10,7 @@ namespace WireCell {
      * 
      * See also WireCell::IConnector and WireCell::IConnectorT.
      */
-    class IDataFlowGraph : IComponent<IDataFlowGraph> {
+    class IDataFlowGraph : public IComponent<IDataFlowGraph> {
     public:
 	virtual ~IDataFlowGraph() {}
 
