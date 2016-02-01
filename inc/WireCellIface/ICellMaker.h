@@ -17,6 +17,8 @@ namespace WireCell {
 	virtual std::string signature() {
 	   return typeid(ICellMaker).name();
 	}
+
+
     };
 
 }

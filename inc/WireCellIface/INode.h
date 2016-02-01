@@ -44,14 +44,17 @@ namespace WireCell {
 	// calls to its signature it should likely return 1.
 	virtual int concurrency() { return 1; }
 
-	// Return the names of the types this node takes as input.
+	// Return string representations of the C++ types this node takes as input.
 	virtual std::vector<std::string> input_types() {
 	    return std::vector<std::string> ();
 	}
-	// Return the names of the types this node takes as output.
+	// Return string representations of the C++ types this node produces as output.
 	virtual std::vector<std::string>  output_types() {
 	    return std::vector<std::string> ();
 	}
+
+	
+	
 
     };
 }

@@ -11,7 +11,7 @@ namespace WireCell {
     /** A digitizer is a function node which produces one channel slice from
      * an input vector one plane slice per wire plane.
      */
-    class IDigitizer : public IJoinNode<std::tuple<IPlaneSlice::shared_vector, IWire::shared_vector>, IChannelSlice>
+    class IDigitizer : public IJoinNode<std::tuple<IPlaneSlice::vector, IWire::vector>, IChannelSlice>
     {
     public:
 	virtual ~IDigitizer() {}

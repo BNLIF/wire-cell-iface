@@ -7,6 +7,7 @@
 
 #include <boost/any.hpp>
 #include <vector>
+#include <memory>
 
 namespace WireCell {
 
@@ -36,14 +37,17 @@ namespace WireCell {
 
     };
 
+    // 
     template <typename InputTuple, typename OutputType>
     class IJoinNode : public IJoinNodeBase {
     public:
 
-	typedef InputTuple input_tuple_type;
+	typedef tuple_helper<InputTuple> port_helper_type;
+	typedef typename port_helper_type::template WrappedConst<std::shared_ptr>::type input_tuple_type;
+	typedef tuple_helper<input_tuple_type> input_helper_type;
+
 	typedef OutputType output_type;
 
-	typedef tuple_helper<InputTuple> input_helper_type;
 	typedef std::shared_ptr<const OutputType> output_pointer;
 
 	virtual ~IJoinNode() {}
@@ -64,8 +68,8 @@ namespace WireCell {
 
 	// Return the names of the types this node takes as input.
 	virtual std::vector<std::string>  input_types() {
-	    input_helper_type ih;
-	    return ih.type_names();
+	    port_helper_type iph;
+	    return iph.type_names();
 	}
 	// Return the names of the types this node produces as output.
 	virtual std::vector<std::string>  output_types() {
