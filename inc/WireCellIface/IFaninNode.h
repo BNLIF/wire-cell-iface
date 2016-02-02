@@ -64,7 +64,7 @@ namespace WireCell {
 
 	// Return the names of the types this node takes as input.
 	virtual std::vector<std::string>  input_types() {
-	    static std::vector<std::string> ret(FaninMultiplicity, std::string(typeid(input_type).name()));
+	    std::vector<std::string> ret(FaninMultiplicity, std::string(typeid(input_type).name()));
 	    return ret;
 	}
 	// Return the names of the types this node produces as output.

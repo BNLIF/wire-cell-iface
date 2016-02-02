@@ -1,10 +1,11 @@
 #ifndef WIRECELLIFACE_ICHANNELCELLSELECTOR
 #define WIRECELLIFACE_ICHANNELCELLSELECTOR
 
-#include "WireCellIface/IFunctionNode.h"
+#include "WireCellIface/IJoinNode.h"
 
 #include "WireCellIface/IChannelSlice.h"
 #include "WireCellIface/ICellSlice.h"
+#include "WireCellIface/ICell.h"
 
 #include "WireCellUtil/IComponent.h"
 
@@ -13,14 +14,10 @@ namespace WireCell {
     /** A channel-cell selector produce a subset of all cells are
      * associated with a given channel slice. 
      */
-    class IChannelCellSelector : public IFunctionNode<IChannelSlice, ICellSlice>
+    class IChannelCellSelector : public IJoinNode<std::tuple<IChannelSlice, ICell::vector>, ICellSlice>
     {
     public:
 	virtual ~IChannelCellSelector() {}
-
-	/// Deliver all cells to the selector for later use.
-	// fixme: handle by the implementation constructor?
-	virtual void set_cells(const ICell::shared_vector& all_cells) = 0;
 
 	virtual std::string signature() {
 	   return typeid(IChannelCellSelector).name();
