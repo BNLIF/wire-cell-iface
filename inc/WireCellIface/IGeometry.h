@@ -16,8 +16,8 @@ namespace WireCell {
 
 	virtual ~IGeometry() {}
 
-	virtual IWireSequence::pointer wires() = 0;
-	virtual ICellSequence::pointer cells() = 0;
+	virtual IWire::vector wires() = 0;
+	virtual ICell::vector cells() = 0;
 	virtual ITiling::pointer tiling() = 0;
 	virtual IWireSummary::pointer wire_summary() = 0;
 
