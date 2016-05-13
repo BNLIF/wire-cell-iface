@@ -37,9 +37,14 @@ namespace WireCell {
 	typedef OutputType output_type;
 	typedef std::shared_ptr<const InputType> input_pointer;
 	typedef std::shared_ptr<const OutputType> output_pointer;
+	typedef IFunctionNode<InputType, OutputType> signature_type;
 
 	virtual ~IFunctionNode() {}
 
+	/// Set the signature for all subclasses.  
+	virtual std::string signature() {
+	   return typeid(signature_type).name();
+	}
 
 	virtual bool operator()(const boost::any& anyin, boost::any& anyout) {
 	    const input_pointer& in = boost::any_cast<const input_pointer&>(anyin);
