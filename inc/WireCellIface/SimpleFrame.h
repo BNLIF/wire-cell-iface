@@ -14,24 +14,22 @@ namespace WireCell {
     class SimpleFrame : public IFrame {
     public:
 
-	SimpleFrame(int ident, double time, const ITrace::vector& traces, double tick=0.5*units::microsecond);
+	SimpleFrame(int ident, double time, const ITrace::vector& traces, double tick=0.5*units::microsecond,
+		    const Waveform::ChannelMaskMap& cmm = Waveform::ChannelMaskMap());
+
 	~SimpleFrame();
 	virtual int ident() const;
 	virtual double time() const;
 	virtual double tick() const;
     
 	virtual ITrace::shared_vector traces() const;
-	virtual ChannelMaskings masks() const;
-
-	// helper methods
-	void add_mask(const std::string& label, double value, IFrame::channel_tick_ranges masks);
-	
+	virtual Waveform::ChannelMaskMap masks() const;
 
     private:
 	int m_ident;
 	double m_time, m_tick;
 	ITrace::shared_vector m_traces;
-	ChannelMaskings m_maskings;
+	Waveform::ChannelMaskMap m_cmm;
     };
 
 }
