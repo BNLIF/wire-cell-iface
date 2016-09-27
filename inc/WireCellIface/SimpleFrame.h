@@ -21,11 +21,17 @@ namespace WireCell {
 	virtual double tick() const;
     
 	virtual ITrace::shared_vector traces() const;
+	virtual ChannelMaskings masks() const;
+
+	// helper methods
+	void add_mask(const std::string& label, double value, IFrame::channel_tick_ranges masks);
+	
 
     private:
 	int m_ident;
 	double m_time, m_tick;
 	ITrace::shared_vector m_traces;
+	ChannelMaskings m_maskings;
     };
 
 }

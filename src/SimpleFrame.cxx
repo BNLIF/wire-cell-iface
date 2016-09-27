@@ -20,3 +20,12 @@ double SimpleFrame::tick() const { return m_tick; }
 ITrace::shared_vector SimpleFrame::traces() const { return m_traces; }
 
 
+IFrame::ChannelMaskings SimpleFrame::masks() const
+{
+    return m_maskings;
+}
+
+void SimpleFrame::add_mask(const std::string& label, double value, IFrame::channel_tick_ranges masks)
+{
+    m_maskings.push_back(IFrame::ChannelMasking(label,value,masks));
+}

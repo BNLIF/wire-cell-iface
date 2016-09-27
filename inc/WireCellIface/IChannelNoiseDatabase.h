@@ -48,6 +48,12 @@ namespace WireCell {
 
 	/// Return channel grouping for coherent noise subtraction
 	virtual std::vector<channel_group_t> coherent_channels() const = 0;
+
+	/// Return channels which are considered a'priori "bad".
+	virtual channel_group_t bad_channels() const {
+	    return channel_group_t();
+	}
+
     };
 
 }
