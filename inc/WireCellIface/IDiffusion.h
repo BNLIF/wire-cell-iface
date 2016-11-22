@@ -11,9 +11,10 @@ namespace WireCell {
      *
      * The diffusion is a rectangular patch of (charge) values on a
      * regular grid defined in longitudinal vs. transverse space.
-     * Bins are typically tick vs. wire pitch.
+     * Bins are typically tick vs. wire pitch or vs. impact position.
      *
-     * See also WireCell::IDiffuser.
+     * See also WireCell::IDiffuser which is one interface that
+     * produces these objects.
      */
     class IDiffusion : public IData<IDiffusion>
     {
@@ -26,7 +27,8 @@ namespace WireCell {
 	virtual double get(int lind, int tind) const = 0;
 	
 	/// Set value at a bin.
-	virtual double set(int lind, int tind, double value) = 0;
+	//virtual double set(int lind, int tind, double value) = 0;
+	//this shouldn't be here.  interfaces are read-only
 
 	/// Helper method to give the array size in longitudinal dimension.
 	virtual int lsize() const = 0 ;

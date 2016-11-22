@@ -9,10 +9,10 @@ namespace WireCell {
 
     /**
      * The PlaneDuctor ("ductor" = either an inductor or a conductor)
-     * produces digitized charge signals on its plane of wires from
+     * produces charge signals on its plane of wires from
      * diffusions (diffuse depositions) that have already been drifted
      * to the vicinity of the plane.  There is one PlaneDuctor per
-     * plane.  See also WireCell::Digitizer.
+     * plane.  See also WireCell::IDigitizer.
     */
     class IPlaneDuctor : public IQueuedoutNode<IDiffusion, IPlaneSlice>
     {

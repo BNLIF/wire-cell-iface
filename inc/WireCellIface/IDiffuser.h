@@ -9,8 +9,12 @@
 
 namespace WireCell {
 
-    /** Interface for a diffuser.  This buffer node takes one
-     * deposition and returns one diffusion.
+    /** Interface for a diffuser.  
+     *
+     * This buffer node takes IDepo deposition objects and returns a
+     * queue of IDiffusion diffusion objects.  Only depositions which
+     * are causally disconnected from the newest deposition will be
+     * processed.  See WireCell::Diffuser as one example implementation.
      */
     class IDiffuser : public IQueuedoutNode<IDepo, IDiffusion>
     {
