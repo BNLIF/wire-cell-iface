@@ -26,10 +26,6 @@ namespace WireCell {
 	/// Get value at bin.
 	virtual double get(int lind, int tind) const = 0;
 	
-	/// Set value at a bin.
-	//virtual double set(int lind, int tind, double value) = 0;
-	//this shouldn't be here.  interfaces are read-only
-
 	/// Helper method to give the array size in longitudinal dimension.
 	virtual int lsize() const = 0 ;
 
