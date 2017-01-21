@@ -24,6 +24,7 @@ namespace WireCell {
 	virtual ITrace::shared_vector traces() const = 0;
 
 	/// Return all masks associated with this frame
+        // fixme: this should be its own interface
 	virtual Waveform::ChannelMaskMap masks() const {
 	    return Waveform::ChannelMaskMap(); // default is empty
 	}

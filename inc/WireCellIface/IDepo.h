@@ -30,6 +30,16 @@ namespace WireCell {
 	/// If the deposition is drifted, this may allow access to the original.
 	virtual pointer prior() const = 0;
 
+        /// Any (half width) extent in the longitudinal (drift)
+        /// direction (distance).  The distribution is implicit but
+        /// typically it is taken that this is a Gaussian sigma.
+        virtual double extent_long() const { return 0.0; }
+
+        /// Any (half width) extent in the transverse (pitch)
+        /// direction (distance).  The distribution is implicit but
+        /// typically it is taken that this is a Gaussian sigma.
+        virtual double extent_tran() const { return 0.0; }
+
     };
 
     /// Simple utility to return a vector of depositions formed by
