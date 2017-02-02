@@ -45,6 +45,9 @@ namespace WireCell {
 	/// Return the filter to attenuate noise.
 	virtual const filter_t& noise(int channel) const = 0;
 
+	/// A nominal detector response spectrum for a given channel.
+	virtual const filter_t& response(int channel) const = 0;
+
 
 	/// Return channel grouping for coherent noise subtraction
 	virtual std::vector<channel_group_t> coherent_channels() const = 0;
