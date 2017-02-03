@@ -33,7 +33,9 @@ namespace WireCell {
 	/// Return simple gain correction (a multiplicative, unitless
 	/// scaling) to apply to a given channel.
 	virtual double gain_correction(int channel) const = 0;
-	
+
+        /// Return a time offset associated with the response().
+	virtual double response_offset(int channel) const = 0;
 
 
 	/// Return the filter for the RC+RC coupling response function.
