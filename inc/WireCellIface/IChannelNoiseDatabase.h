@@ -36,7 +36,11 @@ namespace WireCell {
 
         /// Return a time offset associated with the response().
 	virtual double response_offset(int channel) const = 0;
-
+	
+	// return the protected window padding in the front
+	virtual int pad_window_front(int channel) const = 0;
+	// return the protected window padding in the back
+	virtual int pad_window_back(int channel) const = 0;
 
 	/// Return the filter for the RC+RC coupling response function.
 	virtual const filter_t& rcrc(int channel) const = 0;
