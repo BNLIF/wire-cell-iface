@@ -42,6 +42,11 @@ namespace WireCell {
 	// return the protected window padding in the back
 	virtual int pad_window_back(int channel) const = 0;
 
+	// return the min rms cut for a channel
+	virtual float min_rms_cut(int channel) const = 0;
+	// return the max rms cut for a channel
+	virtual float max_rms_cut(int channel) const = 0;
+
 	/// Return the filter for the RC+RC coupling response function.
 	virtual const filter_t& rcrc(int channel) const = 0;
 
