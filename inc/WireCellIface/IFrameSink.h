@@ -1,20 +1,21 @@
 #ifndef WIRECELL_IFRAMESINK
 #define WIRECELL_IFRAMESINK
 
-#include "WireCellUtil/IComponent.h"
-#include "WireCellIface/IReceving.h"
+#include "WireCellIface/ISinkNode.h"
 #include "WireCellIface/IFrame.h"
 
 namespace WireCell {
 
     /** A frame sink is something that generates IFrames.
      */
-    class IFrameSink
-	: public IComponent<IFrameSink>
-	, public IReceiving<IFrame>
+    class IFrameSink : public ISinkNode<IFrame>
     {
     public:
 	virtual ~IFrameSink() {}
+
+	virtual std::string signature() {
+	   return typeid(IFrameSink).name();
+	}
 
 	// supply:
 	// virtual bool operator()(IFrame::pointer& frame);
