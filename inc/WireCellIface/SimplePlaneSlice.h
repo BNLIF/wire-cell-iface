@@ -3,6 +3,8 @@
 
 #include "WireCellIface/IPlaneSlice.h"
 
+#include <vector>
+
 namespace WireCell {
 
     class SimplePlaneSlice : public WireCell::IPlaneSlice {

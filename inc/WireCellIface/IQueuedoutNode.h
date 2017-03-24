@@ -5,6 +5,7 @@
 
 #include <boost/any.hpp>
 #include <deque>
+#include <vector>
 
 namespace WireCell {
 
