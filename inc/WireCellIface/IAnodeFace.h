@@ -1,0 +1,45 @@
+/**
+   Provides information about an "anode face" which consists of a
+   number of parallel wire planes, each consisting of a number of
+   parallel wires.
+  
+   Information includes:
+ 
+   - Internal geometry of the wires in their planes and how they
+   relate to a coordinate system of the larger enclosing volume.
+
+   - field response information
+  
+   - wire/channel connectivity and numbering
+ 
+  
+ */
+
+#ifndef WIRECELLIFACES_IANODEFACE
+#define WIRECELLIFACES_IANODEFACE
+
+#include "WireCellUtil/IComponent.h"
+#include "WireCellIface/IWirePlane.h"
+
+namespace WireCell {
+
+    class IAnodeFace : public IComponent<IAnodeFace> {
+    public:
+
+        virtual ~IAnodeFace() {}
+
+        /// Return the ident number of this face.
+        virtual int ident() const = 0;
+
+        /// Return the number of wire planes in the given side
+        virtual int nplanes() const = 0;
+
+        /// Return the wire plane with the given ident or nullptr if unknown.
+        virtual IWirePlane::pointer plane(int ident) const = 0;
+
+
+    };
+}
+
+#endif
+

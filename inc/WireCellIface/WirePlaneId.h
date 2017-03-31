@@ -1,6 +1,7 @@
 #ifndef WIRECELL_WIREPLANEID
 #define WIRECELL_WIREPLANEID
 
+// fixme: should move into WirePlaneIdCfg.h or similar. (more below)
 #include "WireCellUtil/Configuration.h"
 #include <ostream>
 
@@ -14,6 +15,7 @@ namespace WireCell {
     class WirePlaneId {
     public:
 	explicit WirePlaneId(WirePlaneLayer_t layer, int face = 0, int apa = 0);
+	explicit WirePlaneId(int packed);
 
 	/// Unit ID as integer 
 	int ident() const;
@@ -51,6 +53,7 @@ namespace WireCell {
     std::ostream& operator<<(std::ostream& os, const WireCell::WirePlaneId& wpid);
     std::ostream& operator<<(std::ostream& o, const WireCell::WirePlaneLayer_t& layer);
 
+    // fixme: should move into WirePlaneIdCfg.h or similar.
     template<>
     inline
     WireCell::WirePlaneId convert< WireCell::WirePlaneId>(const Configuration& cfg, const WireCell::WirePlaneId& def) {

@@ -3,7 +3,6 @@
 
 #include "WireCellIface/IWire.h"
 
-#include <iostream>		// debug
 
 namespace WireCell {
 

@@ -10,6 +10,13 @@ WireCell::WirePlaneId::WirePlaneId(WirePlaneLayer_t layer, int face, int apa)
     : m_pack( (((int)layer)&layer_mask) | (face << face_shift) | (apa<<apa_shift))
 {
 }
+WireCell::WirePlaneId::WirePlaneId(int packed)
+    : m_pack(packed)
+{
+    // It is very dubious that I allow this constructor.  I do it for
+    // reading WireSchema files where the packing is done by the user.
+    // Very dubious indeed.
+}
 
 int WireCell::WirePlaneId::ident() const
 {
