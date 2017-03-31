@@ -4,6 +4,8 @@
 #include "WireCellUtil/Waveform.h"
 #include "WireCellUtil/IComponent.h"
 
+#include <vector>
+
 namespace WireCell {
 
     // FIXME: this needs to be simplified into a Noise Subtraction

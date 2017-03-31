@@ -4,7 +4,7 @@
 #include "WireCellIface/INode.h"
 
 #include <boost/any.hpp>
-
+#include <vector>
 namespace WireCell {
 
     /** A node which acts as a sink.

@@ -6,7 +6,7 @@
 
 #include <boost/range/iterator_range.hpp>
 #include <memory>		// std::shared_ptr
-
+#include <vector>
 namespace WireCell {
     template<class Type>
     class IData {		// note: NOT a WireCell::Interface

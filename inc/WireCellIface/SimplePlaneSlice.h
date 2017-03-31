@@ -2,6 +2,7 @@
 #define WIRECELLIFACE_SIMPLEPLANESLICE
 
 #include "WireCellIface/IPlaneSlice.h"
+#include <vector>
 
 namespace WireCell {
 
