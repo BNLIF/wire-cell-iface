@@ -27,6 +27,8 @@ namespace WireCell {
         /// Return a anode face by its ident number. 
         virtual IAnodeFace::pointer face(int ident) const = 0;
 
+        /// Return all faces
+        virtual IAnodeFace::vector faces() const = 0;
 
     };
 }

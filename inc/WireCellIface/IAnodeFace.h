@@ -37,6 +37,9 @@ namespace WireCell {
         /// Return the wire plane with the given ident or nullptr if unknown.
         virtual IWirePlane::pointer plane(int ident) const = 0;
 
+        /// Return all wires planes
+        virtual IWirePlane::vector planes() const = 0;
+
 
     };
 }
