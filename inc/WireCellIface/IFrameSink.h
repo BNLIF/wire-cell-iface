@@ -18,7 +18,7 @@ namespace WireCell {
 	}
 
 	// supply:
-	// virtual bool operator()(IFrame::pointer& frame);
+	// virtual bool operator()(const IFrame::pointer& frame);
 
     };
 

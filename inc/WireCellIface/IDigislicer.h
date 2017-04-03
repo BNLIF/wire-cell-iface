@@ -1,5 +1,5 @@
-#ifndef WIRECELL_IDIGITIZER
-#define WIRECELL_IDIGITIZER
+#ifndef WIRECELL_IDIGISLICER
+#define WIRECELL_IDIGISLICER
 
 #include "WireCellIface/IJoinNode.h"
 #include "WireCellIface/IChannelSlice.h"
@@ -8,16 +8,16 @@
 
 namespace WireCell {
 
-    /** A digitizer is a function node which produces one channel slice from
+    /** A digislicer is a function node which produces one channel slice from
      * an input vector one plane slice per wire plane.
      */
-    class IDigitizer : public IJoinNode<std::tuple<IPlaneSlice::vector, IWire::vector>, IChannelSlice>
+    class IDigislicer : public IJoinNode<std::tuple<IPlaneSlice::vector, IWire::vector>, IChannelSlice>
     {
     public:
-	virtual ~IDigitizer() {}
+	virtual ~IDigislicer() {}
 
 	virtual std::string signature() {
-	   return typeid(IDigitizer).name();
+	   return typeid(IDigislicer).name();
 	}
     };
 
