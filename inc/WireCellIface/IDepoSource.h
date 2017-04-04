@@ -11,6 +11,8 @@ namespace WireCell {
     class IDepoSource : public ISourceNode<IDepo>
     {
     public:
+	typedef std::shared_ptr<IDepoSource> pointer;
+
 	virtual ~IDepoSource() {}
 
 	virtual std::string signature() {

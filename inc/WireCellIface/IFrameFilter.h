@@ -20,6 +20,8 @@ namespace WireCell {
     class IFrameFilter : public IFunctionNode<IFrame,IFrame>
     {
     public:
+	typedef std::shared_ptr<IFrameFilter> pointer;
+
 	virtual ~IFrameFilter() {}
 
 	virtual std::string signature() {

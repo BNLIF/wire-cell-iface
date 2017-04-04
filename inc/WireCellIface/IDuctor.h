@@ -22,6 +22,8 @@ namespace WireCell {
     class IDuctor : public IQueuedoutNode<IDepo, IFrame>
     {
     public:
+	typedef std::shared_ptr<IDuctor> pointer;
+
 	virtual ~IDuctor() {}
 
 	virtual std::string signature() {

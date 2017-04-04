@@ -12,6 +12,8 @@ namespace WireCell {
     class IFrameSource : public ISourceNode<IFrame>
     {
     public:
+	typedef std::shared_ptr<IFrameSource> pointer;
+
 	virtual ~IFrameSource() {}
 
 	// supply:

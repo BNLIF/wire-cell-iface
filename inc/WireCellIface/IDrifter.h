@@ -18,11 +18,18 @@ namespace WireCell {
     class IDrifter : public IQueuedoutNode<IDepo, IDepo>
     {
     public:
+	typedef std::shared_ptr<IDrifter> pointer;
+
 	virtual ~IDrifter() {}
 
 	virtual std::string signature() {
 	   return typeid(IDrifter).name();
 	}
+
+        /// supply:
+        // virtual bool operator()(const input_pointer& in, output_queue& outq) = 0;
+
+
     };
 }
 

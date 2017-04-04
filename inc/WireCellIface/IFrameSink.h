@@ -11,6 +11,8 @@ namespace WireCell {
     class IFrameSink : public ISinkNode<IFrame>
     {
     public:
+	typedef std::shared_ptr<IFrameSink> pointer;
+
 	virtual ~IFrameSink() {}
 
 	virtual std::string signature() {
