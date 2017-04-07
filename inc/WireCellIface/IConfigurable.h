@@ -14,14 +14,14 @@ namespace WireCell {
     public:
 	virtual ~IConfigurable() {}
 
-	/// Accept a configuration.
-	virtual void configure(const WireCell::Configuration& config) = 0;
-	
-	/// Override to return a hard-coded default configuration.
+	/// Optional, override to return a hard-coded default configuration.
 	virtual WireCell::Configuration default_configuration() const {
 	    return WireCell::Configuration();
 	}
 
+	/// Accept a configuration.
+	virtual void configure(const WireCell::Configuration& config) = 0;
+	
     };
 
 }
