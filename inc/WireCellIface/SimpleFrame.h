@@ -1,5 +1,5 @@
 #ifndef WIRECELL_SIMPLEFRAME
-#define  WIRECELL_SIMPLEFRAME
+#define WIRECELL_SIMPLEFRAME
 
 #include "WireCellIface/IFrame.h"
 #include "WireCellUtil/Units.h"
@@ -24,6 +24,7 @@ namespace WireCell {
     
 	virtual ITrace::shared_vector traces() const;
 	virtual Waveform::ChannelMaskMap masks() const;
+
 
     private:
 	int m_ident;

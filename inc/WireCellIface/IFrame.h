@@ -2,6 +2,8 @@
 #define WIRECELLIFACE_IFRAME
 
 #include "WireCellIface/ITrace.h"
+#include "WireCellIface/IWirePlane.h"
+#include "WireCellIface/WirePlaneId.h"
 #include "WireCellUtil/Waveform.h"
 
 namespace WireCell {
@@ -32,7 +34,6 @@ namespace WireCell {
 
 	/// Return the length of a digitization time bin.
 	virtual double tick() const = 0;
-
 
     };
 

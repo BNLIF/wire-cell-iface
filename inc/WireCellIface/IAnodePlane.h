@@ -9,6 +9,7 @@
 
 #include "WireCellUtil/IComponent.h"
 #include "WireCellIface/IAnodeFace.h"
+#include "WireCellIface/WirePlaneId.h"
 
 
 namespace WireCell {
@@ -30,7 +31,13 @@ namespace WireCell {
         /// Return all faces
         virtual IAnodeFace::vector faces() const = 0;
 
+        /// Resolve a channel ident number to a WirePlaneId.
+        virtual WirePlaneId resolve(int channel) const  = 0;
+
     };
+
+
+    
 }
 
 #endif
