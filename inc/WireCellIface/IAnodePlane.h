@@ -2,6 +2,8 @@
    Provides information about an "anode plane" which consists of a
    number of parallel wire planes as IWirePlane objects.
   
+   fixme: this has become kind of a kitchen sink.
+
  */
 
 #ifndef WIRECELLIFACES_IANODEPLANE
