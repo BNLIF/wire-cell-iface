@@ -7,6 +7,7 @@ WireCell::ICell::~ICell()
 std::ostream & operator<<(std::ostream &os, const WireCell::ICell& cell)
 {
     os << "<CELL " << cell.ident() << ">";
+    return os;
 }
 
 std::ostream & operator<<(std::ostream &os, const WireCell::ICell* cellp)

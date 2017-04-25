@@ -37,6 +37,7 @@ int WireCell::WirePlaneId::index() const
     case kUlayer : return 0;
     case kVlayer : return 1;
     case kWlayer : return 2;
+    case kUnknownLayer: return -1;
     }
     return -1;
 }

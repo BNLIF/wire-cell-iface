@@ -91,12 +91,13 @@ namespace WireCell {
 
 	// helper to return the pitch based on dynamic layer value
 	virtual const Ray& pitch(WireCell::WirePlaneLayer_t layer) const {
+	    static Ray bogus;
 	    switch(layer) {
 	    case kUlayer: return pitchU();
 	    case kVlayer: return pitchV();
 	    case kWlayer: return pitchW();
+            case kUnknownLayer: return bogus;
 	    }
-	    static Ray bogus;
 	    return bogus;
 	}
 
