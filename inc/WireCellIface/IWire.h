@@ -30,7 +30,9 @@ namespace WireCell {
 	/// wires in their plane
 	virtual int index() const = 0;
 
-	/// Detector-dependent electronics channel number, negative is illegal.
+	/// Detector-dependent electronics channel number, negative is
+	/// illegal.  All wires with a common channel number are
+	/// considered electrically connected.
 	virtual int channel() const = 0;
 
         /// Return the number of wire segments between the channel
