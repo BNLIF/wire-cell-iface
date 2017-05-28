@@ -11,6 +11,8 @@
 
 #include "WireCellUtil/IComponent.h"
 #include "WireCellIface/IAnodeFace.h"
+#include "WireCellIface/IWire.h"
+#include "WireCellIface/IChannel.h"
 #include "WireCellIface/WirePlaneId.h"
 
 
@@ -39,13 +41,14 @@ namespace WireCell {
         /// Return a collection of all channel ident numbers.
         virtual std::vector<int> channels() const = 0;
 
+        /// Return an IChannel with the associated ID.
+        virtual IChannel::pointer channel(int ident) const = 0;
+
         /// Return all wires connected into the given channel ident number
         virtual IWire::vector wires(int channel) const = 0;
 
     };
 
-
-    
 }
 
 #endif
