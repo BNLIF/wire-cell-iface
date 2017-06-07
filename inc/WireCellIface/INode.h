@@ -54,7 +54,10 @@ namespace WireCell {
 	}
 
 	
-	
+        /// Optional hook to be implemented in order to reset after an
+        /// end of stream is encountered.
+        virtual void reset() {
+        }
 
     };
 }
