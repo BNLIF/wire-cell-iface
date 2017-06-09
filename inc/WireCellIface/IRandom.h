@@ -3,7 +3,6 @@
 
 #include "WireCellUtil/IComponent.h"
 #include <functional>
-#include <complex>
 
 namespace WireCell {
 
@@ -11,32 +10,21 @@ namespace WireCell {
     public:
         virtual ~IRandom() {}
 
-        typedef std::function<int()> intfunc_t;
-        typedef std::function<double()> realfunc_t;
-        typedef std::function<std::complex<double>()> compfunc_t;
+        /// Sample a binomial distribution
+        virtual int binomial(int max, double prob) = 0;
 
-        /// Return a function sampling a binomial distribution
-        virtual intfunc_t binomial(int max, double prob) = 0;
+        /// Sample a Poisson distribution. 
+        virtual int poisson(double mean) = 0;
 
-        /// Return a function sampling a Poisson distribution. 
-        virtual intfunc_t poisson(double mean) = 0;
+        /// Sample a normal distribution.
+        virtual double normal(double mean, double sigma) = 0;
 
-        /// Return a function sampling a normal distribution.
-        virtual realfunc_t normal(double mean, double sigma) = 0;
+        /// Sample a uniform distribution
+        virtual double uniform(double begin, double end) = 0;
 
-        /// Return a function sampling a uniform real distribution in
-        /// the semi-open [begin,end).
-        virtual realfunc_t uniform(double begin, double end) = 0;
+        /// Sample a uniform integer range.
+        virtual int range(int first, int last) = 0;
 
-        /// Return a function sampling a uniform integer range between
-        /// [first,last] inclusive.
-        virtual intfunc_t range(int first, int last) = 0;
-
-        /// Return a function sampling a 2D normal distribution.  Real
-        /// part is first, imaginary part is second.  Note, the abs()
-        /// gives a Rayleigh and the arg() gives a phase.
-        virtual compfunc_t binormal(double mean1, double sigma1,
-                                    double mean2, double sigma2) = 0;
     };
 
 }
