@@ -23,6 +23,9 @@ namespace WireCell {
         /// number.  Note the binning of the returned waveform should
         /// be coordinated through configuration.
         virtual const Waveform::realseq_t& channel_response(int channel_ident) const = 0;
+
+        /// Return the binning that the channel_response follows.
+        virtual Binning channel_response_binning() const = 0;
     };
 }
 #endif
