@@ -13,10 +13,8 @@ namespace WireCell {
     public:
         virtual ~IFilterWaveform() {}
 
-        /// Provide the filter waveform.  Note the binning of the
-        /// returned waveform should be coordinated through
-        /// configuration.
-        virtual const Waveform::realseq_t filter_waveform() const = 0;
+        /// Provide the filter waveform with a given number of frequency bins.
+        virtual const Waveform::realseq_t filter_waveform(int nfbins) const = 0;
     };
 }
 
