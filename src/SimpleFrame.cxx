@@ -30,6 +30,11 @@ Waveform::ChannelMaskMap SimpleFrame::masks() const
 }
 
 
+SimpleFrame::SimpleTraceInfo::SimpleTraceInfo()
+    : indices(0)
+    , summary(0)
+{
+}
 const SimpleFrame::SimpleTraceInfo& SimpleFrame::get_trace_info(const IFrame::tag_t& tag) const
 {
     static SimpleTraceInfo empty;

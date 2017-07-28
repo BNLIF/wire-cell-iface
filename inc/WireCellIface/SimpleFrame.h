@@ -54,6 +54,7 @@ namespace WireCell {
         struct SimpleTraceInfo {
             IFrame::trace_list_t indices;
             IFrame::trace_summary_t summary;
+            SimpleTraceInfo();
         };
         std::map<IFrame::tag_t, SimpleTraceInfo> m_trace_info;
 
