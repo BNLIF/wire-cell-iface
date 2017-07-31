@@ -44,6 +44,10 @@ namespace WireCell {
 	// return the protected window padding in the back
 	virtual int pad_window_back(int channel) const = 0;
 
+	virtual float coherent_nf_decon_limit(int channel) const = 0;
+	virtual float coherent_nf_adc_limit(int channel) const = 0;
+
+	
 	// return the min rms cut for a channel
 	virtual double min_rms_cut(int channel) const = 0;
 	// return the max rms cut for a channel
