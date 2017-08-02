@@ -23,10 +23,13 @@ namespace WireCell {
 
 	/// FIXME: how to handle state changes?
 
-	/// Return the number of samples
-	virtual int number_samples() const = 0;
-
-	/// Return the sample size (time in system of units)
+	/// Return the time-domain sample period (time in system of
+	/// units) which is was used in producing the filter
+	/// response spectral functions (filter_t).
+	///
+	/// Warning: take care that the number of frequency samples
+	/// (filter_t::size()) is fixed and may not match the number
+	/// of ticks in your waveform.
 	virtual double sample_time() const = 0;
 
 	/// Return a nominal baseline correction (additive offset)
