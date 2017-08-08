@@ -20,12 +20,17 @@ namespace WireCell {
 	ChargeSequence m_charge;
     public:
 	SimpleTrace(int chid, int tbin, const ChargeSequence& charge);
+	SimpleTrace(int chid, int tbin, size_t ncharges);
+
+	// while someone has me as a concrete object they can modify.
+	ChargeSequence& charge() { return m_charge; }
+
+	// ITrace interface: 
 
 	virtual int channel() const;
 
 	virtual int tbin() const;
 
-	// return vector of charge starting at tbin
 	virtual const ChargeSequence& charge() const;
     };
 
@@ -34,3 +39,9 @@ namespace WireCell {
 }
 
 #endif
+
+
+// Local Variables:
+// mode: c++
+// c-basic-offset: 4
+// End:
