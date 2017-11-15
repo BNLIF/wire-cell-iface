@@ -22,6 +22,9 @@ namespace WireCell {
         /// Sample a uniform distribution
         virtual double uniform(double begin, double end) = 0;
 
+        /// Sample an exponential distribution
+        virtual double exponential(double mean) = 0;
+
         /// Sample a uniform integer range.
         virtual int range(int first, int last) = 0;
 
