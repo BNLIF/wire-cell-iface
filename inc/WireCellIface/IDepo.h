@@ -26,6 +26,12 @@ namespace WireCell {
 
 	/// The number charge (in units of number of electrons) deposited.
 	virtual double charge() const = 0;
+
+	/// Track ID from Geant4
+	virtual int id() const = 0;
+
+	/// PDG code from Geant4
+	virtual int pdg() const = 0;
 	
 	/// If the deposition is drifted, this may allow access to the original.
 	virtual pointer prior() const = 0;
