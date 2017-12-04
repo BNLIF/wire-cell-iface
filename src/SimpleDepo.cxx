@@ -7,7 +7,14 @@ SimpleDepo::SimpleDepo(double t, const WireCell::Point& pos,
                        double extent_long, double extent_tran,
 		       int id, int pdg)
                        
-  : m_time(t), m_pos(pos), m_charge(charge), m_id(id), m_pdg(pdg), m_prior(prior), m_long(extent_long), m_tran(extent_tran)
+  : m_time(t)
+  , m_pos(pos)
+  , m_id(id)
+  , m_pdg(pdg)
+  , m_charge(charge)
+  , m_prior(prior)
+  , m_long(extent_long)
+  , m_tran(extent_tran)
 {
 }
 
