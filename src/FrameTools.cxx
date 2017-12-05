@@ -83,17 +83,22 @@ void FrameTools::fill(Array::array_xxf& array,
                       int tbin)
 {
     std::unordered_map<int,int> index;
-    const int ncols = array.cols();
+    // one col is one tick
+    // one row is one channel
+    // array is indexed in order: (irow, icol)
+    const int ncols = array.cols(); 
     const int nrows = std::min((int)array.rows(), (int)std::distance(chit,chend));
     for (int ind = 0; ind != nrows and chit != chend; ++ind, ++chit) {
         index[*chit] = ind;
     }
     for (const auto trace : traces) {
-        auto it = index.find(trace->channel());
+
+        // resolve which row a the channel is at
+        const int ch = trace->channel();
+        auto it = index.find(ch);
         if (it == index.end()) {
             continue;
         }
-
         const int irow = it->second;
         
         const auto& charge = trace->charge();
@@ -113,6 +118,10 @@ void FrameTools::fill(Array::array_xxf& array,
             continue;
         }
         const int nleft = std::min(ncols_left, nticks_left);
+        // std::cerr << "ch=" << ch << " row=" << irow << ", icol0=" << icol0
+        //           << ", itick0=" << itick0
+        //           << ", nleft=" << nleft
+        //           << std::endl;
         for (int ind=0; ind != nleft; ++ind) {
             array(irow, icol0+ind) += charge.at(itick0 + ind);
         }
