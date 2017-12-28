@@ -1,4 +1,6 @@
 #include "WireCellIface/FrameTools.h"
+#include "WireCellIface/SimpleFrame.h"
+#include "WireCellIface/SimpleTrace.h"
 
 #include <iterator>
 #include <algorithm>
@@ -7,6 +9,87 @@
 #include <numeric>
 
 using namespace WireCell;
+
+
+int FrameTools::frmtcmp(IFrame::pointer frame, double time)
+{
+    if (!frame) {
+        return 0;
+    }
+    auto traces = frame->traces();
+    if (!traces) {
+        return 0;
+    }
+    auto tbin_mm = FrameTools::tbin_range(*traces.get());
+
+    const double tref = frame->time();
+    const double tick = frame->tick();
+    const double tmin = tref + tbin_mm.first*tick;  // low edge
+    const double tmax = tref + tbin_mm.second*tick; // high edge
+
+    if (tmax <= time) {         // high edge may be exactly equal to target time and frame does not span.
+        return -1;
+    }
+    if (tmin >= time) {         // low edge may be exactly equal to target time and frame does not span.
+        return +1;
+    }
+    return 0;
+}
+std::pair<IFrame::pointer, IFrame::pointer> FrameTools::split(IFrame::pointer frame, double time)
+{
+    int cmp = frmtcmp(frame, time);
+    if (cmp < 0) {
+        return std::pair<IFrame::pointer, IFrame::pointer>(frame, nullptr);
+    }
+    if (cmp > 0) {
+        return std::pair<IFrame::pointer, IFrame::pointer>(nullptr, frame);
+    }
+    // now gotta do the hard work.
+
+    const double tref = frame->time();
+    const double tick = frame->tick();
+    const int ident = frame->ident();
+        
+    // Every tick equal or larger than this is in the second frame.
+    const int tbin_split = 0.5 + (time - tref)/tick;
+
+    ITrace::vector mtraces, ptraces;
+    for (auto trace : (*frame->traces())) {
+        const int tbin = trace->tbin();
+
+        if (tbin >= tbin_split) {
+            ptraces.push_back(trace);
+            continue;
+        }
+
+        const ITrace::ChargeSequence& wave = trace->charge();
+        const int lbin = tbin + wave.size();
+
+        if (lbin <= tbin_split) {
+            mtraces.push_back(trace);
+            continue;
+        }
+        const int ind_split = tbin_split - tbin;
+        ITrace::ChargeSequence mcharge(wave.begin(), wave.begin() + ind_split);
+        ITrace::ChargeSequence pcharge(wave.begin() + ind_split, wave.end());
+
+        const int chid = trace->channel();
+
+        auto mtrace = std::make_shared<SimpleTrace>(chid, tbin, mcharge);
+        mtraces.push_back(mtrace);
+        auto ptrace = std::make_shared<SimpleTrace>(chid, tbin_split, pcharge);
+        ptraces.push_back(ptrace);
+    }
+    // fixme: what about ident, cmm, tags....
+    IFrame::pointer mframe = std::make_shared<SimpleFrame>(ident, tref, mtraces, tick);
+    IFrame::pointer pframe = std::make_shared<SimpleFrame>(ident, tref, ptraces, tick);
+    return std::pair<IFrame::pointer, IFrame::pointer>(mframe, pframe);
+}
+
+
+
+
+
 
 ITrace::vector FrameTools::untagged_traces(IFrame::pointer frame)
 {

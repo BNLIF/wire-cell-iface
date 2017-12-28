@@ -68,11 +68,13 @@ namespace WireCell {
 	/// Return an identifying number of this frame.
 	virtual int ident() const = 0;
 
-	/// Return the start time of the frame in seconds w.r.t. some
-	/// global time.
+	/// Return the reference time of the frame
+	/// w.r.t. some global time.  Note, each trace has a "tbin"
+	/// counting number of ticks w.r.t. to this time where the
+	/// trace starts.  In general, tbin is not zero.
 	virtual double time() const = 0;
 
-	/// Return the length of a digitization time bin.
+	/// Return the digitization sample period.
 	virtual double tick() const = 0;
 
     };
