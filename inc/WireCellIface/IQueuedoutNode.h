@@ -37,6 +37,8 @@ namespace WireCell {
     class IQueuedoutNode : public IQueuedoutNodeBase
     {
     public:
+	typedef std::shared_ptr<IQueuedoutNodeBase> pointer;
+
 	typedef InputType input_type;
 	typedef OutputType output_type;
 	typedef std::shared_ptr<const InputType> input_pointer;

@@ -31,7 +31,10 @@ namespace WireCell {
     {
     public:
 	typedef OutputType output_type;
+
 	typedef ISourceNode<OutputType> signature_type;
+	typedef std::shared_ptr<signature_type> pointer;
+
 	typedef std::shared_ptr<const OutputType> output_pointer;
 
 	virtual ~ISourceNode() {}
