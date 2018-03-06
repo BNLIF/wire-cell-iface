@@ -53,22 +53,19 @@ namespace WireCell {
 	typedef InputTuple input_tuple_type;
 	typedef OutputTuple output_tuple_type;
 
-	typedef tuple_helper<InputTuple> input_helper_type;
-	typedef tuple_helper<OutputTuple> output_helper_type;
+	typedef shared_queued<InputTuple> input_shqed;
+	typedef shared_queued<OutputTuple> output_shqed;
 
-        // fixme: need to make a helper which inserts shared_ptr<>
-        // around the tuple types.
-
-	typedef typename input_helper_type::queued_tuple_type input_queues_type;
-	typedef typename output_helper_type::queued_tuple_type output_queues_type;
+	typedef typename input_shqed::shared_queued_tuple_type input_queues_type;
+	typedef typename output_shqed::shared_queued_tuple_type output_queues_type;
 
 	virtual ~IHydraNode() {}
 
 	/// Translate call from any to types and back.
 	virtual bool operator()(any_queue_vector& anyinq,
                                 any_queue_vector& anyoutq) {
-	    input_helper_type ih;
-	    output_helper_type oh;
+	    input_shqed ih;
+	    output_shqed oh;
 
 	    auto inq = ih.from_any_queue(anyinq);
 	    output_queues_type outq;
@@ -89,12 +86,12 @@ namespace WireCell {
 
 	// Return the names of the types this node takes as input.
 	virtual std::vector<std::string>  input_types() {
-	    input_helper_type ih;
+            tuple_helper<input_tuple_type> ih;
 	    return ih.type_names();
 	}
 	// Return the names of the types this node produces as output.
 	virtual std::vector<std::string>  output_types() {
-	    output_helper_type oh;
+            tuple_helper<output_tuple_type> oh;
 	    return oh.type_names();
 	}
 	

@@ -8,8 +8,7 @@ namespace WireCell {
 
     // FIXME: this is wrong with the shared_ptr.
     // see comments in IHydraNode.  Needs fixes in TupleHelper.
-    class IDepoMerger : public IHydraNode<std::tuple<std::shared_ptr<IDepo>,std::shared_ptr<IDepo> >,
-                                          std::tuple<std::shared_ptr<IDepo> > >
+    class IDepoMerger : public IHydraNode< std::tuple<IDepo,IDepo>, std::tuple<IDepo> >
     {
     public:
         typedef std::shared_ptr<IDepoMerger> pointer;
