@@ -1,6 +1,7 @@
-/** A hydra is a node with N inputs receiving synchronous input and
- * producing M asynchronous outputs.  It is like a join node
- * on input and multiple queued nodes on output.
+/** A hydra has N input queues and M output queues each of a specified
+ * type.  Not all queues may have elements.  The implementation
+ * callable may leave elements in input queues for subsequent calls
+ * when new data exists.
  */
 
 #ifndef WIRECELL_IHYDRANODE
@@ -18,8 +19,6 @@ namespace WireCell {
 
     /** Base hydra node class.
      *
-     * An interface to a callable taking a vector of input objects and
-     * a vector of output queues.
      */ 
     class IHydraNodeBase : public INode
     {
@@ -28,12 +27,12 @@ namespace WireCell {
 
 	virtual ~IHydraNodeBase() {}
 
-	typedef std::vector<boost::any> any_vector;
 	typedef std::deque<boost::any> any_queue;
-	typedef std::vector< any_queue > any_queue_vector
+	typedef std::vector< any_queue > any_queue_vector;
 
 	/// The calling signature:
-	virtual bool operator()(const any_vector& anyin, any_queue_vector& anyoutq) = 0;
+	virtual bool operator()(any_queue_vector& anyinq,
+                                any_queue_vector& anyoutq) = 0;
 
 	virtual NodeCategory category() {
 	    return hydraNode;
@@ -56,27 +55,37 @@ namespace WireCell {
 
 	typedef tuple_helper<InputTuple> input_helper_type;
 	typedef tuple_helper<OutputTuple> output_helper_type;
+
+        // fixme: need to make a helper which inserts shared_ptr<>
+        // around the tuple types.
+
+	typedef typename input_helper_type::queued_tuple_type input_queues_type;
 	typedef typename output_helper_type::queued_tuple_type output_queues_type;
 
 	virtual ~IHydraNode() {}
 
 	/// Translate call from any to types and back.
-	virtual bool operator()(const any_vector& anyin, any_queue_vector& anyoutq) {
+	virtual bool operator()(any_queue_vector& anyinq,
+                                any_queue_vector& anyoutq) {
 	    input_helper_type ih;
 	    output_helper_type oh;
 
-	    auto intup = ih.from_any(anyin);
+	    auto inq = ih.from_any_queue(anyinq);
 	    output_queues_type outq;
 
-	    bool ok = (*this)(intup, outq);
+	    bool ok = (*this)(inq, outq);
 	    if (ok) {
-		anyout = oh.as_any_queue(outq);
+		anyoutq = oh.as_any_queue(outq);
 	    }
+
+            // (re)set input queue
+            anyinq = ih.as_any_queue(inq);
 	    return ok;
 	}
 
 	/// Typed interface for subclass to implement.
-	virtual bool operator()(const input_tuple_type& intup, output_queues_type& outqs) = 0;
+	virtual bool operator()(input_queues_type& inqs,
+                                output_queues_type& outqs) = 0;
 
 	// Return the names of the types this node takes as input.
 	virtual std::vector<std::string>  input_types() {
