@@ -1,7 +1,10 @@
+
 #ifndef WIRECELL_INODE
 #define WIRECELL_INODE
 
 #include "WireCellUtil/IComponent.h"
+
+#include <boost/any.hpp>
 
 #include <memory>
 #include <vector>
@@ -12,6 +15,7 @@ namespace WireCell {
      */ 
     class INode : public IComponent<INode> {
     public:
+
 	virtual ~INode(){}
 
 	enum NodeCategory {

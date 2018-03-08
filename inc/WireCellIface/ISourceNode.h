@@ -52,7 +52,8 @@ namespace WireCell {
 	    output_pointer out;
 	    bool ok = (*this)(out);
 	    if (!ok) return false;
-	    anyout = out;
+            anyout = out;
+
 	    return true;
 	}
 
