@@ -23,7 +23,7 @@ namespace WireCell {
 	virtual ~IDrifter() {}
 
 	virtual std::string signature() {
-	   return typeid(IDrifter).name();
+            return typeid(IDrifter).name();
 	}
 
         /// supply:
