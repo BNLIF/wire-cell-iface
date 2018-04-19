@@ -78,7 +78,7 @@ void SimpleFrame::tag_traces(const tag_t& tag, const IFrame::trace_list_t& indic
 
     // Kind of dumb way to update this but we want to be able to
     // return a reference to it later.
-    m_trace_tags.empty();
+    m_trace_tags.clear();
     for (auto& it : m_trace_info) {
         m_trace_tags.push_back(it.first);
     }
