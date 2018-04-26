@@ -71,7 +71,8 @@ namespace WireCell {
         /// Return -1 if the frame is wholly before the target time.
         /// Return +1 if the frame is wholly after the target time.
         ///
-        /// Also return 0 if given a null frame or one lacking any traces.
+        /// Note, the frame pointer must be valid and the frame must
+        /// have traces.
         ///
         /// Note, if the low-edge of the minimum tick or the high-edge
         /// of the maximum tick is exactly at the target time then the
@@ -82,8 +83,12 @@ namespace WireCell {
         /// traces with all samples taken before the given time and a
         /// new .second frame with traces containing samples all taken
         /// on or after the given time.  If the original frame time
-        /// span does not cover the target time then it is returned in
-        /// the pair and the other half will hold the nullptr.
+        /// span does not cover the target time then the original
+        /// frame is returned in the associated half of the pair and
+        /// the other half will hold the nullptr.
+        ///
+        /// Note, the frame pointer must be valid and the frame must
+        /// have traces.
         std::pair<IFrame::pointer, IFrame::pointer> split(IFrame::pointer frame, double time);
 
     }

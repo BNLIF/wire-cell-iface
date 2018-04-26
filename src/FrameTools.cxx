@@ -7,19 +7,15 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <numeric>
+#include <iostream>             // debug
+#include <iomanip>             // debug
 
 using namespace WireCell;
 
 
 int FrameTools::frmtcmp(IFrame::pointer frame, double time)
 {
-    if (!frame) {
-        return 0;
-    }
     auto traces = frame->traces();
-    if (!traces) {
-        return 0;
-    }
     auto tbin_mm = FrameTools::tbin_range(*traces.get());
 
     const double tref = frame->time();
@@ -51,7 +47,16 @@ std::pair<IFrame::pointer, IFrame::pointer> FrameTools::split(IFrame::pointer fr
     const int ident = frame->ident();
         
     // Every tick equal or larger than this is in the second frame.
-    const int tbin_split = 0.5 + (time - tref)/tick;
+    const double fnticks = (time - tref)/tick;
+    const int tbin_split = 0.5 + fnticks;
+
+    // std::cerr << "FrameTools::split: fid:"<<ident
+    //           << std::setprecision(12)
+    //           << " t_target:"<<time/units::us<<"us"
+    //           << " t_frame:"<< tref/units::us<<"us"
+    //           << " fnticks:" << fnticks
+    //           << " tbin_split:"<<tbin_split
+    //           << "\n";
 
     ITrace::vector mtraces, ptraces;
     for (auto trace : (*frame->traces())) {
