@@ -56,7 +56,7 @@ namespace WireCell {
 
     // A set ordered by wire ident
     struct IWireCompareIdent {
-	bool operator()(const IWire::pointer& lhs, const IWire::pointer& rhs) {
+	bool operator()(const IWire::pointer& lhs, const IWire::pointer& rhs) const {
 	    if (lhs->ident() == rhs->ident()) {
 		return lhs.get() < rhs.get(); // break tie with pointer
 	    }
@@ -67,7 +67,7 @@ namespace WireCell {
 
     // A set ordered by wire segment
     struct IWireCompareSegment {
-	bool operator()(const IWire::pointer& lhs, const IWire::pointer& rhs) {
+	bool operator()(const IWire::pointer& lhs, const IWire::pointer& rhs) const {
 	    if (lhs->segment() == rhs->segment()) {
 		return lhs.get() < rhs.get(); // break tie with pointer
 	    }

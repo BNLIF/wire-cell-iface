@@ -54,7 +54,7 @@ namespace WireCell {
 
     // A set ordered by beginning of patch
     struct IDiffusionCompareLbegin {
-	bool operator()(const IDiffusion::pointer& lhs, const IDiffusion::pointer& rhs) {
+	bool operator()(const IDiffusion::pointer& lhs, const IDiffusion::pointer& rhs) const {
 	    if (lhs->lbegin() == rhs->lbegin()) {
 		return lhs.get() < rhs.get(); // break tie with pointer
 	    }

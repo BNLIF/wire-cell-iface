@@ -30,7 +30,7 @@ namespace WireCell {
 
     // A set ordered by time
     struct ICellSliceCompareTime {
-	bool operator()(const ICellSlice::pointer& lhs, const ICellSlice::pointer& rhs) {
+	bool operator()(const ICellSlice::pointer& lhs, const ICellSlice::pointer& rhs) const {
 	    if (lhs->time() == rhs->time()) {
 		return lhs.get() < rhs.get(); // break tie with pointer
 	    }
