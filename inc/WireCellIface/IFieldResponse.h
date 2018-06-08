@@ -1,9 +1,7 @@
-/** A field response provides access to a FieldResponse data structure.
- *
- * See also:
- *
- * Response::wire_region_average()
- *
+/** A field response provides access to a FieldResponse data
+ * structure.  Use this interface instead of directly loading a
+ * response schema so that multiple components may share the same data
+ * without causing multiple loads.
  */
 
 #ifndef WIRECELLIFACE_IFIELDRESPONSE
