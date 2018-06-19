@@ -54,14 +54,17 @@ namespace WireCell {
     IDepo::vector depo_chain(IDepo::pointer recent);
 
     /// Compare how "far" two depositions are from the origin along
-    /// the drift-line (metric: dT + dX/V_drift) given a drift velocity.
+    /// the drift-line (metric: dT + dX/V_drift) given a drift
+    /// velocity.  Note: if drifting is toward a "back" face of an
+    /// anode then the drift speed should be negative in order to
+    /// indicate drift is in the postitive X direction..
     struct IDepoDriftCompare {
-	double drift_velocity;
-	IDepoDriftCompare(double drift_velocity = 1.6 *units::mm/units::microsecond)
-	    : drift_velocity(drift_velocity) {};
+	double drift_speed;
+	IDepoDriftCompare(double drift_speed = 1.6 *units::mm/units::microsecond)
+	    : drift_speed(drift_speed) {};
 	bool operator()(const IDepo::pointer& lhs, const IDepo::pointer& rhs) const {
-	    double t1 = lhs->time() + lhs->pos().x()/drift_velocity;
-	    double t2 = rhs->time() + rhs->pos().x()/drift_velocity;
+	    double t1 = lhs->time() + lhs->pos().x()/drift_speed;
+	    double t2 = rhs->time() + rhs->pos().x()/drift_speed;
 	    if (t1 == t2) {
 		// make sure there are no ties due to precision!
 		return lhs.get() < rhs.get(); 
