@@ -19,6 +19,7 @@
 #define WIRECELLIFACES_IANODEFACE
 
 #include "WireCellUtil/IComponent.h"
+#include "WireCellUtil/BoundingBox.h"
 #include "WireCellIface/IWirePlane.h"
 
 namespace WireCell {
@@ -40,7 +41,9 @@ namespace WireCell {
         /// Return all wires planes
         virtual IWirePlane::vector planes() const = 0;
 
-
+        /// Return a bounding box containing the volume to which this
+        /// face is sensitive.
+        virtual BoundingBox sensitive() const = 0;
     };
 }
 

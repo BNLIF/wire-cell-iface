@@ -46,7 +46,6 @@ namespace WireCell {
 
         /// Return all wires connected into the given channel ident number
         virtual IWire::vector wires(int channel) const = 0;
-
     };
 
 }
