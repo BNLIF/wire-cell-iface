@@ -1,4 +1,4 @@
-#include "WireCellIface/SimplePlaneSlice.h"
+
 #include "WireCellIface/WirePlaneId.h"
 #include "WireCellUtil/Testing.h"
 

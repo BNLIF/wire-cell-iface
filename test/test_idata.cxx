@@ -2,8 +2,6 @@
 #include "WireCellIface/ICell.h"
 #include "WireCellIface/IConfigurable.h"
 #include "WireCellIface/IDepo.h"
-#include "WireCellIface/IChannelSlice.h"
-#include "WireCellIface/IPlaneSlice.h"
 #include "WireCellIface/ITiling.h"
 #include "WireCellIface/ITrace.h"
 #include "WireCellIface/IWire.h"
