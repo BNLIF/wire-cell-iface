@@ -63,6 +63,8 @@ namespace WireCell {
 	virtual bool operator()(const input_vector& invec, output_pointer& out) = 0;
 
 	// Return the names of the types this node takes as input.
+        // Note: if subclass wants to supply FaninMultiplicity at
+        // construction time, this needs to be overridden.
 	virtual std::vector<std::string>  input_types() {
 	    std::vector<std::string> ret(FaninMultiplicity, std::string(typeid(input_type).name()));
 	    return ret;

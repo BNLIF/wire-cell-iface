@@ -49,17 +49,19 @@ namespace WireCell {
 	virtual int concurrency() { return 1; }
 
 	// Return string representations of the C++ types this node takes as input.
+        // When a node is used in a DFP graph, these enumerate the input ports.
 	virtual std::vector<std::string> input_types() {
 	    return std::vector<std::string> ();
 	}
 	// Return string representations of the C++ types this node produces as output.
+        // When a node is used in a DFP graph, these enumerate the output ports.
 	virtual std::vector<std::string>  output_types() {
 	    return std::vector<std::string> ();
 	}
 
 	
         /// Optional hook to be implemented in order to reset after an
-        /// end of stream is encountered.
+        /// end of stream is encountered.  Fixme: this should be removed.
         virtual void reset() {
         }
 
