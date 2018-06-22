@@ -34,6 +34,7 @@ namespace WireCell {
 
     };
 
+    // This converts between any and typed.
     template <typename InputType, typename OutputType, int FaninMultiplicity=3>
     class IFaninNode : public IFaninNodeBase {
     public:
@@ -59,7 +60,8 @@ namespace WireCell {
 	    }
 	    return ok;
 	}
-
+        
+        // The typed interface
 	virtual bool operator()(const input_vector& invec, output_pointer& out) = 0;
 
 	// Return the names of the types this node takes as input.

@@ -21,7 +21,6 @@ namespace WireCell {
         virtual std::vector<std::string>  output_types() = 0;
         // and the already abstract:
         // virtual bool operator()(const input_pointer& in, output_vector& outv);
-        
     };
 }
 #endif
