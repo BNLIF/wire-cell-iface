@@ -47,15 +47,16 @@ namespace WireCell {
 	virtual ~IFanoutNode() {}
 
 	virtual bool operator()(const boost::any& anyin, any_vector& anyv) {
-            auto in = boost::any_cast<input_pointer>(anyin);
+            const input_pointer& in = boost::any_cast<const input_pointer&>(anyin);
             output_vector outv;
             bool ok = (*this)(in, outv);
-            if (ok) {
-                for (auto& obj : outv) {
-                    anyv.push_back(obj);
-                }
+            if (!ok) return false;
+            const size_t mult = output_types().size(); // don't use FanoutMultiplicity
+            anyv.resize(mult);
+            for (size_t ind=0; ind<mult; ++ind) {
+                anyv[ind] = outv[ind];
             }
-            return ok;
+            return true;
 	}
 
         // The typed interface
