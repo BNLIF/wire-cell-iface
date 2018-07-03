@@ -7,8 +7,8 @@
 #define WIRECELL_IFACE_IWAVEFORM
 
 #include "WireCellIface/IData.h"
-#include "WireCellIface/ISequence.h"
 
+#include <vector>
 
 namespace WireCell {
 
@@ -18,11 +18,11 @@ namespace WireCell {
 
         virtual ~IWaveform() {}
         // The starting point of the sampling
-        virtual double start() const = 0;
+        virtual double waveform_start() const = 0;
         // The sampling period aka bin width
-        virtual double period() const = 0;
+        virtual double waveform_period() const = 0;
         // The collection of samples 
-        virtual const sequence_type& samples() const = 0;
+        virtual const sequence_type& waveform_samples() const = 0;
         
     };
 }

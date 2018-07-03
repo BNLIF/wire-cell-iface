@@ -13,6 +13,7 @@
 
 #include "WireCellUtil/IComponent.h"
 #include "WireCellIface/IAnodeFace.h"
+#include "WireCellUtil/Waveform.h"
 
 namespace WireCell {
 
@@ -54,15 +55,18 @@ namespace WireCell {
         /// interest" for which the PIR is associated.
         virtual double pitch_range() const = 0;
 
+        /// The number of wires that span the pitch range.
+        virtual int nwires() const = 0;
+
         // /// Return the distance between wires along the wire pitch direction.
-	// virtual double pitch() const = 0;
+        virtual double pitch() const = 0;
 
         // /// Return the distance between impact positions along the
         // /// wire pitch direction.
-	// virtual double impact() const = 0;
+        virtual double impact() const = 0;
 
         // /// Return the number of bins in the impact response spectra.
-        // virtual size_t nbins() const = 0;
+        virtual size_t nbins() const = 0;
 
     };
 }
