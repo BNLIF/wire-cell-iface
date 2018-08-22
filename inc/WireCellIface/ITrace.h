@@ -29,8 +29,6 @@ namespace WireCell {
 	/// Return the time bin relative to some absolute time
 	/// (typically the start of the frame) at which the first
 	/// ADC/charge in the trace was digitized (leading bin edge).
-	//
-	// fixme: should replace this with a Waveform::Domain
 	virtual int tbin() const = 0;
 
 	/// Return the contiguous adc/charge measurements on the
