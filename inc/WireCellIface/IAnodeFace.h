@@ -42,7 +42,7 @@ namespace WireCell {
         virtual IWirePlane::vector planes() const = 0;
 
         /// Return a bounding box containing the volume to which this
-        /// face is sensitive.
+        /// face is sensitive.  BB may be zero volume.
         virtual BoundingBox sensitive() const = 0;
     };
 }

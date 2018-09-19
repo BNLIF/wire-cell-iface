@@ -38,14 +38,14 @@ namespace WireCell {
         /// Resolve a channel ident number to a WirePlaneId.
         virtual WirePlaneId resolve(int channel) const  = 0;
 
-        /// Return a collection of all channel ident numbers.
+        /// Return a collection of all channels.
         virtual std::vector<int> channels() const = 0;
 
-        /// Return an IChannel with the associated ID.
-        virtual IChannel::pointer channel(int ident) const = 0;
+        /// Return an IChannel with the associated channel ID.
+        virtual IChannel::pointer channel(int chident) const = 0;
 
         /// Return all wires connected into the given channel ident number
-        virtual IWire::vector wires(int channel) const = 0;
+        virtual IWire::vector wires(int chident) const = 0;
     };
 
 }

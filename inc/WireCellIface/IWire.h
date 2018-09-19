@@ -65,6 +65,17 @@ namespace WireCell {
     };
     typedef std::set<IWire::pointer, IWireCompareIdent> IWireSet;
 
+    // Compare by wire index
+    struct IWireCompareIndex {
+	bool operator()(const IWire::pointer& lhs, const IWire::pointer& rhs) const {
+            // fixme: should probably do something smarter here if two are not in same plane.....
+	    if (lhs->index() == rhs->index()) {
+		return lhs.get() < rhs.get(); // break tie with pointer
+	    }
+	    return lhs->index() < rhs->index();
+	}
+    };
+
     // A set ordered by wire segment
     struct IWireCompareSegment {
 	bool operator()(const IWire::pointer& lhs, const IWire::pointer& rhs) const {

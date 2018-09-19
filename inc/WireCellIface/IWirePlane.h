@@ -12,13 +12,14 @@
 #include "WireCellUtil/Pimpos.h"
 
 #include "WireCellIface/IWire.h"
+#include "WireCellIface/IChannel.h"
 
 namespace WireCell {
 
     class IWirePlane : public IComponent<IWirePlane> {
     public:
 
-        virtual ~IWirePlane() {}
+        virtual ~IWirePlane();
 
         virtual int ident() const = 0;
 
@@ -28,6 +29,12 @@ namespace WireCell {
         /// Return vector of wire objects ordered by increasing Z.
         virtual const IWire::vector& wires() const = 0;
 
+        /// Return vector of channel objects ordered by their index
+        /// (NOT their channel ident number).
+        virtual const IChannel::vector& channels() const = 0;
+
+	/// The ID of the plane of wire zero.  This is just sugar.
+	virtual WirePlaneId planeid() const;
     };
 }
 
