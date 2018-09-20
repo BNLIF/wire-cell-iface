@@ -1,8 +1,8 @@
 /**
    
    A depo framer takes in a collection of depositions and produces a
-   frame that contains their associated signal waveforms.  See
-   WireCell::Gen::DepoFramer for an implementation.
+   single frame that contains their associated signal waveforms.
+   Excess depos may be dropped.
 
  */
 
@@ -25,8 +25,6 @@ namespace WireCell {
 
         // implement:
 	// virtual bool operator()(const input_pointer& in, output_pointer& out) = 0;
-
-
 
     };
 }
