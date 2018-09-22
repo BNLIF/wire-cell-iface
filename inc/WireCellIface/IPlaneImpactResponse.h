@@ -23,8 +23,20 @@ namespace WireCell {
         virtual ~IImpactResponse() {}
 
 	/// Frequency-domain spectrum of response
-	virtual const Waveform::compseq_t& spectrum() const = 0;
-
+	virtual const Waveform::compseq_t& spectrum() = 0;
+	/// Time-domain waveform of the response
+	virtual const Waveform::realseq_t& waveform() const = 0;
+	// minimum padding for the response
+	virtual int waveform_pad() const = 0;
+	
+	// Frequency-domain spectrum of the auxillary long-range response
+	virtual const Waveform::compseq_t& long_aux_spectrum() = 0;
+	// Time-domain waveform of the auxillary long-range response
+	virtual const Waveform::realseq_t& long_aux_waveform() const = 0;
+	// minimum padding for the auxillary long-range response
+	virtual int long_aux_waveform_pad() const = 0;
+	
+	
         /// Corresponding impact number
         virtual int impact() const = 0;
     };
