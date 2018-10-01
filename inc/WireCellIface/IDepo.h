@@ -27,6 +27,9 @@ namespace WireCell {
 	/// The number charge (in units of number of electrons) deposited.
 	virtual double charge() const = 0;
 
+	/// The energy (in units of MeV) deposited.
+	virtual double energy() const = 0;
+
 	/// Track ID from Geant4
 	virtual int id() const = 0;
 

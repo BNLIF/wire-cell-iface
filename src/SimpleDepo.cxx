@@ -3,7 +3,7 @@
 using namespace WireCell;
 
 SimpleDepo::SimpleDepo(double t, const WireCell::Point& pos,
-		       double charge, IDepo::pointer prior,
+		       double charge, double energy, IDepo::pointer prior,
                        double extent_long, double extent_tran,
 		       int id, int pdg)
                        
@@ -12,6 +12,7 @@ SimpleDepo::SimpleDepo(double t, const WireCell::Point& pos,
   , m_id(id)
   , m_pdg(pdg)
   , m_charge(charge)
+  , m_energy(energy)
   , m_prior(prior)
   , m_long(extent_long)
   , m_tran(extent_tran)
@@ -29,6 +30,10 @@ double SimpleDepo::time() const
 double SimpleDepo::charge() const
 {
     return m_charge;
+}
+double SimpleDepo::energy() const
+{
+    return m_energy;
 }
 WireCell::IDepo::pointer SimpleDepo::prior() const
 {
