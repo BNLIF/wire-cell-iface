@@ -19,7 +19,7 @@ bool WireCell::ascending_index(IWire::pointer lhs, IWire::pointer rhs)
 	return lhs->index() < rhs->index();
     }
     return lhs->planeid() < lhs->planeid();
-};
+}
 
 // bool WireCell::WirePlaneIndexCompare ::operator() (Wire lhs, Wire rhs) const
 // {

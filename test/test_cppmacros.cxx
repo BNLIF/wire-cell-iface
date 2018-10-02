@@ -4,7 +4,7 @@
     namespace FooBar {							\
 	void the##TypeName##func(TypeName var##varname) { std::cout << var##varname << std::endl; }}
 
-FOO(int, INT);
+FOO(int, INT)
 
 int main()
 {
