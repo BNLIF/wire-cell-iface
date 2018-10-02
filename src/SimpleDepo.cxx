@@ -3,9 +3,9 @@
 using namespace WireCell;
 
 SimpleDepo::SimpleDepo(double t, const WireCell::Point& pos,
-		       double charge, double energy, IDepo::pointer prior,
+		       double charge, IDepo::pointer prior,
                        double extent_long, double extent_tran,
-		       int id, int pdg)
+		       int id, int pdg, double energy)
                        
   : m_time(t)
   , m_pos(pos)
