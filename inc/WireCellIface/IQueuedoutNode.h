@@ -16,7 +16,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IQueuedoutNodeBase> pointer;
 
-	virtual ~IQueuedoutNodeBase() {}
+	virtual ~IQueuedoutNodeBase() ;
 
 	typedef std::deque<boost::any> queuedany;
 
@@ -45,7 +45,7 @@ namespace WireCell {
 	typedef std::shared_ptr<const OutputType> output_pointer;
 	typedef std::deque<output_pointer> output_queue;
 
-	virtual ~IQueuedoutNode() {}
+	virtual ~IQueuedoutNode(){}
 
 
 	virtual bool operator()(const boost::any& anyin, queuedany& outanyq) {

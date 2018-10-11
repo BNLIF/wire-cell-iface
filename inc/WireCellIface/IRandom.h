@@ -8,7 +8,7 @@ namespace WireCell {
 
     class IRandom : public IComponent<IRandom> {
     public:
-        virtual ~IRandom() {}
+        virtual ~IRandom() ;
 
         /// Sample a binomial distribution
         virtual int binomial(int max, double prob) = 0;

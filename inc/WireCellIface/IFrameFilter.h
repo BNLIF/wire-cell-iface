@@ -22,7 +22,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IFrameFilter> pointer;
 
-	virtual ~IFrameFilter() {}
+	virtual ~IFrameFilter() ;
 
 	virtual std::string signature() {
 	   return typeid(IFrameFilter).name();

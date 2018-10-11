@@ -16,7 +16,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<ISinkNodeBase> pointer;
 
-	virtual ~ISinkNodeBase() {}
+	virtual ~ISinkNodeBase() ;
 
 	virtual NodeCategory category() {
 	    return sinkNode;

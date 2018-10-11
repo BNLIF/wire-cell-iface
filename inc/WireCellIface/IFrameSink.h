@@ -13,7 +13,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IFrameSink> pointer;
 
-	virtual ~IFrameSink() {}
+	virtual ~IFrameSink() ;
 
 	virtual std::string signature() {
 	   return typeid(IFrameSink).name();

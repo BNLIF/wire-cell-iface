@@ -23,7 +23,7 @@ namespace WireCell {
 	    , m_channel(channel)
 	    , m_segment(segment)
 	    , m_ray(ray) { }
-	virtual ~SimpleWire() {}
+	virtual ~SimpleWire();
 
 	// this probably could overflow? switch to long int for wire ident?
 	int ident() const { return m_ident; }

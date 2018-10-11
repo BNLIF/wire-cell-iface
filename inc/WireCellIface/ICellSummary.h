@@ -12,7 +12,7 @@ namespace WireCell {
     {
     public:
 	
-	virtual ~ICellSummary() {}
+	virtual ~ICellSummary() ;
 
 	/// Return a sequence of wires which are associated with the
 	/// given cell.

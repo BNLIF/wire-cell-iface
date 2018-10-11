@@ -15,7 +15,7 @@ namespace WireCell {
     class IDepo : public IData<IDepo> {
     public:
 	
-	virtual ~IDepo() {};
+	virtual ~IDepo() ;
 
 	/// The location of the deposition.
 	virtual const Point& pos() const = 0;

@@ -20,7 +20,7 @@ namespace WireCell {
 	// fixme: should replace this with a Waveform::realseq_t
 	typedef std::vector<float> ChargeSequence;
 
-	virtual ~ITrace() {};
+	virtual ~ITrace() ;
 
 	/// Return the identifier number for the channel on which this
 	/// trace was recorded.

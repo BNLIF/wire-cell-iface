@@ -17,7 +17,7 @@ namespace WireCell {
     public:
 	//typedef std::shared_ptr<IWireSummary> pointer;
 
-	virtual ~IWireSummary() {}
+	virtual ~IWireSummary();
 
 	/// Return the bounding box of the wire planes.
 	virtual const BoundingBox& box() const = 0;

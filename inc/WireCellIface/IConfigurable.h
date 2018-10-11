@@ -12,7 +12,7 @@ namespace WireCell {
      */
     class IConfigurable : virtual public IComponent<IConfigurable> {
     public:
-	virtual ~IConfigurable() {}
+	virtual ~IConfigurable() ;
 
 	/// Optional, override to return a hard-coded default configuration.
 	virtual WireCell::Configuration default_configuration() const {

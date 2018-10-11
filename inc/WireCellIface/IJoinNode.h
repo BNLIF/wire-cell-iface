@@ -20,7 +20,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IJoinNodeBase> pointer;
 
-	virtual ~IJoinNodeBase() {}
+	virtual ~IJoinNodeBase() ;
 
 	typedef std::vector<boost::any> any_vector;
 
@@ -50,7 +50,7 @@ namespace WireCell {
 
 	typedef std::shared_ptr<const OutputType> output_pointer;
 
-	virtual ~IJoinNode() {}
+	virtual ~IJoinNode(){}
 
 	virtual bool operator()(const any_vector& anyv, boost::any& anyout) {
 	    input_helper_type ih;

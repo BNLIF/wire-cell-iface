@@ -18,7 +18,7 @@ namespace WireCell {
     class ICellSlice : public IData<ICellSlice> {
     public:
 
-	virtual ~ICellSlice() {}
+	virtual ~ICellSlice() ;
 
 	/// Return the absolute time to which this slice corresponds.
 	virtual double time() const = 0;

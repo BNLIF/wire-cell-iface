@@ -19,7 +19,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IDepoCollector> pointer;
 
-	virtual ~IDepoCollector() {}
+	virtual ~IDepoCollector() ;
 
 	virtual std::string signature() {
 	   return typeid(IDepoCollector).name();

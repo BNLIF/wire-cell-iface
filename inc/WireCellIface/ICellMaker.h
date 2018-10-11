@@ -12,7 +12,7 @@ namespace WireCell {
     class ICellMaker : public IFunctionNode<IWire::vector, ICell::vector>
     {
     public:
-	virtual ~ICellMaker() {}
+	virtual ~ICellMaker();
 	
 	virtual std::string signature() {
 	   return typeid(ICellMaker).name();

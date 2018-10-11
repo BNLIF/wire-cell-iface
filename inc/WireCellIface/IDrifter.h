@@ -20,7 +20,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IDrifter> pointer;
 
-	virtual ~IDrifter() {}
+	virtual ~IDrifter() ;
 
 	virtual std::string signature() {
             return typeid(IDrifter).name();

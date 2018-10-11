@@ -11,7 +11,7 @@ namespace WireCell {
     class IWireSource : public ISourceNode<IWire::vector>
     {
     public:
-	virtual ~IWireSource() {}
+	virtual ~IWireSource() ;
 
 	virtual std::string signature() {
 	   return typeid(IWireSource).name();

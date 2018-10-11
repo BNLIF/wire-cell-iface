@@ -20,7 +20,7 @@ namespace WireCell {
     {
     public:
 
-        virtual ~IWireSchema() {}
+        virtual ~IWireSchema() ;
 
         /// Return the field response data
         virtual const WireSchema::Store& wire_schema_store() const = 0;

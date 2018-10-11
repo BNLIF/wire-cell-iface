@@ -12,7 +12,7 @@ namespace WireCell {
     class IFrameFanin : public IFaninNode<IFrame,IFrame,0> {
     public:
 
-        virtual ~IFrameFanin() {}
+        virtual ~IFrameFanin() ;
 
         virtual std::string signature() {
            return typeid(IFrameFanin).name();

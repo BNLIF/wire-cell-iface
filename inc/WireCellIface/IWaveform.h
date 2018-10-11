@@ -16,7 +16,7 @@ namespace WireCell {
     public:
         typedef std::vector<float> sequence_type;
 
-        virtual ~IWaveform() {}
+        virtual ~IWaveform() ;
         // The starting point of the sampling
         virtual double waveform_start() const = 0;
         // The sampling period aka bin width

@@ -15,7 +15,7 @@ namespace WireCell {
     class IDeconvolution : public WireCell::IComponent<IDeconvolution> {
     public:
 
-	virtual ~IDeconvolution() {};
+	virtual ~IDeconvolution() ;
 
 	typedef Waveform::realseq_t signal_t;
 	typedef std::map<int, signal_t> channel_signals_t;

@@ -17,7 +17,7 @@ namespace WireCell {
 
     class IDepoFramer : public IFunctionNode<IDepoSet, IFrame> {
     public:
-        virtual ~IDepoFramer() {}
+        virtual ~IDepoFramer() ;
 
 	virtual std::string signature() {
 	   return typeid(IDepoFramer).name();

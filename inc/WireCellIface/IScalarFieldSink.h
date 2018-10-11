@@ -11,7 +11,7 @@ namespace WireCell {
     class IScalarFieldSink : public ISinkNode< ScalarField >
     {
     public:
-	virtual ~IScalarFieldSink() {}
+	virtual ~IScalarFieldSink() ;
 
 	virtual std::string signature() {
 	   return typeid(IScalarFieldSink).name();

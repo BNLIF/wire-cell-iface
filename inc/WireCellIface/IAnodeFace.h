@@ -27,7 +27,7 @@ namespace WireCell {
     class IAnodeFace : public IComponent<IAnodeFace> {
     public:
 
-        virtual ~IAnodeFace() {}
+        virtual ~IAnodeFace();
 
         /// Return the ident number of this face.
         virtual int ident() const = 0;

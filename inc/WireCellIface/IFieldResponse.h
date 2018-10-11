@@ -16,7 +16,7 @@ namespace WireCell {
     {
     public:
 
-        virtual ~IFieldResponse() {}
+        virtual ~IFieldResponse() ;
 
         /// Return the field response data
         virtual const Response::Schema::FieldResponse& field_response() const = 0;

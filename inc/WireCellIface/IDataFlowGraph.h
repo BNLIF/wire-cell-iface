@@ -12,7 +12,7 @@ namespace WireCell {
      */
     class IDataFlowGraph : public IComponent<IDataFlowGraph> {
     public:
-	virtual ~IDataFlowGraph() {}
+	virtual ~IDataFlowGraph() ;
 
 	/// Connect tail and head nodes so data runs from given tail
 	/// port number to given head port number Return false on

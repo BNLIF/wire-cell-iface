@@ -70,7 +70,7 @@ namespace WireCell {
     // it is just to give an initial test vehicle.
     class IWireParameters : virtual public IComponent<IWireParameters> {
     public:
-	virtual ~IWireParameters() {}
+	virtual ~IWireParameters();
 
 	/** Provide access to the rays which were used to define the wires. */
 

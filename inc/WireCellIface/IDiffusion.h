@@ -20,6 +20,8 @@ namespace WireCell {
     {
     public:
 
+        virtual ~IDiffusion();
+
 	/// Return the deposition that led to this diffusion.
 	virtual IDepo::pointer depo() const = 0;
 

@@ -12,6 +12,8 @@ namespace WireCell {
     class IData {		// note: NOT a WireCell::Interface
     public:
 
+        virtual ~IData() {}
+
 	typedef Type value_type;
 
 	/// Never expose the basic pointer-to-object, but rather only

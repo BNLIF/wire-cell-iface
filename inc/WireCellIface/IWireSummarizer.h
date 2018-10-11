@@ -11,7 +11,7 @@ namespace WireCell {
     class IWireSummarizer : public IFunctionNode<IWire::vector, IWireSummary>
     {
     public:
-	virtual ~IWireSummarizer() {}
+	virtual ~IWireSummarizer();
 
 	virtual std::string signature() {
 	   return typeid(IWireSummarizer).name();

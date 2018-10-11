@@ -12,7 +12,7 @@ namespace WireCell {
 
     class IChannelStatus : public IComponent<IChannelStatus> {
     public:
-        virtual ~IChannelStatus() {}
+        virtual ~IChannelStatus() ;
 
         /// Return the current gain for the preamplifier in units of
         /// [voltage]/[charge].

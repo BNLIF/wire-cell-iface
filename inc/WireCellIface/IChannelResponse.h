@@ -17,7 +17,7 @@ namespace WireCell {
     class IChannelResponse : public IComponent<IChannelResponse> {
     public:
 
-        virtual ~IChannelResponse() {};
+        virtual ~IChannelResponse() ;
 
         /// Provide the channel response for the given channel ID
         /// number.  Note the binning of the returned waveform should

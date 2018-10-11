@@ -13,7 +13,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IDepoSource> pointer;
 
-	virtual ~IDepoSource() {}
+	virtual ~IDepoSource() ;
 
 	virtual std::string signature() {
 	   return typeid(IDepoSource).name();

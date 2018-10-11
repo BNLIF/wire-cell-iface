@@ -9,7 +9,7 @@ namespace WireCell {
     class IFrameSplitter : public ISplitNode<IFrame, std::tuple<IFrame,IFrame> > {
     public:
         typedef std::shared_ptr<IFrameSplitter> pointer;
-        virtual ~IFrameSplitter() {}
+        virtual ~IFrameSplitter() ;
 
         virtual std::string signature() {
             return typeid(IFrameSplitter).name();

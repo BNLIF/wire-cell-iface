@@ -9,7 +9,7 @@ namespace WireCell {
      */
     class IDepoSet : public IData<IDepoSet> {
     public:
-	virtual ~IDepoSet() {};
+	virtual ~IDepoSet() ;
 
         /// Return some identifier number that is unique to this set.
         virtual int ident() const = 0;

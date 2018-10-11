@@ -9,7 +9,7 @@ namespace WireCell {
     class ICellSliceSink : public ISinkNode<ICellSlice>
     {
     public:
-	virtual ~ICellSliceSink() {}
+	virtual ~ICellSliceSink() ;
 
 	virtual std::string signature() {
 	   return typeid(ICellSliceSink).name();

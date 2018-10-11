@@ -14,7 +14,7 @@ namespace WireCell {
     class IGeometry : virtual public IComponent<IGeometry> {
     public:
 
-	virtual ~IGeometry() {}
+	virtual ~IGeometry() ;
 
 	virtual IWire::vector wires() = 0;
 	virtual ICell::vector cells() = 0;

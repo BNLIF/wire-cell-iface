@@ -15,7 +15,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IFrameJoiner> pointer;
 
-	virtual ~IFrameJoiner() {}
+	virtual ~IFrameJoiner() ;
 
 	virtual std::string signature() {
 	   return typeid(IFrameJoiner).name();

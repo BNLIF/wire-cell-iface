@@ -15,7 +15,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IFunctionNodeBase> pointer;
 
-	virtual ~IFunctionNodeBase() {}
+	virtual ~IFunctionNodeBase() ;
 
 	/// The calling signature:
 	virtual bool operator()(const boost::any& anyin, boost::any& anyout) = 0;

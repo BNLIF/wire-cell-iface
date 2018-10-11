@@ -16,7 +16,7 @@ namespace WireCell {
     class INode : public IComponent<INode> {
     public:
 
-	virtual ~INode(){}
+	virtual ~INode();
 
 	enum NodeCategory {
 	    unknown,

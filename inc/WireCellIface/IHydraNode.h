@@ -25,7 +25,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IHydraNodeBase> pointer;
 
-	virtual ~IHydraNodeBase() {}
+	virtual ~IHydraNodeBase() ;
 
 	typedef std::deque<boost::any> any_queue;
 	typedef std::vector< any_queue > any_queue_vector;

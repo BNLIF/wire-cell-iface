@@ -21,7 +21,7 @@ namespace WireCell {
     class IAnodePlane : public IComponent<IAnodePlane> {
     public:
 
-        virtual ~IAnodePlane() {}
+        virtual ~IAnodePlane();
 
         /// Return the ident number of this plane.
         virtual int ident() const = 0;

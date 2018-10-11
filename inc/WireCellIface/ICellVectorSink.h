@@ -10,7 +10,7 @@ namespace WireCell {
     class ICellVectorSink : public ISinkNode<ICell::vector>
     {
     public:
-	virtual ~ICellVectorSink() {}
+	virtual ~ICellVectorSink() ;
 
 	/// supply:
 	/// virtual bool operator()(const ICell::shared_vector& cells);

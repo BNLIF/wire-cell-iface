@@ -17,7 +17,7 @@ namespace WireCell {
     class IFrame : public IData<IFrame> {
 
     public:
-	virtual ~IFrame() {};
+	virtual ~IFrame() ;
 
         // Tag gives some semantic meaning to that which it is
         // associated.  The frame as a whole may have a number of tags

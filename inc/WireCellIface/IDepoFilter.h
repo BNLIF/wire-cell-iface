@@ -11,7 +11,7 @@ namespace WireCell {
     class IDepoFilter : public IFunctionNode<IDepo,IDepo>
     {
     public:
-	virtual ~IDepoFilter() {}
+	virtual ~IDepoFilter() ;
 
 	typedef std::shared_ptr<IDepoFilter> pointer;
 

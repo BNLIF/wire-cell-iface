@@ -11,7 +11,7 @@ namespace WireCell {
 
     class IFilterWaveform : public IComponent<IFilterWaveform> {
     public:
-        virtual ~IFilterWaveform() {}
+        virtual ~IFilterWaveform() ;
 
         /// Provide the filter waveform with a given number of frequency bins.
         virtual const Waveform::realseq_t filter_waveform(int nfbins) const = 0;

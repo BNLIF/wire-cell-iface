@@ -18,7 +18,7 @@ namespace WireCell {
 	typedef WireCell::Waveform::compseq_t filter_t;
 	typedef std::vector<int> channel_group_t;
 
-	virtual ~IChannelNoiseDatabase() {};
+	virtual ~IChannelNoiseDatabase() ;
 
 
 	/// FIXME: how to handle state changes?

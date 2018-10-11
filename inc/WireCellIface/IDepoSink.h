@@ -11,7 +11,7 @@ namespace WireCell {
     class IDepoSink : public ISinkNode<IDepo>
     {
     public:
-	virtual ~IDepoSink() {}
+	virtual ~IDepoSink() ;
 
 	virtual std::string signature() {
 	   return typeid(IDepoSink).name();

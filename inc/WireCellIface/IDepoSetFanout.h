@@ -11,7 +11,7 @@ namespace WireCell {
     // output_types() must be reimplemented
     class IDepoSetFanout : public IFanoutNode<IDepoSet,IDepoSet,0> {
     public:
-        virtual ~IDepoSetFanout() {}
+        virtual ~IDepoSetFanout() ;
 
         virtual std::string signature() {
            return typeid(IDepoSetFanout).name();

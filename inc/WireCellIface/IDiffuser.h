@@ -21,7 +21,7 @@ namespace WireCell {
     class IDiffuser : public IQueuedoutNode<IDepo, IDiffusion>
     {
     public:
-	virtual ~IDiffuser() {};
+	virtual ~IDiffuser() ;
 
 
 	virtual std::string signature() {

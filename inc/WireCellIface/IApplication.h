@@ -12,7 +12,7 @@ namespace WireCell {
     class IApplication : public IComponent<IApplication> {
     public:
 
-	virtual ~IApplication() {}
+	virtual ~IApplication();
 
 	/// Implement to run something
 	virtual void execute() = 0;

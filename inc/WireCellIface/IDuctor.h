@@ -24,7 +24,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IDuctor> pointer;
 
-	virtual ~IDuctor() {}
+	virtual ~IDuctor() ;
 
 	virtual std::string signature() {
 	   return typeid(IDuctor).name();

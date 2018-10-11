@@ -16,7 +16,7 @@ namespace WireCell {
 	typedef std::shared_ptr<ISourceNodeBase> pointer;
 	
 
-	virtual ~ISourceNodeBase() {}
+	virtual ~ISourceNodeBase() ;
 
 	virtual NodeCategory category() {
 	    return sourceNode;

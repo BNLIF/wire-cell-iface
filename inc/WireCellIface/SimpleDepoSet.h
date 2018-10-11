@@ -11,7 +11,7 @@ namespace WireCell {
             : m_ident(ident)
             , m_depos(std::make_shared<IDepo::vector>(depos.begin(), depos.end()))
             { }
-        virtual ~SimpleDepoSet() {}
+        virtual ~SimpleDepoSet();
         virtual int ident() const { return m_ident; }
         virtual IDepo::shared_vector depos() const { return m_depos; }
     };

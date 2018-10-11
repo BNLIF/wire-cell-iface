@@ -17,7 +17,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IFaninNodeBase> pointer;
 
-	virtual ~IFaninNodeBase() {}
+	virtual ~IFaninNodeBase() ;
 
 	typedef std::vector<boost::any> any_vector;
 

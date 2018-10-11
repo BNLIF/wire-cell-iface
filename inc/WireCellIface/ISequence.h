@@ -51,7 +51,7 @@ namespace WireCell {
 	    return iterator_range(begin(), end());
 	}
 	
-	virtual ~ISequence() {};
+	virtual ~ISequence() ;
     };
     
     /** An ISequence made by adapting begin/end iterators of some
@@ -72,7 +72,7 @@ namespace WireCell {
 	virtual iterator begin() { return m_begin; }
 	virtual iterator end() { return m_end; }
 
-	virtual ~SequenceAdapter(){}
+	virtual ~SequenceAdapter();
     private:
 	iterator m_begin, m_end;
 

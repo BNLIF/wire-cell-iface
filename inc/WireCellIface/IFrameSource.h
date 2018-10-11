@@ -14,7 +14,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<IFrameSource> pointer;
 
-	virtual ~IFrameSource() {}
+	virtual ~IFrameSource() ;
 
 	// supply:
 	// virtual bool operator()(IFrame::pointer& frame);

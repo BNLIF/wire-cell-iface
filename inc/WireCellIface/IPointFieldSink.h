@@ -11,7 +11,7 @@ namespace WireCell {
     class IPointFieldSink : public ISinkNode< PointVector >
     {
     public:
-	virtual ~IPointFieldSink() {}
+	virtual ~IPointFieldSink() ;
 
 	virtual std::string signature() {
 	   return typeid(IPointFieldSink).name();

@@ -12,7 +12,7 @@ namespace WireCell {
     {
     public:
         typedef std::shared_ptr<IDepoMerger> pointer;
-        virtual ~IDepoMerger() {}
+        virtual ~IDepoMerger() ;
 
         virtual std::string signature() {
            return typeid(IDepoMerger).name();

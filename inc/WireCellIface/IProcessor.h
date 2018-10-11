@@ -10,7 +10,7 @@ namespace WireCell {
      */
     class IProcessor : virtual public Interface {
     public:
-	virtual ~IProcessor() { }
+	virtual ~IProcessor();
 
 	/// Called before any outside data is fed to the DFP graph.
 	//virtual void initialize() { }

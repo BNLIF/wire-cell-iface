@@ -14,7 +14,7 @@ namespace WireCell {
     class IChannelFilter : public WireCell::IComponent<IChannelFilter> {
     public:
 
-	virtual ~IChannelFilter() {};
+	virtual ~IChannelFilter() ;
 
 	typedef Waveform::realseq_t signal_t;
 	typedef std::map<int, signal_t> channel_signals_t;

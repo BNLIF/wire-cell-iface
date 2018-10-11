@@ -26,7 +26,7 @@ namespace WireCell {
 	{
 	    std::cerr << "SimpleCell #" << ident << " with " << m_wires.size() << " wires" << std::endl;
 	}
-	virtual ~SimpleCell() {}
+	virtual ~SimpleCell();
 
 	virtual int ident() const { return m_ident; }
 	

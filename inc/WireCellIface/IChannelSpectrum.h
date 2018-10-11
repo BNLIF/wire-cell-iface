@@ -17,7 +17,7 @@ namespace WireCell {
     class IChannelSpectrum : virtual public IComponent<IChannelSpectrum> {
     public:
 
-        virtual ~IChannelSpectrum() {}
+        virtual ~IChannelSpectrum() ;
 
         /// The data type for frequency space amplitude (not power).
         /// It should be in units of [X]/[frequency] (equivalently

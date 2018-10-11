@@ -20,7 +20,7 @@ namespace WireCell {
     class IImpactResponse : public IComponent<IImpactResponse> {
     public:
 
-        virtual ~IImpactResponse() {}
+        virtual ~IImpactResponse() ;
 
 	/// Frequency-domain spectrum of response
 	virtual const Waveform::compseq_t& spectrum() = 0;
@@ -48,7 +48,7 @@ namespace WireCell {
     class IPlaneImpactResponse : public IComponent<IPlaneImpactResponse>  {
     public:
 
-        virtual ~IPlaneImpactResponse() {};
+        virtual ~IPlaneImpactResponse();
 
 	/// Return the response at the impact position closest to
 	/// the given relative pitch location (measured relative

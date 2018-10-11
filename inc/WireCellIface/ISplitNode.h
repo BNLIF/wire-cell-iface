@@ -20,7 +20,7 @@ namespace WireCell {
     public:
 	typedef std::shared_ptr<ISplitNodeBase> pointer;
 
-	virtual ~ISplitNodeBase() {}
+	virtual ~ISplitNodeBase() ;
 
 	typedef std::vector<boost::any> any_vector;
 
