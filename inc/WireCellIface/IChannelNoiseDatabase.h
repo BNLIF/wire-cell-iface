@@ -77,6 +77,10 @@ namespace WireCell {
 	    return channel_group_t();
 	}
 
+    /// Return channels which are considered a'priori "misconfigured".
+	virtual channel_group_t miscfg_channels() const {
+	    return channel_group_t();
+	}
     };
 
 }
