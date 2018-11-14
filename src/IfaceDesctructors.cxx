@@ -32,12 +32,13 @@
 #include "WireCellIface/IDiffuser.h"
 #include "WireCellIface/IDrifter.h"
 #include "WireCellIface/IDuctor.h"
-#include "WireCellIface/IFanoutNode.h"
+#include "WireCellIface/IFaninNode.h"
 #include "WireCellIface/IFanoutNode.h"
 #include "WireCellIface/IFieldResponse.h"
 #include "WireCellIface/IFilterWaveform.h"
 #include "WireCellIface/IFrame.h"
 #include "WireCellIface/IFrameFanin.h"
+#include "WireCellIface/IFrameFanout.h"
 #include "WireCellIface/IFrameFilter.h"
 #include "WireCellIface/IFrameJoiner.h"
 #include "WireCellIface/IFrameSink.h"
@@ -120,6 +121,7 @@ IFieldResponse::~IFieldResponse() {}
 IFilterWaveform::~IFilterWaveform() {}
 IFrame::~IFrame() {}
 IFrameFanin::~IFrameFanin() {}
+IFrameFanout::~IFrameFanout() {}
 IFrameFilter::~IFrameFilter() {}
 IFrameJoiner::~IFrameJoiner() {}
 IFrameSink::~IFrameSink() {}
