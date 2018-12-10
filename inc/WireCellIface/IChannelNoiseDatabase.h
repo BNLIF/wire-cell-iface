@@ -48,6 +48,7 @@ namespace WireCell {
 	virtual int pad_window_back(int channel) const = 0;
 
 	virtual float coherent_nf_decon_limit(int channel) const = 0;
+	virtual float coherent_nf_decon_lf_cutoff(int channel) const = 0;
 	virtual float coherent_nf_adc_limit(int channel) const = 0;
 	virtual float coherent_nf_decon_limit1(int channel) const = 0;
 	virtual float coherent_nf_protection_factor(int channel) const = 0;
