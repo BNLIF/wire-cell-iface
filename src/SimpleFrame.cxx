@@ -11,7 +11,13 @@ SimpleFrame::SimpleFrame(int ident, double time, const ITrace::vector& traces, d
     , m_traces(new ITrace::vector(traces.begin(), traces.end()))
     , m_cmm(cmm)
 {
-//    cerr << "SimpleFrame(" << ident << " , " << time << " , " << traces.size() << ")" << endl;
+}
+SimpleFrame::SimpleFrame(int ident, double time, ITrace::shared_vector traces, double tick,
+			 const Waveform::ChannelMaskMap& cmm)
+    : m_ident(ident), m_time(time), m_tick(tick)
+    , m_traces(traces)
+    , m_cmm(cmm)
+{
 }
 SimpleFrame::~SimpleFrame()
 {
