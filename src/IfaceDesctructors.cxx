@@ -1,7 +1,6 @@
 // https://github.com/WireCell/wire-cell-iface/issues/5
 
 #include "WireCellIface/IWireParameters.h"
-#include "WireCellIface/IWireParameters.h"
 #include "WireCellIface/IAnodeFace.h"
 #include "WireCellIface/IAnodePlane.h"
 #include "WireCellIface/IApplication.h"
@@ -42,17 +41,14 @@
 #include "WireCellIface/IFrameFilter.h"
 #include "WireCellIface/IFrameJoiner.h"
 #include "WireCellIface/IFrameSink.h"
+#include "WireCellIface/IFrameSlicer.h"
 #include "WireCellIface/IFrameSource.h"
 #include "WireCellIface/IFrameSplitter.h"
 #include "WireCellIface/IFunctionNode.h"
-#include "WireCellIface/IFunctionNode.h"
 #include "WireCellIface/IGeometry.h"
 #include "WireCellIface/IHydraNode.h"
-#include "WireCellIface/IHydraNode.h"
-#include "WireCellIface/IJoinNode.h"
 #include "WireCellIface/IJoinNode.h"
 #include "WireCellIface/INode.h"
-#include "WireCellIface/IPlaneImpactResponse.h"
 #include "WireCellIface/IPlaneImpactResponse.h"
 #include "WireCellIface/IPointFieldSink.h"
 #include "WireCellIface/IProcessor.h"
@@ -62,12 +58,11 @@
 #include "WireCellIface/IRecombinationModel.h"
 #include "WireCellIface/IScalarFieldSink.h"
 #include "WireCellIface/ISequence.h"
-#include "WireCellIface/ISequence.h"
-#include "WireCellIface/ISinkNode.h"
 #include "WireCellIface/ISinkNode.h"
 #include "WireCellIface/ISourceNode.h"
-#include "WireCellIface/ISourceNode.h"
-#include "WireCellIface/ISplitNode.h"
+#include "WireCellIface/ISlice.h"
+#include "WireCellIface/ISliceFrame.h"
+#include "WireCellIface/ISliceFrameSink.h"
 #include "WireCellIface/ISplitNode.h"
 #include "WireCellIface/ITiling.h"
 #include "WireCellIface/ITrace.h"
@@ -125,6 +120,7 @@ IFrameFanout::~IFrameFanout() {}
 IFrameFilter::~IFrameFilter() {}
 IFrameJoiner::~IFrameJoiner() {}
 IFrameSink::~IFrameSink() {}
+IFrameSlicer::~IFrameSlicer() {}
 IFrameSource::~IFrameSource() {}
 IFrameSplitter::~IFrameSplitter() {}
 IFunctionNodeBase::~IFunctionNodeBase() {}
@@ -141,6 +137,9 @@ IRandom::~IRandom() {}
 IRecombinationModel::~IRecombinationModel() {}
 IScalarFieldSink::~IScalarFieldSink() {}
 ISinkNodeBase::~ISinkNodeBase() {}
+ISlice::~ISlice() {}
+ISliceFrame::~ISliceFrame() {}
+ISliceFrameSink::~ISliceFrameSink() {}
 ISourceNodeBase::~ISourceNodeBase() {}
 ISplitNodeBase::~ISplitNodeBase() {}
 ITiling::~ITiling() {}
