@@ -5,7 +5,6 @@
 #include "WireCellUtil/Point.h"
 #include "WireCellUtil/Units.h"
 
-#include <boost/signals2.hpp>
 #include <set>
 
 namespace WireCell {

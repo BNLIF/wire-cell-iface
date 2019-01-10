@@ -42,6 +42,7 @@
 #include "WireCellIface/IFrameJoiner.h"
 #include "WireCellIface/IFrameSink.h"
 #include "WireCellIface/IFrameSlicer.h"
+#include "WireCellIface/IFrameSlices.h"
 #include "WireCellIface/IFrameSource.h"
 #include "WireCellIface/IFrameSplitter.h"
 #include "WireCellIface/IFunctionNode.h"
@@ -63,7 +64,10 @@
 #include "WireCellIface/ISlice.h"
 #include "WireCellIface/ISliceFrame.h"
 #include "WireCellIface/ISliceFrameSink.h"
+#include "WireCellIface/ISliceStripper.h"
 #include "WireCellIface/ISplitNode.h"
+#include "WireCellIface/IStrip.h"
+#include "WireCellIface/IStripSet.h"
 #include "WireCellIface/ITiling.h"
 #include "WireCellIface/ITrace.h"
 #include "WireCellIface/IWaveform.h"
@@ -121,6 +125,7 @@ IFrameFilter::~IFrameFilter() {}
 IFrameJoiner::~IFrameJoiner() {}
 IFrameSink::~IFrameSink() {}
 IFrameSlicer::~IFrameSlicer() {}
+IFrameSlices::~IFrameSlices() {}
 IFrameSource::~IFrameSource() {}
 IFrameSplitter::~IFrameSplitter() {}
 IFunctionNodeBase::~IFunctionNodeBase() {}
@@ -140,8 +145,11 @@ ISinkNodeBase::~ISinkNodeBase() {}
 ISlice::~ISlice() {}
 ISliceFrame::~ISliceFrame() {}
 ISliceFrameSink::~ISliceFrameSink() {}
+ISliceStripper::~ISliceStripper() {}
 ISourceNodeBase::~ISourceNodeBase() {}
 ISplitNodeBase::~ISplitNodeBase() {}
+IStrip::~IStrip() {}
+IStripSet::~IStripSet() {}
 ITiling::~ITiling() {}
 ITrace::~ITrace() {}
 IWaveform::~IWaveform() {}
