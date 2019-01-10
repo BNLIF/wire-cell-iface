@@ -4,11 +4,6 @@
 #include "WireCellIface/IAnodeFace.h"
 #include "WireCellIface/IAnodePlane.h"
 #include "WireCellIface/IApplication.h"
-#include "WireCellIface/ICellMaker.h"
-#include "WireCellIface/ICellSlice.h"
-#include "WireCellIface/ICellSliceSink.h"
-#include "WireCellIface/ICellSummary.h"
-#include "WireCellIface/ICellVectorSink.h"
 #include "WireCellIface/IChannelFilter.h"
 #include "WireCellIface/IChannelNoiseDatabase.h"
 #include "WireCellIface/IChannelResponse.h"
@@ -46,7 +41,6 @@
 #include "WireCellIface/IFrameSource.h"
 #include "WireCellIface/IFrameSplitter.h"
 #include "WireCellIface/IFunctionNode.h"
-#include "WireCellIface/IGeometry.h"
 #include "WireCellIface/IHydraNode.h"
 #include "WireCellIface/IJoinNode.h"
 #include "WireCellIface/INode.h"
@@ -68,7 +62,6 @@
 #include "WireCellIface/ISplitNode.h"
 #include "WireCellIface/IStrip.h"
 #include "WireCellIface/IStripSet.h"
-#include "WireCellIface/ITiling.h"
 #include "WireCellIface/ITrace.h"
 #include "WireCellIface/IWaveform.h"
 #include "WireCellIface/IWireGenerator.h"
@@ -76,7 +69,6 @@
 #include "WireCellIface/IWireSource.h"
 #include "WireCellIface/IWireSummarizer.h"
 #include "WireCellIface/IWireSummary.h"
-#include "WireCellIface/SimpleCell.h"
 #include "WireCellIface/SimpleDepoSet.h"
 #include "WireCellIface/SimpleWire.h"
 
@@ -87,11 +79,6 @@ IWireParameters::~IWireParameters() { }
 IAnodeFace::~IAnodeFace() {}
 IAnodePlane::~IAnodePlane() {}
 IApplication::~IApplication() {}
-ICellMaker::~ICellMaker() {}
-ICellSlice::~ICellSlice() {}
-ICellSliceSink::~ICellSliceSink() {}
-ICellSummary::~ICellSummary() {}
-ICellVectorSink::~ICellVectorSink() {}
 IChannelFilter::~IChannelFilter() {}
 IChannelNoiseDatabase::~IChannelNoiseDatabase() {}
 IChannelResponse::~IChannelResponse() {}
@@ -129,7 +116,6 @@ IFrameSlices::~IFrameSlices() {}
 IFrameSource::~IFrameSource() {}
 IFrameSplitter::~IFrameSplitter() {}
 IFunctionNodeBase::~IFunctionNodeBase() {}
-IGeometry::~IGeometry() {}
 IHydraNodeBase::~IHydraNodeBase() {}
 IJoinNodeBase::~IJoinNodeBase() {}
 INode::~INode(){}
@@ -150,7 +136,6 @@ ISourceNodeBase::~ISourceNodeBase() {}
 ISplitNodeBase::~ISplitNodeBase() {}
 IStrip::~IStrip() {}
 IStripSet::~IStripSet() {}
-ITiling::~ITiling() {}
 ITrace::~ITrace() {}
 IWaveform::~IWaveform() {}
 IWireGenerator::~IWireGenerator() {}
@@ -158,6 +143,5 @@ IWireSchema::~IWireSchema() {}
 IWireSource::~IWireSource() {}
 IWireSummarizer::~IWireSummarizer() {}
 IWireSummary::~IWireSummary() {}
-SimpleCell::~SimpleCell() {}
 SimpleDepoSet::~SimpleDepoSet() {}
 SimpleWire::~SimpleWire() {}
