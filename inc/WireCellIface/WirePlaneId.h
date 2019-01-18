@@ -4,6 +4,7 @@
 // fixme: should move into WirePlaneIdCfg.h or similar. (more below)
 #include "WireCellUtil/Configuration.h"
 #include <ostream>
+#include <functional>
 
 namespace WireCell {
 
@@ -63,6 +64,14 @@ namespace WireCell {
     
 }
 
-
+// implement hash() so WirePlaneId an be used as a key in unordered STL containers.
+namespace std {
+    template<>
+    struct hash<WireCell::WirePlaneId> {
+        std::size_t operator()(const WireCell::WirePlaneId& wpid) const {
+            return std::hash<int>()(wpid.ident());
+        }
+    };
+}
 
 #endif

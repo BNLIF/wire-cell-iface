@@ -75,6 +75,7 @@ namespace WireCell {
 	    return lhs->index() < rhs->index();
 	}
     };
+    typedef std::set<IWire::pointer, IWireCompareIndex> IWireIndexSet;
 
     // A set ordered by wire segment
     struct IWireCompareSegment {

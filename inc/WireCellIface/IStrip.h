@@ -36,6 +36,7 @@ namespace WireCell {
 
         // the contiguous, ordered, per channel values.
         virtual vector_t values() const = 0;
+
     };
 
 

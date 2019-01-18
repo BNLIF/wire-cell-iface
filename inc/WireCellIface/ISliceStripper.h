@@ -7,6 +7,13 @@
 
 namespace WireCell {
 
+    /** A slice stripper produces a set of strips from a slice.
+
+        Note, in the case of detectors with wrapped wires, an
+        implementation MAY (or may not) produce strips that span the
+        wrapping.
+
+     */
     class ISliceStripper : public IFunctionNode<ISlice, IStripSet> {
     public:
 	typedef std::shared_ptr<ISliceStripper> pointer;
