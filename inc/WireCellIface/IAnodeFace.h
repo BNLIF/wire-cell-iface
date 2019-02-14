@@ -20,6 +20,7 @@
 
 #include "WireCellUtil/IComponent.h"
 #include "WireCellUtil/BoundingBox.h"
+#include "WireCellUtil/RayGrid.h"
 #include "WireCellIface/IWirePlane.h"
 
 namespace WireCell {
@@ -44,6 +45,10 @@ namespace WireCell {
         /// Return a bounding box containing the volume to which this
         /// face is sensitive.  BB may be zero volume.
         virtual BoundingBox sensitive() const = 0;
+
+        /// Return a RayGrid::Coordinates corresponding to this face.
+        virtual const RayGrid::Coordinates& raygrid() const  = 0;
+
     };
 }
 

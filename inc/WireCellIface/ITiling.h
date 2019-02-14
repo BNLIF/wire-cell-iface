@@ -1,16 +1,16 @@
-/**  A tiling consumes a set of stripes and produces a set of blobs.
+/**  A tiling consumes a time slice of channel samples and produces a set of blobs from it.
  */
 
 #ifndef WIRECELL_ITILING
 #define WIRECELL_ITILING
 
 #include "WireCellIface/IFunctionNode.h"
-#include "WireCellIface/IStripeSet.h"
+#include "WireCellIface/ISlice.h"
 #include "WireCellIface/IBlobSet.h"
 
 namespace WireCell {
 
-    class ITiling : IFunctionNode<IStripeSet, IBlobSet> {
+    class ITiling : public IFunctionNode<ISlice, IBlobSet> {
     public:
         
 	typedef std::shared_ptr<ITiling> pointer;
