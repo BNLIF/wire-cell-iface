@@ -6,6 +6,7 @@
 #include "WireCellIface/IApplication.h"
 #include "WireCellIface/IBlob.h"
 #include "WireCellIface/IBlobSet.h"
+#include "WireCellIface/IBlobSetSink.h"
 #include "WireCellIface/IChannelFilter.h"
 #include "WireCellIface/IChannelNoiseDatabase.h"
 #include "WireCellIface/IChannelResponse.h"
@@ -86,6 +87,7 @@ IAnodePlane::~IAnodePlane() {}
 IApplication::~IApplication() {}
 IBlob::~IBlob() {}
 IBlobSet::~IBlobSet() {}
+IBlobSetSink::~IBlobSetSink() {}
 IChannelFilter::~IChannelFilter() {}
 IChannelNoiseDatabase::~IChannelNoiseDatabase() {}
 IChannelResponse::~IChannelResponse() {}

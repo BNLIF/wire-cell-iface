@@ -6,7 +6,7 @@
 
 namespace WireCell {
 
-    /** A depo sink is a node that generates IDepo objects.
+    /** A depo sink is a node that consumes IDepo objects.
      */
     class IDepoSink : public ISinkNode<IDepo>
     {
