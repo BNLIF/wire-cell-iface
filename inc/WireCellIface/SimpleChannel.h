@@ -18,9 +18,9 @@ namespace WireCell {
         virtual const IWire::vector& wires() const;
 
 
-        // Personal interface for creator, if need be.
-        //void add(const IWire::pointer& wire);
-        //void set_index(int ind);
+        // Personal interface for creator.
+        void add(const IWire::pointer& wire);
+        void set_index(int ind);
 
     private:
         int m_ident, m_index;

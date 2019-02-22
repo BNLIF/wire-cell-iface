@@ -26,15 +26,15 @@ const IWire::vector& SimpleChannel::wires() const
 }
 
 
-// Personal interface for creator, if need be.
+// Personal interface for creator
 //
-// void Gen::SimpleChannel::add(const Wire::pointer& wire)
-// {
-//     m_wires.append(wire);
-//     std::sort(m_wires.begin(), m_wires.end(), IWireCompareSegment());
-// }
-// void Gen::SimpleChannel::set_index(int ind)
-// {
-//     m_index=index;
-// }
+void SimpleChannel::add(const IWire::pointer& wire)
+{
+    m_wires.push_back(wire);
+    std::sort(m_wires.begin(), m_wires.end(), IWireCompareSegment());
+}
+void SimpleChannel::set_index(int ind)
+{
+    m_index=ind;
+}
             
