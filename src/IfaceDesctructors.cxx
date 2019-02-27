@@ -61,6 +61,7 @@
 #include "WireCellIface/ISinkNode.h"
 #include "WireCellIface/ISourceNode.h"
 #include "WireCellIface/ISlice.h"
+#include "WireCellIface/ISliceFanout.h"
 #include "WireCellIface/ISliceFrame.h"
 #include "WireCellIface/ISliceFrameSink.h"
 #include "WireCellIface/ISliceStriper.h"
@@ -140,6 +141,7 @@ IRecombinationModel::~IRecombinationModel() {}
 IScalarFieldSink::~IScalarFieldSink() {}
 ISinkNodeBase::~ISinkNodeBase() {}
 ISlice::~ISlice() {}
+ISliceFanout::~ISliceFanout() {}
 ISliceFrame::~ISliceFrame() {}
 ISliceFrameSink::~ISliceFrameSink() {}
 ISliceStriper::~ISliceStriper() {}
