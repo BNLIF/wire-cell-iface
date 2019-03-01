@@ -30,6 +30,9 @@ namespace WireCell {
         /// requirement.
         virtual IBlob::vector blobs() const = 0;
 
+        /// Return a vector of the underlying IBlob::shape() in order.
+        virtual RayGrid::blobs_t shapes() const;
+
     };
 }
 
