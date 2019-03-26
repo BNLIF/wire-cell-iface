@@ -20,13 +20,13 @@ namespace WireCell {
         /// Return some identifier number that is unique to this set.
         virtual int ident() const = 0;
 
-        /// Which face this set belongs
+        /// Which face this set belongs.
         virtual int face() const = 0;
 
         /// The slice from which this set was generated.
         virtual ISlice::pointer slice() const = 0;
 
-        /// Return the strips in this set.  There is no ordering
+        /// Return the blobs in this set.  There is no ordering
         /// requirement.
         virtual IBlob::vector blobs() const = 0;
 

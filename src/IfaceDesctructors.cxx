@@ -6,6 +6,7 @@
 #include "WireCellIface/IApplication.h"
 #include "WireCellIface/IBlob.h"
 #include "WireCellIface/IBlobSet.h"
+#include "WireCellIface/IBlobSetFanin.h"
 #include "WireCellIface/IBlobSetSink.h"
 #include "WireCellIface/IChannelFilter.h"
 #include "WireCellIface/IChannelNoiseDatabase.h"
@@ -78,6 +79,7 @@
 #include "WireCellIface/IWireSummary.h"
 #include "WireCellIface/SimpleDepoSet.h"
 #include "WireCellIface/SimpleWire.h"
+#include "WireCellIface/SimpleBlob.h"
 
 
 using namespace WireCell;
@@ -88,6 +90,7 @@ IAnodePlane::~IAnodePlane() {}
 IApplication::~IApplication() {}
 IBlob::~IBlob() {}
 IBlobSet::~IBlobSet() {}
+IBlobSetFanin::~IBlobSetFanin() {}
 IBlobSetSink::~IBlobSetSink() {}
 IChannelFilter::~IChannelFilter() {}
 IChannelNoiseDatabase::~IChannelNoiseDatabase() {}
@@ -159,3 +162,5 @@ IWireSummarizer::~IWireSummarizer() {}
 IWireSummary::~IWireSummary() {}
 SimpleDepoSet::~SimpleDepoSet() {}
 SimpleWire::~SimpleWire() {}
+SimpleBlob::~SimpleBlob() {}
+SimpleBlobSet::~SimpleBlobSet() {}
