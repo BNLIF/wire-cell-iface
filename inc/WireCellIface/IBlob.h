@@ -15,7 +15,8 @@
 #ifndef WIRECELL_IBLOB
 #define WIRECELL_IBLOB
 
-#include "WireCellIface/IBlob.h"
+#include "WireCellIface/IAnodeFace.h"
+#include "WireCellIface/ISlice.h"
 
 #include "WireCellUtil/RayTiling.h"
 
@@ -34,10 +35,17 @@ namespace WireCell {
         // An associated value, aka "charge", may be 0.0.
         virtual float value() const = 0;
 
-        // And its uncertainty
+        // And its uncertainty.  A "weight" is considered 1.0/uncertainty, 
         virtual float uncertainty() const = 0;
 
-        // Return the blob data describing the shape.
+        // Return the anode plane face the blob was made on.
+        virtual IAnodeFace::pointer face() const = 0;
+
+        // Return the time slice that the blob was made from.
+        virtual ISlice::pointer slice() const = 0;
+
+        // Return the blob data describing the shape in terms of
+        // wire-in-plane indices
         virtual const RayGrid::Blob& shape() const  = 0;
 
     };

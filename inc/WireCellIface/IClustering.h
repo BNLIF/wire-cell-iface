@@ -1,7 +1,5 @@
-/** A clustering consumes a stream of blob sets and produces clusters.
- *
- * Note, implementations may levy restrictions on order and overlap of
- * input blob sets.
+/** A clustering consumes blob sets and sometimes emits cluster
+ * objects.
 */
 
 #ifndef WIRECELL_ICLUSTERING

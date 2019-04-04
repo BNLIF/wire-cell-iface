@@ -8,7 +8,7 @@ namespace WireCell {
     /** A blob set fan-in component takes blobs sets on N input ports
      * and produces a vector of them on its output port.
      */
-    class IBlobSetFanin : public IFaninNode<IBlobSet,IBlobSet::vector,0> {
+    class IBlobSetFanin : public IFaninNode<IBlobSet,IBlobSet,0> {
     public:
 
         virtual ~IBlobSetFanin() ;

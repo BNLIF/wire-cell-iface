@@ -7,6 +7,7 @@
 #include "WireCellIface/IBlob.h"
 #include "WireCellIface/IBlobSet.h"
 #include "WireCellIface/IBlobSetFanin.h"
+#include "WireCellIface/IBlobSetFanout.h"
 #include "WireCellIface/IBlobSetSink.h"
 #include "WireCellIface/IChannelFilter.h"
 #include "WireCellIface/IChannelNoiseDatabase.h"
@@ -14,6 +15,7 @@
 #include "WireCellIface/IChannelSpectrum.h"
 #include "WireCellIface/IChannelStatus.h"
 #include "WireCellIface/ICluster.h"
+#include "WireCellIface/IClusterFilter.h"
 #include "WireCellIface/IClustering.h"
 #include "WireCellIface/IConfigurable.h"
 #include "WireCellIface/IDataFlowGraph.h"
@@ -91,6 +93,7 @@ IApplication::~IApplication() {}
 IBlob::~IBlob() {}
 IBlobSet::~IBlobSet() {}
 IBlobSetFanin::~IBlobSetFanin() {}
+IBlobSetFanout::~IBlobSetFanout() {}
 IBlobSetSink::~IBlobSetSink() {}
 IChannelFilter::~IChannelFilter() {}
 IChannelNoiseDatabase::~IChannelNoiseDatabase() {}
@@ -98,6 +101,7 @@ IChannelResponse::~IChannelResponse() {}
 IChannelSpectrum::~IChannelSpectrum() {}
 IChannelStatus::~IChannelStatus() {}
 ICluster::~ICluster() {}
+IClusterFilter::~IClusterFilter() {}
 IClustering::~IClustering() {}
 IConfigurable::~IConfigurable() {}
 IDataFlowGraph::~IDataFlowGraph() {}

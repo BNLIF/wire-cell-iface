@@ -1,7 +1,6 @@
-/** A blob set holds a collection of blobs which are related through
- * their start time value.  They may thus span multiple time slices.
+/** A blob set holds a collection of blobs.
  *
- * See also ICluster which is like IBlobSet but adds associations.
+ * See also ICluster which allows more rich associations.
  */
 
 #ifndef WIRECELL_IBLOBSET
@@ -20,19 +19,17 @@ namespace WireCell {
         /// Return some identifier number that is unique to this set.
         virtual int ident() const = 0;
 
-        /// Which face this set belongs.
-        virtual int face() const = 0;
-
-        /// The slice from which this set was generated.
+        /// A slice relevant to this set.  This may be given even if
+        /// there are no blobs (which have their own pointer to a
+        /// slice).  
         virtual ISlice::pointer slice() const = 0;
 
         /// Return the blobs in this set.  There is no ordering
         /// requirement.
         virtual IBlob::vector blobs() const = 0;
 
-        /// Return a vector of the underlying IBlob::shape() in order.
+        /// Return a vector of the underlying IBlob::shape() in order (sugar).
         virtual RayGrid::blobs_t shapes() const;
-
     };
 }
 
