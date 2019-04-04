@@ -96,14 +96,24 @@ namespace WireCell {
         std::vector<Type> ret;
         for (const auto& v : boost::make_iterator_range(boost::vertices(g.graph()))) {
             const auto& vp = g.graph()[v];
-            if (! std::holds_alternative<Type>(vp.ptr)) {
-                continue;
+            if (std::holds_alternative<Type>(vp.ptr)) {
+                ret.push_back(std::get<Type>(vp.ptr));
             }
-            ret.push_back(std::get<Type>(vp.ptr));
         }
         return ret;
     }
 
+    template<typename Type>
+    std::vector<Type> neighbors_oftype(const cluster_indexed_graph_t& g, const cluster_node_t& n) {
+        std::vector<Type> ret;
+        for (const auto& vp : g.neighbors(n)) {
+            if (std::holds_alternative<Type>(vp.ptr)) {
+                ret.push_back(std::get<Type>(vp.ptr));
+            }
+        }
+        return ret;
+    }
+    
 }
 
 
