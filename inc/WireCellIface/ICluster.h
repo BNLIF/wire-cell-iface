@@ -24,6 +24,7 @@ namespace WireCell {
 
     /// The vertex property.
     typedef std::variant<
+        size_t,
         IChannel::pointer,
         IWire::pointer,
         IBlob::pointer,
@@ -34,22 +35,30 @@ namespace WireCell {
     struct cluster_node_t {
         cluster_ptr_t ptr;
 
-        cluster_node_t() : ptr() {}
-        cluster_node_t(const cluster_ptr_t& p) : ptr(p) {}
+        cluster_node_t() : ptr() {
+            //std::cerr << "WARNING empty cluster node made\n";
+        }
+        cluster_node_t(const cluster_ptr_t& p) : ptr((size_t)0) {}
         cluster_node_t(const IChannel::pointer& p) : ptr(p) {}
         cluster_node_t(const IWire::pointer& p) : ptr(p) {}
         cluster_node_t(const IBlob::pointer& p) : ptr(p) {}
         cluster_node_t(const ISlice::pointer& p) : ptr(p) {}
         cluster_node_t(const IChannel::shared_vector& p) : ptr(p) {}
 
+        cluster_node_t(const cluster_node_t& other) : ptr(other.ptr) {}
+
         // Helper: return a letter code for the type of the ptr or \0.
         char code() const {
             auto ind=ptr.index();
             if (ind == std::variant_npos) { return 0; }
-            return "cwbsm"[ind];
+            return "0cwbsm"[ind];
         }
         bool operator==(const cluster_node_t &other) const {
             return ptr == other.ptr;
+        }
+        cluster_node_t& operator=(const cluster_node_t &other) {
+            ptr = other.ptr;
+            return *this;
         }
 
     };
@@ -59,15 +68,16 @@ namespace std {
     template<>
     struct hash<WireCell::cluster_node_t> {
         std::size_t operator()(const WireCell::cluster_node_t& n) const {
-            switch (n.code()) {
-            case 'c': return (std::size_t)std::get<0>(n.ptr).get(); break;
-            case 'w': return (std::size_t)std::get<1>(n.ptr).get(); break;
-            case 'b': return (std::size_t)std::get<2>(n.ptr).get(); break;
-            case 's': return (std::size_t)std::get<3>(n.ptr).get(); break;
-            case 'm': return (std::size_t)std::get<4>(n.ptr).get(); break;
-            default: break;
+            size_t h = 0;
+            switch (n.ptr.index()) {
+            case 0: h=std::get<0>(n.ptr); break;
+            case 1: h=(std::size_t)std::get<1>(n.ptr).get(); break;
+            case 2: h=(std::size_t)std::get<2>(n.ptr).get(); break;
+            case 3: h=(std::size_t)std::get<3>(n.ptr).get(); break;
+            case 4: h=(std::size_t)std::get<4>(n.ptr).get(); break;
+            case 5: h=(std::size_t)std::get<5>(n.ptr).get(); break;
             }
-            return 0;
+            return h;
         }
     };
 }
@@ -83,6 +93,9 @@ namespace WireCell {
     class ICluster : public IData<ICluster> {
     public:
         virtual ~ICluster();
+
+	/// Return an identifying number.
+	virtual int ident() const = 0;
 
         // Access the graph.  
         virtual const cluster_graph_t& graph() const = 0;

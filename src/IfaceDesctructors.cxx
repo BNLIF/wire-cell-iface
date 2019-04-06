@@ -17,6 +17,7 @@
 #include "WireCellIface/ICluster.h"
 #include "WireCellIface/IClusterFilter.h"
 #include "WireCellIface/IClustering.h"
+#include "WireCellIface/IClusterSink.h"
 #include "WireCellIface/IConfigurable.h"
 #include "WireCellIface/IDataFlowGraph.h"
 #include "WireCellIface/IDeconvolution.h"
@@ -103,6 +104,7 @@ IChannelStatus::~IChannelStatus() {}
 ICluster::~ICluster() {}
 IClusterFilter::~IClusterFilter() {}
 IClustering::~IClustering() {}
+IClusterSink::~IClusterSink() {}
 IConfigurable::~IConfigurable() {}
 IDataFlowGraph::~IDataFlowGraph() {}
 IDeconvolution::~IDeconvolution() {}
