@@ -5,7 +5,6 @@
 
 #include <boost/any.hpp>
 #include <vector>
-#include <iostream>             // debug
 
 namespace WireCell {
 
@@ -35,7 +34,6 @@ namespace WireCell {
 	virtual ~ISinkNode() {}
 
 	virtual bool operator()(const boost::any& anyin) {
-            //std::cerr << "ISinkNode got " << anyin.type().name() << std::endl;
 	    const input_pointer& in = boost::any_cast<const input_pointer&>(anyin);
 	    return (*this)(in);
 	}

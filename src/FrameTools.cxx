@@ -7,8 +7,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <numeric>
-#include <iostream>             // debug
-#include <iomanip>             // debug
 
 using namespace WireCell;
 
@@ -50,13 +48,6 @@ std::pair<IFrame::pointer, IFrame::pointer> FrameTools::split(IFrame::pointer fr
     const double fnticks = (time - tref)/tick;
     const int tbin_split = 0.5 + fnticks;
 
-    // std::cerr << "FrameTools::split: fid:"<<ident
-    //           << std::setprecision(12)
-    //           << " t_target:"<<time/units::us<<"us"
-    //           << " t_frame:"<< tref/units::us<<"us"
-    //           << " fnticks:" << fnticks
-    //           << " tbin_split:"<<tbin_split
-    //           << "\n";
 
     ITrace::vector mtraces, ptraces;
     for (auto trace : (*frame->traces())) {
@@ -206,10 +197,6 @@ void FrameTools::fill(Array::array_xxf& array,
             continue;
         }
         const int nleft = std::min(ncols_left, nticks_left);
-        // std::cerr << "ch=" << ch << " row=" << irow << ", icol0=" << icol0
-        //           << ", itick0=" << itick0
-        //           << ", nleft=" << nleft
-        //           << std::endl;
         for (int ind=0; ind != nleft; ++ind) {
             array(irow, icol0+ind) += charge.at(itick0 + ind);
         }

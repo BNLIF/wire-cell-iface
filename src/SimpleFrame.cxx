@@ -1,7 +1,5 @@
 #include "WireCellIface/SimpleFrame.h"
 
-#include <iostream>
-
 using namespace WireCell;
 using namespace std;
 

@@ -36,7 +36,6 @@ namespace WireCell {
         cluster_ptr_t ptr;
 
         cluster_node_t() : ptr() {
-            //std::cerr << "WARNING empty cluster node made\n";
         }
         cluster_node_t(const cluster_ptr_t& p) : ptr((size_t)0) {}
         cluster_node_t(const IChannel::pointer& p) : ptr(p) {}
