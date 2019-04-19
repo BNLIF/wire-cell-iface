@@ -37,7 +37,7 @@ namespace WireCell {
 
         cluster_node_t() : ptr() {
         }
-        cluster_node_t(const cluster_ptr_t& p) : ptr((size_t)0) {}
+        cluster_node_t(const cluster_ptr_t& p) : ptr(p) {}
         cluster_node_t(const IChannel::pointer& p) : ptr(p) {}
         cluster_node_t(const IWire::pointer& p) : ptr(p) {}
         cluster_node_t(const IBlob::pointer& p) : ptr(p) {}
@@ -87,6 +87,7 @@ namespace WireCell {
     typedef boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS, cluster_node_t> cluster_graph_t;
     typedef boost::graph_traits<cluster_graph_t>::vertex_descriptor cluster_vertex_t;
     typedef boost::graph_traits<cluster_graph_t>::edge_descriptor cluster_edge_t;
+    typedef boost::graph_traits<cluster_graph_t>::vertex_iterator cluster_vertex_iter_t;
 
 
     class ICluster : public IData<ICluster> {
@@ -126,6 +127,7 @@ namespace WireCell {
         return ret;
     }
     
+
 }
 
 
